@@ -97,20 +97,25 @@ public class Database {
 
    //to work on the SQL phrasing here
     public User createUserObject(String password, String username) throws SQLException{
-        String sql = String.format("select id, dob, familyid from users where name = ? and password = ?");
-        stmtFinal
-        User user =new User();
-        try (Statement stmt = conn.createStatement();
-                        ResultSet result = stmt.executeQuery(sql)) {
-
-                    while (result.next()) {
-                        int id = result.getInt("id");
-
-                        Date dob = result.getDate("dob");
-                        int familyId = result.getInt("familyid");
-
-                        user = new User(id, username, password, dob, familyId);
-                    }}
+        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username + "' and password ='"+ password+"'";
+        int id=0;
+        Date dob=null;
+        int familyId = 0;
+        
+    try (Statement stmt = conn.createStatement();
+            ResultSet result = (ResultSet)stmt.executeQuery(sql)) {
+      while (result.next()) {
+          id = result.getInt("id");  
+          dob=result.getDate("dob");
+          familyId = result.getInt("familyid");
+          System.out.println(familyId);
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    
+        User user =new User(id, username, password, dob, familyId);
+        
         return user;
     }
 public static Timestamp nowSQL() {

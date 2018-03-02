@@ -18,10 +18,7 @@ public class Global {
     public Database db = new Database();
     public User currentUser= new User();
     
-    private void close() {
-        WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
-        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
-    }
+   
     
     
 }

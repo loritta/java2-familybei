@@ -48,7 +48,12 @@ public class Login extends javax.swing.JFrame {
         WindowEvent winClosing = new WindowEvent(this, WindowEvent.WINDOW_CLOSED);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
-
+public static Timestamp nowSQL() {
+        Calendar cal = Calendar.getInstance();
+        java.util.Date now = cal.getTime();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+        return currentTimestamp;
+    }
  
 
   
