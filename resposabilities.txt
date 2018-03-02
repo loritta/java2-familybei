@@ -1,0 +1,29 @@
+Steps of the project:
+=======================
+1.Generating the ideas
+
+2.Project proposal:
+
+*design the app
+*create DB
+*create java project
+*design the frames drafts
+*edit the proposal document
+*submit the document
+-----------------------All done
+3.GUI
+
+*design the frames according to the requirements	    - Larisa
+
+4.Programming
+
+*create the Database classes and the classes for each table - Tung
+*connect all the frames, dialogs between them -Larisa
+**??create functions for calling the frames from the menu bar.
+An option is to create a separate class for login or call the classes from inside the same class for the whole project
+*change the names of the elements of each frame
+*divide the available frames between group members 
+and add the logic to them
+*change all the catches to JOption panes
+
+5. Testing

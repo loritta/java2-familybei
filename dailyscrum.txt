@@ -1,0 +1,118 @@
+Daily scrum - Every day at 9am
+=============================
+
+Each member writes down answers to 3 questions:
+
+1. What I have done/not done since last Scrum?
+2. What I plan to do from this scrum to next?
+3. Where do I need assistance? What do I need to figure out?
+
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎
+!!! We have to review daily the results of the other team member from the previous day to be on track with the changes.!!!
+
+28/02/2018:
+Tung: 
+1. Drafted tables, create tasks on Trello
+2. Make new tables: users, accounts, transactions, cat, budgetsMonthly, budgetMonthlyByCat
+3. Design tables.
+
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+
+28/02/2018:
+Larisa:
+1.The project creation. Design of frames for the app. Trello tasks creation and adjustment. Setting git repo and the bitbucket.
+2.The trello for the project with all the communication with the customer and the features. 
+We need to plan the actions to be performed for the following days.
+3.Trello tasks have to be populated with more details. We need to check it daily both.
+
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 7 days left/ 2 days gone
+01/03/2018
+Tung:
+1. Done: tables family, users, transactions, categories.
+	 classes Family, User, Transaction, Category with CRUD methods.
+2. Tables: budgetsMonthly, budgetMonthlyByCat
+   Classes: BudgetMonthly, BudgetMonthlyByCat
+   JFrame/JDialog: Register, Login, Menu
+3. convert: String -> java.util.Date -> java.sql.Date
+
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+
+01/03/2018
+Larisa:
+1. Done: Changed the design of all the frames, created Responsibilities txt file to have an additional source of communication on what is planned(for the things that are not in Trello or are very general and setting them in Trello when it's just an idea but, for all the tasks will take time). Also created a file useful links with links on things that may be needed for the project. Linked all the frames up until into the Welcome.Created a separate class for login and connected it to the initially main java file. Changed the main Java file to Login as this is the starting point.
+2. Link the menus of all the pages. Review if the design is ok or there are any changes to be done. Decide if there should be all the frames in the same class.. quite difficult logistically.
+3. Need to see where we are at. See what is left to be done from both sides and what are the things we didn't yet touch at all. Then split the tasks to be performed on introducing the logic. Need to get explanations from both side on what have been done verbally.
+ 
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 6 days left/ 3 days gone
+02/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+02/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 5 days left/ 4 days gone
+03/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+03/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 4 days left/ 5 days gone
+04/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+04/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 3 days left/ 6 days gone
+05/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+05/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 2 days left/ 7 days gone
+06/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+06/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 1 days left/ 8 days gone -submission
+07/03/2018
+Tung:
+1.
+2.
+3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+07/03/2018
+Larisa:
+1.
+2.
+3.
+▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎
