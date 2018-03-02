@@ -36,7 +36,7 @@ public class User {
     this.name = name;
     this.password = password;
     this.dob = dob;
-    this.familyId = familyId;
+      setFamilyId(familyId);
   }
   
   public User(){
@@ -118,7 +118,7 @@ public class User {
 
   @Override
   public String toString() {
-    return "#" + getId() + ", name=" + getName() + ", dob=" + getDob() + ", familyId=" + getFamilyId(family);
+    return "#" + getId() + ", name=" + getName() + ", dob=" + getDob() + ", familyId=" + getFamilyId();
   }
   
   public int getFamilyId(String familyName) {

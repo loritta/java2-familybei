@@ -24,9 +24,13 @@ public class InitialInfo extends javax.swing.JDialog {
     /**
      * Creates new form InitialInfo
      */
-    public InitialInfo() {
-        
+    public InitialInfo(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+    }
+
+    private InitialInfo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**

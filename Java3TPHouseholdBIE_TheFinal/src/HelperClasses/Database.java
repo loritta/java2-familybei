@@ -113,7 +113,7 @@ public class Database {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
     }
-    
+    System.out.println(familyId);
         User user =new User(id, username, password, dob, familyId);
         
         return user;
