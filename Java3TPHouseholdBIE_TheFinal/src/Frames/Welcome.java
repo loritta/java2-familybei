@@ -5,17 +5,24 @@
  */
 package Frames;
 
+import HelperClasses.Database;
+
 /**
  *
  * @author larisasabalin
  */
 public class Welcome extends javax.swing.JFrame {
+    
+    Frames.Global gl=new Frames.Global();
+    
 
     /**
      * Creates new form Welcome
      */
     public Welcome() {
         initComponents();
+        
+        
     }
 
     /**
@@ -295,33 +302,39 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmWelcome_miAddIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddIncome9ActionPerformed
-        dlgIncome.pack();
-        dlgIncome.setVisible(true);
+        Frames.AddIncome income=new AddIncome(this, true);
+        income.pack();
+        income.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
 
     private void frmWelcome_miAddExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddExpenses9ActionPerformed
-        dlgExpences.pack();
-        dlgExpences.setVisible(true);
+        AddExpenses expense = new AddExpenses(this, true);
+        expense.pack();
+        expense.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-        dlgGoToReports.pack();
-        dlgGoToReports.setVisible(true);
+        GoToReports reports = new GoToReports(this, true);
+        reports.pack();
+        reports.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        dlgSeeBudget.pack();
-        dlgSeeBudget.setVisible(true);
+        SeeBudget seeBudget = new SeeBudget(this, true);
+        seeBudget.pack();
+        seeBudget.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-        frmSeeExpences.pack();
-        frmSeeExpences.setVisible(true);
+        SeeExpenses seeExpenses = new SeeExpenses(this, true);
+        seeExpenses.pack();
+        seeExpenses.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-        dlgSeeIncome.pack();
-        dlgSeeIncome.setVisible(true);
+        SeeIncome seeIncome =new SeeIncome(this, true);
+        seeIncome.pack();
+        seeIncome.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
 
     private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed

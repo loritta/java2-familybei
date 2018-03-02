@@ -49,32 +49,9 @@ public class Login extends javax.swing.JFrame {
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(winClosing);
     }
 
-    public Date strToDate(String str) {
-        SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
-        Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
-        try {
-            java.util.Date utilDate = sdf.parse(str);
-            sqlDate = new Date(utilDate.getTime());
-        } catch (ParseException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return sqlDate;
-    }
+ 
 
-    public void comparePassword(String password, String rePassword) {
-        if (password.equals(rePassword)) {
-            JOptionPane.showMessageDialog(null, "Passwords matched!");
-        } else {
-            throw new InputMismatchException();
-        }
-    }
-
-    public static Timestamp nowSQL() {
-        Calendar cal = Calendar.getInstance();
-        java.util.Date now = cal.getTime();
-        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
-        return currentTimestamp;
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -583,8 +560,6 @@ public class Login extends javax.swing.JFrame {
         String result = db.loginVerif(password, username);
         if (result.equals("success")) {
             try {
-                user = db.createUserObject(password, username);
-                
                 HouseholdBIE welcome = new HouseholdBIE();
                 welcome.pack();
                 welcome.setVisible(true);
