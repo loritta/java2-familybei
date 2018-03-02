@@ -5,17 +5,27 @@
  */
 package Frames;
 
+import HelperClasses.Database;
+import HelperClasses.Transaction;
+import HelperClasses.User;
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author larisasabalin
  */
 public class InitialInfo extends javax.swing.JDialog {
 
+    Frames.Global gl = new Frames.Global();
+
     /**
      * Creates new form InitialInfo
      */
-    public InitialInfo(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public InitialInfo() {
+        
         initComponents();
     }
 
@@ -256,25 +266,23 @@ public class InitialInfo extends javax.swing.JDialog {
             BigDecimal expenses = (BigDecimal) formatter.parse(tfInitialInfoExpenses.getText());
             BigDecimal income = (BigDecimal) formatter.parse(tfInitialInfoIncome.getText());
 
-            String categoryExpense ="GeneralExpenses";
-            String categoryIncome="Income";
-            String categoryBudget="GeneralBudget";
+            String categoryExpense = "GeneralExpenses";
+            String categoryIncome = "Income";
+            String categoryBudget = "GeneralBudget";
 
-            Transaction tExpense = new Transaction(0, user.getId(), expenses, nowSQL(), categoryExpense);
+            Transaction tExpense = new Transaction(0, gl.currentUser.getId(), expenses, gl.db.nowSQL(), categoryExpense);
             tExpense.insert();
-            Transaction tIncome =new Transaction(0, user.getId(), income, nowSQL(), categoryIncome);
+            Transaction tIncome = new Transaction(0, gl.currentUser.getId(), income, gl.db.nowSQL(), categoryIncome);
             tIncome.insert();
             //convert the constructor to reading the category type id
             //BudgetsMonthly bBudget =new BudgetsMonthly(0, user.getId(), categoryBudget, budget, nowSQL());
-            dlgInitialInfo.setVisible(false);
-            dlgRegistration.setVisible(false);
-            Login firstLogin = new Login();
-            firstLogin.setVisible(true);
+            //has to go to welcome page
+            this.setVisible(false);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(this,
-                "Re-enter the budgeted values" + ex.getMessage(),
-                "Decimal Format Error",
-                JOptionPane.ERROR_MESSAGE);
+                    "Re-enter the budgeted values" + ex.getMessage(),
+                    "Decimal Format Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_InitialInfo_btnSaveActionPerformed
 
@@ -312,7 +320,8 @@ public class InitialInfo extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                InitialInfo dialog = new InitialInfo(new javax.swing.JFrame(), true);
+                //InitialInfo dialog = new InitialInfo(new javax.swing.JFrame(), true);
+                InitialInfo dialog = new InitialInfo();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

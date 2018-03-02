@@ -5,19 +5,24 @@
  */
 package Frames;
 
+import HelperClasses.User;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author larisasabalin
  */
 public class Registration extends javax.swing.JDialog {
-
+Frames.Global gl = new Frames.Global();
     /**
      * Creates new form Registration
      */
-    public Registration(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,55 +181,39 @@ public class Registration extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
+        
         String familyName = reg_tfFamilyName.getText();
-        //    Family f = new Family(0, familyName);
-        //    f.insert();
-
-        String resultUser = "";
-        String resultFamily = "";
-
-        String name = reg_tfName.getText();
-        String password = new String(reg_pfPassword.getPassword());
-        String rePassword = new String(reg_pfRePassword.getPassword());
-        String familyCode = reg_tfFamilyCode.getText();
-        System.out.println(password.equals(rePassword));
-        try {
-            comparePassword(password, rePassword);
-            Date dob = strToDate(reg_tfDob.getText());
-
-            Family family = new Family(0, familyName, familyCode);
-            //family.deleteName(); // to be removed when we fix the situation with Family access.
-            resultFamily = family.insert();
-            System.out.println(resultFamily+"good");
-            // we need to check here if it was successfully written
-            //and then give out the message on the successeful registration
-            //the thing is in bad sequence of events.. have to figureit out.
-            //the fields have to be first inserted an then the object has to be created..
-            //the logic id now totaly off..
-            user = new User(0, name, password, dob, familyName);
-            System.out.println("after");
-            resultUser = user.insertUser();
-            System.out.println(resultUser+"good");
-
-            if (resultUser.equals("")) {
+//    Family f = new Family(0, familyName);
+//    f.insert();
+String resultUser = "";
+    String name = reg_tfName.getText();
+    String password = new String(reg_pfPassword.getPassword());
+    String rePassword = new String(reg_pfRePassword.getPassword());
+    System.out.println(password.equals(rePassword));
+    try {
+      gl.db.comparePassword(password, rePassword);
+      Date dob = gl.db.strToDate(reg_tfDob.getText());
+      User user = new User(0, name, password, dob, familyName);
+      resultUser = user.insertUser();
+      
+      if (resultUser.equals("")) {
                 JOptionPane.showMessageDialog(this, "Registered successfully.");
-                dlgInitialInfo.pack();
-                dlgInitialInfo.setVisible(true);
-                dlgRegistration.setVisible(false);
+                
+                this.setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this, resultUser);
-            }
-        } catch (InputMismatchException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(this,
-                "Re-enter your passwords." + ex.getMessage(),
-                "Passwords not matched!!!",
-                JOptionPane.ERROR_MESSAGE);
-        }
+            }}catch (InputMismatchException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(this, 
+              "Re-enter your passwords." + ex.getMessage(),
+              "Passwords not matched!!!", 
+              JOptionPane.ERROR_MESSAGE);
+    }
+    
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed
-        dlgRegistration.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_reg_btnCancelActionPerformed
 
     private void reg_tfDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_tfDobActionPerformed
@@ -261,7 +250,7 @@ public class Registration extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Registration dialog = new Registration(new javax.swing.JFrame(), true);
+                Registration dialog = new Registration();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

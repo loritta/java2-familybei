@@ -1,6 +1,6 @@
 package HelperClasses;
 
-import BIE.HouseholdBIE;
+
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
@@ -10,6 +10,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -21,6 +26,7 @@ public class Database {
     private final static String DBNAME = "myjac";
     private final static String USERNAME = "myjac";
     private final static String PASSWORD = "Yt6wOA_!6byy";
+    public static final String DATE_FORMAT_SQL = "yyyy/MM/dd";
     //for Tung
     /*private final static String HOSTNAME = "den1.mysql6.gear.host";
     private final static String DBNAME = "familybei";
@@ -91,22 +97,52 @@ public class Database {
 
    //to work on the SQL phrasing here
     public User createUserObject(String password, String username) throws SQLException{
-        String sql = String.format("select id, dob, familyid from users where name = %s and password = %s", username, password);
-        User user =new User();
-        try (Statement stmt = conn.createStatement();
-                        ResultSet result = stmt.executeQuery(sql)) {
-
-                    while (result.next()) {
-                        int id = result.getInt("id");
-
-                        Date dob = result.getDate("dob");
-                        int familyId = result.getInt("familyid");
-
-                        user = new User(id, username, password, dob, familyId);
-                    }}
+        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username + "' and password ='"+ password+"'";
+        int id=0;
+        Date dob=null;
+        int familyId = 0;
+        
+    try (Statement stmt = conn.createStatement();
+            ResultSet result = (ResultSet)stmt.executeQuery(sql)) {
+      while (result.next()) {
+          id = result.getInt("id");  
+          dob=result.getDate("dob");
+          familyId = result.getInt("familyid");
+          System.out.println(familyId);
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    
+        User user =new User(id, username, password, dob, familyId);
+        
         return user;
     }
+public static Timestamp nowSQL() {
+        Calendar cal = Calendar.getInstance();
+        java.util.Date now = cal.getTime();
+        java.sql.Timestamp currentTimestamp = new java.sql.Timestamp(now.getTime());
+        return currentTimestamp;
+    }
+ public Date strToDate(String str) {
+        SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
+        Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
+        try {
+            java.util.Date utilDate = sdf.parse(str);
+            sqlDate = new Date(utilDate.getTime());
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return sqlDate;
+    }
 
+    public void comparePassword(String password, String rePassword) {
+        if (password.equals(rePassword)) {
+            JOptionPane.showMessageDialog(null, "Passwords matched!");
+        } else {
+            throw new InputMismatchException();
+        }
+    }
         }
 
     

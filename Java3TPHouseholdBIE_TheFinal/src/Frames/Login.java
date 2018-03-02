@@ -5,18 +5,25 @@
  */
 package Frames;
 
+import HelperClasses.Database;
+import HelperClasses.User;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author larisasabalin
  */
 public class Login extends javax.swing.JDialog {
+    Frames.Global gl=new Frames.Global();
 
     /**
      * Creates new form Login
      */
-    public Login(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public Login() {  //from inside teh brackets: java.awt.Frame parent, boolean modal
+        //super(parent, modal);
         initComponents();
+       
     }
 
     /**
@@ -159,8 +166,10 @@ public class Login extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewMbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMbActionPerformed
-        dlgRegistration.pack();
-        dlgRegistration.setVisible(true);
+        //has to go to Regisartion page
+        Registration registration = new Registration();
+        registration.pack();
+        registration.setVisible(true);
         //dlgInitialInfo.getContentPane().setBackground(Color.getHSBColor(154, 254, 25));
         this.setVisible(false);
     }//GEN-LAST:event_btnNewMbActionPerformed
@@ -170,12 +179,13 @@ public class Login extends javax.swing.JDialog {
         String password = pfPassword.getText();
         String username = tfName.getText();
 
-        String result = db.loginVerif(password, username);
+        String result = gl.db.loginVerif(password, username);
         if (result.equals("success")) {
             try {
-                user = db.createUserObject(password, username);
-
-                HouseholdBIE welcome = new HouseholdBIE();
+                
+                gl.currentUser = gl.db.createUserObject(password, username);
+                System.out.println(gl.currentUser);
+                Welcome welcome = new Welcome();
                 welcome.pack();
                 welcome.setVisible(true);
                 this.setVisible(false);
@@ -222,7 +232,7 @@ public class Login extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Login dialog = new Login(new javax.swing.JFrame(), true);
+                Login dialog = new Login();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

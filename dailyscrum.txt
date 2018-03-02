@@ -52,9 +52,10 @@ Tung:
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 02/03/2018
 Larisa:
-1.
-2.
-3.
+1.Updated Trello, worked on registration and on login. Login worked.. before we changed the way the frames are done. Worked on the details for the initialInfo.
+2.Redo the frames to dialogs. Make a global class and figure out how to deal with it.
+3.We need to make sure the git works. I am working in branch right now. And each time I commit I make pull requests. To the main to make sure everything is ok.
+We have a final project separately open. We will have to use that one just to conclude everything. Now with separate classes it will be easier to make it all work fine.
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 5 days left/ 4 days gone
 03/03/2018
 Tung:
