@@ -55,7 +55,7 @@ public class InitialInfo extends javax.swing.JDialog {
     init_tfExpense = new javax.swing.JTextField();
     JPanel10 = new javax.swing.JPanel();
     jLabel56 = new javax.swing.JLabel();
-    init_lblTotalBudget = new javax.swing.JLabel();
+    init_lblBudgetRequired = new javax.swing.JLabel();
     jLabel63 = new javax.swing.JLabel();
     init_slMortgage = new javax.swing.JSlider();
     init_lblMortgage = new javax.swing.JLabel();
@@ -94,7 +94,7 @@ public class InitialInfo extends javax.swing.JDialog {
         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel46)
           .addComponent(jLabel47))
-        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
         .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(init_tfIncome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
           .addComponent(init_tfExpense, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -125,10 +125,10 @@ public class InitialInfo extends javax.swing.JDialog {
     });
 
     jLabel56.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
-    jLabel56.setText("Total budget:");
+    jLabel56.setText("Budget required:");
 
-    init_lblTotalBudget.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
-    init_lblTotalBudget.setText("0");
+    init_lblBudgetRequired.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
+    init_lblBudgetRequired.setText("0");
 
     jLabel63.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
     jLabel63.setText("House(Rent/Morgage):");
@@ -227,40 +227,38 @@ public class InitialInfo extends javax.swing.JDialog {
         .addGap(32, 32, 32)
         .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
           .addComponent(jLabel63)
-          .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPanel10Layout.createSequentialGroup()
+              .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel67, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel70, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jLabel71, javax.swing.GroupLayout.Alignment.LEADING))
+              .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(JPanel10Layout.createSequentialGroup()
-              .addGap(291, 291, 291)
-              .addComponent(jLabel56)
-              .addGap(92, 92, 92)
-              .addComponent(init_lblTotalBudget))
-            .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-              .addGroup(JPanel10Layout.createSequentialGroup()
-                .addComponent(init_slMortgage, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(init_lblMortgage))
-              .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPanel10Layout.createSequentialGroup()
-                .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addComponent(jLabel65, javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel67, javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel70, javax.swing.GroupLayout.Alignment.LEADING)
-                  .addComponent(jLabel71, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(0, 0, Short.MAX_VALUE))
-              .addGroup(JPanel10Layout.createSequentialGroup()
-                .addComponent(init_slFood, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(init_lblFood))
-              .addGroup(JPanel10Layout.createSequentialGroup()
-                .addComponent(init_slOther, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(init_lblOther))
-              .addGroup(JPanel10Layout.createSequentialGroup()
-                .addComponent(init_slCar, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(init_lblCar))
-              .addGroup(JPanel10Layout.createSequentialGroup()
-                .addComponent(init_slChemical, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(init_lblChemical)))))
+              .addComponent(init_slFood, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(init_lblFood))
+            .addGroup(JPanel10Layout.createSequentialGroup()
+              .addComponent(init_slOther, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(init_lblOther))
+            .addGroup(JPanel10Layout.createSequentialGroup()
+              .addComponent(init_slCar, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(init_lblCar))
+            .addGroup(JPanel10Layout.createSequentialGroup()
+              .addComponent(init_slChemical, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+              .addComponent(init_lblChemical))
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, JPanel10Layout.createSequentialGroup()
+              .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jLabel56)
+                .addComponent(init_slMortgage, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+              .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+              .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(init_lblMortgage, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(init_lblBudgetRequired, javax.swing.GroupLayout.Alignment.TRAILING)))))
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JPanel10Layout.createSequentialGroup()
         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,7 +273,7 @@ public class InitialInfo extends javax.swing.JDialog {
         .addContainerGap()
         .addGroup(JPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
           .addComponent(jLabel56)
-          .addComponent(init_lblTotalBudget))
+          .addComponent(init_lblBudgetRequired))
         .addGap(18, 18, 18)
         .addComponent(jLabel63)
         .addGap(18, 18, 18)
@@ -319,31 +317,14 @@ public class InitialInfo extends javax.swing.JDialog {
   }// </editor-fold>//GEN-END:initComponents
 
     private void init_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_init_btnSaveActionPerformed
-      
-      try {
-        DecimalFormat formatter = new DecimalFormat("###.##");
-        formatter.setParseBigDecimal(true);
-        BigDecimal budget = (BigDecimal) formatter.parse(init_lblTotalBudget.getText());
-        BigDecimal expenses = (BigDecimal) formatter.parse(init_tfExpense.getText());
-        BigDecimal income = (BigDecimal) formatter.parse(init_tfIncome.getText());
-
-        String categoryExpense = "Expense";
-        String categoryIncome = "Income";
-
-        Transaction tExpense = new Transaction(0, gl.currentUser.getId(), expenses, gl.db.nowSQL(), categoryExpense);
-        tExpense.insert();
-        Transaction tIncome = new Transaction(0, gl.currentUser.getId(), income, gl.db.nowSQL(), categoryIncome);
-        tIncome.insert();
-        //convert the constructor to reading the category type id
-        //BudgetsMonthly bBudget =new BudgetsMonthly(0, user.getId(), categoryBudget, budget, nowSQL());
-        //has to go to welcome page
-        this.setVisible(false);
-      } catch (ParseException ex) {
-        JOptionPane.showMessageDialog(this,
-                "Re-enter the budgeted values" + ex.getMessage(),
-                "Decimal Format Error",
-                JOptionPane.ERROR_MESSAGE);
-      }
+      insertTransaction(init_tfIncome.getText(), "Income");
+      insertTransaction(init_tfExpense.getText(), "Expense");
+      insertTransaction(init_lblMortgage.getText(), "Mortgage");
+      insertTransaction(init_lblFood.getText(), "Food");
+      insertTransaction(init_lblChemical.getText(), "Chemical");
+      insertTransaction(init_lblCar.getText(), "Car");
+      insertTransaction(init_lblOther.getText(), "Other");
+      // insertTransaction(init_lblBudgetRequired.getText(), "BudgetRequired");
     }//GEN-LAST:event_init_btnSaveActionPerformed
 
     private void init_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_init_btnCancelActionPerformed
@@ -377,7 +358,7 @@ public class InitialInfo extends javax.swing.JDialog {
             + init_slChemical.getValue() + init_slCar.getValue()
             + init_slOther.getValue());
 
-    init_lblTotalBudget.setText(totalBudget + "");
+    init_lblBudgetRequired.setText(totalBudget + "");
   }//GEN-LAST:event_JPanel10MouseMoved
 
   /**
@@ -427,12 +408,12 @@ public class InitialInfo extends javax.swing.JDialog {
   private javax.swing.JPanel JPanel10;
   private javax.swing.JButton init_btnCancel;
   private javax.swing.JButton init_btnSave;
+  private javax.swing.JLabel init_lblBudgetRequired;
   private javax.swing.JLabel init_lblCar;
   private javax.swing.JLabel init_lblChemical;
   private javax.swing.JLabel init_lblFood;
   private javax.swing.JLabel init_lblMortgage;
   private javax.swing.JLabel init_lblOther;
-  private javax.swing.JLabel init_lblTotalBudget;
   private javax.swing.JSlider init_slCar;
   private javax.swing.JSlider init_slChemical;
   private javax.swing.JSlider init_slFood;
