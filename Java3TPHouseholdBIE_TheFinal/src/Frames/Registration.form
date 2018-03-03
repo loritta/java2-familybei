@@ -6,7 +6,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -74,14 +74,14 @@
                               <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="reg_tfFamilyCode" alignment="0" max="32767" attributes="0"/>
-                              <Component id="reg_tfFamilyName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="reg_pfPassword" alignment="0" pref="87" max="32767" attributes="0"/>
-                              <Component id="reg_tfName" alignment="0" max="32767" attributes="0"/>
-                              <Component id="reg_tfDob" alignment="0" max="32767" attributes="0"/>
-                              <Component id="reg_pfRePassword" alignment="0" pref="87" max="32767" attributes="0"/>
+                          <EmptySpace pref="51" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="reg_tfFamilyName" max="32767" attributes="0"/>
+                              <Component id="reg_tfDob" alignment="1" max="32767" attributes="0"/>
+                              <Component id="reg_pfRePassword" alignment="1" pref="145" max="32767" attributes="0"/>
+                              <Component id="reg_pfPassword" alignment="1" max="32767" attributes="0"/>
+                              <Component id="reg_tfName" alignment="1" max="32767" attributes="0"/>
+                              <Component id="reg_tfFamilyCode" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -127,7 +127,7 @@
                       <Component id="reg_btnRegister" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="reg_btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,6 +190,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reg_pfRePasswordActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel14">
           <Properties>
