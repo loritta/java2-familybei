@@ -185,7 +185,7 @@ public class Registration extends javax.swing.JDialog {
         gl.db.comparePassword(password, rePassword);
         Date dob = gl.db.strToDate(reg_tfDob.getText());
         User user = new User(0, name, password, dob, familyName);
-        resultUser = user.insertUser();
+        user.insert();
 
         if (resultUser.equals("")) {
           JOptionPane.showMessageDialog(this, "Registered successfully.");
