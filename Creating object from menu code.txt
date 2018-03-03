@@ -1,0 +1,23 @@
+AddIncome income=new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);
+GoToReports reports = new GoToReports(null, true);
+        reports.pack();
+        reports.setVisible(true);
+Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);
+Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);
+Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);        
+
+        chooseFileCSV(fileChooser);

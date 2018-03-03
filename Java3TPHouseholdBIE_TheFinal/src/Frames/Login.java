@@ -15,15 +15,22 @@ import javax.swing.JOptionPane;
  * @author larisasabalin
  */
 public class Login extends javax.swing.JDialog {
-    Frames.Global gl=new Frames.Global();
+
+    Frames.Global gl = new Frames.Global();
 
     /**
      * Creates new form Login
      */
-    public Login() {  //from inside teh brackets: java.awt.Frame parent, boolean modal
-        //super(parent, modal);
+    public Login(java.awt.Frame parent, boolean modal) {        
+        super(parent, modal);
+        
         initComponents();
-       
+        
+    }
+
+    public Login() {
+        initComponents();
+        System.out.println("Frames.Login.<init>()");
     }
 
     /**
@@ -35,6 +42,7 @@ public class Login extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -113,6 +121,11 @@ public class Login extends javax.swing.JDialog {
 
         pfPassword.setText("jPasswordField1");
         pfPassword.setToolTipText("");
+        pfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pfPasswordMouseClicked(evt);
+            }
+        });
 
         btnCancel.setText("Cancel");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -176,10 +189,10 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNewMbActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-
+        
         String password = pfPassword.getText();
         String username = tfName.getText();
-
+        
         String result = gl.db.loginVerif(password, username);
         if (result.equals("success")) {
             try {
@@ -190,11 +203,11 @@ public class Login extends javax.swing.JDialog {
                 welcome.pack();
                 welcome.setVisible(true);
                 this.setVisible(false);
-            } catch (SQLException| NullPointerException ex) {
+            } catch (SQLException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(null,
-                    "Error connecting to database: " + ex.getMessage(),
-                    "Database error",
-                    JOptionPane.ERROR_MESSAGE);
+                        "Error connecting to database: " + ex.getMessage(),
+                        "Database error",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -202,6 +215,10 @@ public class Login extends javax.swing.JDialog {
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         System.exit(0);
     }//GEN-LAST:event_btnCancelActionPerformed
+
+    private void pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pfPasswordMouseClicked
+        pfPassword.setText("");     
+    }//GEN-LAST:event_pfPasswordMouseClicked
 
     /**
      * @param args the command line arguments
@@ -249,6 +266,7 @@ public class Login extends javax.swing.JDialog {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnNewMb;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

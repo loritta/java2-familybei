@@ -11,6 +11,8 @@ package Frames;
  */
 public class GoToReports extends javax.swing.JDialog {
 
+    Frames.Global gl = new Frames.Global();
+
     /**
      * Creates new form GoToReports
      */
@@ -28,6 +30,7 @@ public class GoToReports extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -41,6 +44,10 @@ public class GoToReports extends javax.swing.JDialog {
         jComboBox6 = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
         jComboBox8 = new javax.swing.JComboBox<>();
+        jComboBox9 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
+        jButton4 = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
         jMenuBar3 = new javax.swing.JMenuBar();
         frmGoToReports_mnuOperations2 = new javax.swing.JMenu();
         frmGoToReports_miAddIncome2 = new javax.swing.JMenuItem();
@@ -82,9 +89,19 @@ public class GoToReports extends javax.swing.JDialog {
 
         jButton2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jButton2.setText("Details");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jButton3.setText("Details");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jComboBox6.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "Quarter", "Year", " " }));
@@ -95,38 +112,68 @@ public class GoToReports extends javax.swing.JDialog {
         jComboBox8.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "Quarter", "Year", " " }));
 
+        jComboBox9.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Month", "Quarter", "Year", " " }));
+
+        jLabel20.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
+        jLabel20.setText("Budgets");
+
+        jButton4.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        jButton4.setText("Details");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        jLabel21.setText("...");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(jLabel16)
+                        .addContainerGap())
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
                             .addComponent(jLabel14)
                             .addComponent(jLabel19))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel18))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(22, 22, 22)
-                                    .addComponent(jLabel17)))))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGap(58, 58, 58)
+                                        .addComponent(jButton3))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel17))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                                .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel18))))))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton2)
-                            .addComponent(jLabel15))))
-                .addGap(20, 20, 20))
+                        .addComponent(jLabel20)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel21))
+                    .addComponent(jButton4)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,14 +185,21 @@ public class GoToReports extends javax.swing.JDialog {
                     .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel21))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,9 +215,19 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuOperations2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmGoToReports_miAddIncome2.setText("Add Income");
+        frmGoToReports_miAddIncome2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miAddIncome2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miAddIncome2);
 
         frmGoToReports_miAddExpenses2.setText("Add Expenses");
+        frmGoToReports_miAddExpenses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miAddExpenses2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miAddExpenses2);
 
         frmGoToReports_miGoToReports2.setText("Go To Reports");
@@ -178,9 +242,19 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeBudgets2);
 
         frmGoToReports_miSeeExpenses2.setText("See Expenses");
+        frmGoToReports_miSeeExpenses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miSeeExpenses2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeExpenses2);
 
         frmGoToReports_miSeeIncome2.setText("See Income");
+        frmGoToReports_miSeeIncome2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miSeeIncome2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeIncome2);
 
         jMenuBar3.add(frmGoToReports_mnuOperations2);
@@ -189,6 +263,11 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuExport2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         miCSV2.setText("to CSV");
+        miCSV2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCSV2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuExport2.add(miCSV2);
 
         miPDF2.setText("to PDF");
@@ -206,8 +285,62 @@ public class GoToReports extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmGoToReports_miSeeBudgets2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeBudgets2ActionPerformed
-        // TODO add your handling code here:
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmGoToReports_miSeeBudgets2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        //set the combo box in Details to Expenses
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        //set the combo box in Details to Income
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        //set the combo box in Details to Budgets
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void frmGoToReports_miAddIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddIncome2ActionPerformed
+        AddIncome income = new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+    }//GEN-LAST:event_frmGoToReports_miAddIncome2ActionPerformed
+
+    private void frmGoToReports_miAddExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddExpenses2ActionPerformed
+        AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miAddExpenses2ActionPerformed
+
+    private void frmGoToReports_miSeeExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeExpenses2ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miSeeExpenses2ActionPerformed
+
+    private void frmGoToReports_miSeeIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeIncome2ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);     }//GEN-LAST:event_frmGoToReports_miSeeIncome2ActionPerformed
+
+    private void miCSV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCSV2ActionPerformed
+        gl.chooseFileCSV(fileChooser);
+    }//GEN-LAST:event_miCSV2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -252,6 +385,7 @@ public class GoToReports extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmGoToReports_miAddExpenses2;
     private javax.swing.JMenuItem frmGoToReports_miAddIncome2;
     private javax.swing.JMenuItem frmGoToReports_miGoToReports2;
@@ -264,15 +398,19 @@ public class GoToReports extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
+    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JMenuBar jMenuBar3;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JMenuItem miCSV2;
