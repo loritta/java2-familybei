@@ -59,9 +59,9 @@ We have a final project separately open. We will have to use that one just to co
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 5 days left/ 4 days gone
 03/03/2018
 Tung:
-1.
-2.
-3.
+1. I'm back on master branch with load of conflicts fixed. Registration functions, it leads user back to login.
+2. Continue InitialInfo. Might help Larisa if she needs with merging her branch to master.
+3. Get userId from userName and store each registered budget in budgetsMonthlyByCat with userId.
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 03/03/2018
 Larisa:

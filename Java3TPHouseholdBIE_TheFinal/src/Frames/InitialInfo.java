@@ -325,7 +325,7 @@ public class InitialInfo extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 //InitialInfo dialog = new InitialInfo(new javax.swing.JFrame(), true);
-                InitialInfo dialog = new InitialInfo();
+                InitialInfo dialog = new InitialInfo(null, true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
