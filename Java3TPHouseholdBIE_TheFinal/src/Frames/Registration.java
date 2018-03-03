@@ -37,6 +37,7 @@ public class Registration extends javax.swing.JDialog {
     reg_tfFamilyCode = new javax.swing.JTextField();
 
     setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    setModal(true);
 
     Registration.setBackground(new java.awt.Color(204, 204, 255));
     Registration.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registration:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 18))); // NOI18N

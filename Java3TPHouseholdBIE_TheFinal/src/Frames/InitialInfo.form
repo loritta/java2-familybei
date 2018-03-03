@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,117,0,0,2,49"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,2,117,0,0,2,53"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -51,10 +51,10 @@
                       <Component id="jLabel46" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel47" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="100" max="32767" attributes="0"/>
+                  <EmptySpace pref="104" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfInitialInfoIncome" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                      <Component id="tfInitialInfoExpenses" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="init_tfIncome" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                      <Component id="init_tfExpense" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               </Group>
@@ -66,11 +66,11 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel46" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfInitialInfoIncome" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_tfIncome" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="20" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="tfInitialInfoExpenses" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_tfExpense" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel47" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
@@ -95,13 +95,13 @@
             <Property name="text" type="java.lang.String" value="Expenses for the last month:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfInitialInfoIncome">
+        <Component class="javax.swing.JTextField" name="init_tfIncome">
         </Component>
-        <Component class="javax.swing.JTextField" name="tfInitialInfoExpenses">
+        <Component class="javax.swing.JTextField" name="init_tfExpense">
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel13">
+    <Container class="javax.swing.JPanel" name="JPanel10">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="cc" red="cc" type="rgb"/>
@@ -114,6 +114,9 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseMoved" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="JPanel10MouseMoved"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>
@@ -132,33 +135,13 @@
                               <EmptySpace min="-2" pref="291" max="-2" attributes="0"/>
                               <Component id="jLabel56" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
-                              <Component id="lbInitialInfoBudget" min="-2" max="-2" attributes="0"/>
+                              <Component id="init_lblTotalBudget" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="1" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
-                                  <Component id="sldInitialInfoBudgetHome" min="-2" pref="411" max="-2" attributes="0"/>
+                                  <Component id="init_slMortgage" min="-2" pref="411" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="lbInitialInfoBudgetHouse" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="sldInitialInfoBudgetFood" min="-2" pref="411" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="lbInitialInfoBudgetFood" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="sldInitialInfoBudgetChemicals" min="-2" pref="411" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="lbInitialInfoBudgetChemicals" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="sldInitialInfoBudgetCar" min="-2" pref="411" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="lbInitialInfoBudgetCar" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="sldInitialInfoBudgetOther" min="-2" pref="411" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="lbInitialInfoBudgetOther" min="-2" max="-2" attributes="0"/>
+                                  <Component id="init_lblMortgage" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="1" attributes="0">
@@ -169,6 +152,26 @@
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="init_slFood" min="-2" pref="411" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="init_lblFood" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="init_slOther" min="-2" pref="411" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="init_lblOther" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="init_slCar" min="-2" pref="411" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="init_lblCar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="init_slChemical" min="-2" pref="411" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="init_lblChemical" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -176,9 +179,9 @@
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="InitialInfo_btnCancel" min="-2" max="-2" attributes="0"/>
+                  <Component id="init_btnCancel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="InitialInfo_btnSave" min="-2" max="-2" attributes="0"/>
+                  <Component id="init_btnSave" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -189,47 +192,47 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel56" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudget" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblTotalBudget" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel63" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sldInitialInfoBudgetHome" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudgetHouse" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_slMortgage" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblMortgage" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel65" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sldInitialInfoBudgetFood" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudgetFood" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_slFood" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblFood" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel67" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sldInitialInfoBudgetChemicals" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudgetChemicals" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_slChemical" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblChemical" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel70" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sldInitialInfoBudgetCar" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudgetCar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_slCar" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblCar" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jLabel71" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="sldInitialInfoBudgetOther" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lbInitialInfoBudgetOther" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_slOther" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_lblOther" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="InitialInfo_btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="InitialInfo_btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="init_btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
@@ -245,12 +248,12 @@
             <Property name="text" type="java.lang.String" value="Total budget:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudget">
+        <Component class="javax.swing.JLabel" name="init_lblTotalBudget">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel63">
@@ -261,14 +264,22 @@
             <Property name="text" type="java.lang.String" value="House(Rent/Morgage):"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="sldInitialInfoBudgetHome">
+        <Component class="javax.swing.JSlider" name="init_slMortgage">
+          <Properties>
+            <Property name="maximum" type="int" value="3000"/>
+            <Property name="minorTickSpacing" type="int" value="10"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="init_slMortgageStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudgetHouse">
+        <Component class="javax.swing.JLabel" name="init_lblMortgage">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel65">
@@ -279,14 +290,22 @@
             <Property name="text" type="java.lang.String" value="Food:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="sldInitialInfoBudgetFood">
+        <Component class="javax.swing.JSlider" name="init_slFood">
+          <Properties>
+            <Property name="maximum" type="int" value="3000"/>
+            <Property name="minorTickSpacing" type="int" value="10"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="init_slFoodStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudgetFood">
+        <Component class="javax.swing.JLabel" name="init_lblFood">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel67">
@@ -297,24 +316,40 @@
             <Property name="text" type="java.lang.String" value="Household chemical and personal products:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="sldInitialInfoBudgetChemicals">
+        <Component class="javax.swing.JSlider" name="init_slChemical">
+          <Properties>
+            <Property name="maximum" type="int" value="3000"/>
+            <Property name="minorTickSpacing" type="int" value="10"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="init_slChemicalStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudgetChemicals">
+        <Component class="javax.swing.JLabel" name="init_lblChemical">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="sldInitialInfoBudgetCar">
+        <Component class="javax.swing.JSlider" name="init_slCar">
+          <Properties>
+            <Property name="maximum" type="int" value="3000"/>
+            <Property name="minorTickSpacing" type="int" value="10"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="init_slCarStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudgetCar">
+        <Component class="javax.swing.JLabel" name="init_lblCar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel70">
@@ -333,30 +368,38 @@
             <Property name="text" type="java.lang.String" value="Other:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JSlider" name="sldInitialInfoBudgetOther">
+        <Component class="javax.swing.JSlider" name="init_slOther">
+          <Properties>
+            <Property name="maximum" type="int" value="3000"/>
+            <Property name="minorTickSpacing" type="int" value="10"/>
+            <Property name="value" type="int" value="0"/>
+          </Properties>
+          <Events>
+            <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="init_slOtherStateChanged"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="lbInitialInfoBudgetOther">
+        <Component class="javax.swing.JLabel" name="init_lblOther">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Sans Typewriter" size="13" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="..."/>
+            <Property name="text" type="java.lang.String" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="InitialInfo_btnSave">
+        <Component class="javax.swing.JButton" name="init_btnSave">
           <Properties>
             <Property name="text" type="java.lang.String" value="Save"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InitialInfo_btnSaveActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="init_btnSaveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="InitialInfo_btnCancel">
+        <Component class="javax.swing.JButton" name="init_btnCancel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cancel"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="InitialInfo_btnCancelActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="init_btnCancelActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
