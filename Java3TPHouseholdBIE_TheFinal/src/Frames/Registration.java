@@ -176,32 +176,25 @@ public class Registration extends javax.swing.JDialog {
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
 
       String familyName = reg_tfFamilyName.getText();
-      String resultUser = "";
       String name = reg_tfName.getText();
       String password = new String(reg_pfPassword.getPassword());
       String rePassword = new String(reg_pfRePassword.getPassword());
-      System.out.println(password.equals(rePassword));
       try {
         gl.db.comparePassword(password, rePassword);
         Date dob = gl.db.strToDate(reg_tfDob.getText());
         User user = new User(0, name, password, dob, familyName);
         user.insert();
-
-        if (resultUser.equals("")) {
-          JOptionPane.showMessageDialog(this, "Registered successfully.");
-
-          this.setVisible(false);
-        } else {
-          JOptionPane.showMessageDialog(this, resultUser);
-        }
+        this.setVisible(false);
+        InitialInfo init = new InitialInfo();
+        init.pack();
+        init.setVisible(true);
       } catch (InputMismatchException ex) {
         System.out.println(ex.getMessage());
         JOptionPane.showMessageDialog(this,
-                "Re-enter your passwords." + ex.getMessage(),
+                "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
                 "Passwords not matched!!!",
                 JOptionPane.ERROR_MESSAGE);
       }
-
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed
