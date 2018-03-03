@@ -258,11 +258,11 @@ Details details =new Details(null, true);
     private void frmExpences_miCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miCSVActionPerformed
         //We should make this as a function this is repeating for each frame
        
-        gl.currentSession.seeFileChooser();
+        //.seeFileChooser();
     }//GEN-LAST:event_frmExpences_miCSVActionPerformed
 
     private void frmExpences_miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miPDFActionPerformed
-         gl.currentSession.seeFileChooser();
+         //gl.currentSession.seeFileChooser();
     }//GEN-LAST:event_frmExpences_miPDFActionPerformed
 
     /**

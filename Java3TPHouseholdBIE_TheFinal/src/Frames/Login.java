@@ -191,9 +191,9 @@ public class Login extends javax.swing.JDialog {
                 
                 gl.currentUser = gl.db.createUserObject(password, username);
                 System.out.println(gl.currentUser);
-                
-                gl.currentSession.pack();
-                gl.currentSession.setVisible(true);
+                Welcome welcome=new Welcome();
+                welcome.pack();
+                welcome.setVisible(true);
                 this.setVisible(false);
             } catch (SQLException| NullPointerException ex) {
                 JOptionPane.showMessageDialog(null,
