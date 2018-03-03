@@ -17,8 +17,7 @@ import java.awt.event.WindowEvent;
 public class Global {
     public Database db = new Database();
     public User currentUser= new User();
-    
-   
+    public Welcome currentSession = new Welcome();
     
     
 }

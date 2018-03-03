@@ -21,8 +21,15 @@ public class Welcome extends javax.swing.JFrame {
      */
     public Welcome() {
         initComponents();
+        Login login = new Login();
+        login.pack();
+        login.setVisible(true);
+        this.setVisible(false);
         
         
+    }
+    public void seeFileChooser(){
+        fileChooser.setVisible(true);
     }
 
     /**
@@ -320,21 +327,21 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        SeeBudget seeBudget = new SeeBudget(this, true);
+        Details seeBudget = new Details(this, true);
         seeBudget.pack();
         seeBudget.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-        SeeExpenses seeExpenses = new SeeExpenses(this, true);
-        seeExpenses.pack();
-        seeExpenses.setVisible(true);
+        Details details =new Details(this, true);
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-        SeeIncome seeIncome =new SeeIncome(this, true);
-        seeIncome.pack();
-        seeIncome.setVisible(true);
+        Details details =new Details(this, true);
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
 
     private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed

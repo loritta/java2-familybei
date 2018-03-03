@@ -10,7 +10,7 @@ package Frames;
  * @author larisasabalin
  */
 public class AddExpenses extends javax.swing.JDialog {
-
+Frames.Global gl=new Frames.Global();
     /**
      * Creates new form AddExpenses
      */
@@ -132,12 +132,27 @@ public class AddExpenses extends javax.swing.JDialog {
         frmExpences_mnuOperations.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmExpences_miAddIncome.setText("Add Income");
+        frmExpences_miAddIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miAddIncomeActionPerformed(evt);
+            }
+        });
         frmExpences_mnuOperations.add(frmExpences_miAddIncome);
 
         frmExpences_miAddExpenses.setText("Add Expenses");
+        frmExpences_miAddExpenses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miAddExpensesActionPerformed(evt);
+            }
+        });
         frmExpences_mnuOperations.add(frmExpences_miAddExpenses);
 
         frmExpences_miGoToReports.setText("Go To Reports");
+        frmExpences_miGoToReports.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miGoToReportsActionPerformed(evt);
+            }
+        });
         frmExpences_mnuOperations.add(frmExpences_miGoToReports);
 
         frmExpences_miSeeBudgets.setText("See Budget");
@@ -149,9 +164,19 @@ public class AddExpenses extends javax.swing.JDialog {
         frmExpences_mnuOperations.add(frmExpences_miSeeBudgets);
 
         frmExpences_miSeeExpenses.setText("See Expenses");
+        frmExpences_miSeeExpenses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miSeeExpensesActionPerformed(evt);
+            }
+        });
         frmExpences_mnuOperations.add(frmExpences_miSeeExpenses);
 
         frmExpences_miSeeIncome.setText("See Income");
+        frmExpences_miSeeIncome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miSeeIncomeActionPerformed(evt);
+            }
+        });
         frmExpences_mnuOperations.add(frmExpences_miSeeIncome);
 
         jMenuBar1.add(frmExpences_mnuOperations);
@@ -160,9 +185,19 @@ public class AddExpenses extends javax.swing.JDialog {
         frmExpences_mnuExport.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmExpences_miCSV.setText("to CSV");
+        frmExpences_miCSV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miCSVActionPerformed(evt);
+            }
+        });
         frmExpences_mnuExport.add(frmExpences_miCSV);
 
         frmExpences_miPDF.setText("to PDF");
+        frmExpences_miPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmExpences_miPDFActionPerformed(evt);
+            }
+        });
         frmExpences_mnuExport.add(frmExpences_miPDF);
 
         jMenuBar1.add(frmExpences_mnuExport);
@@ -181,8 +216,54 @@ public class AddExpenses extends javax.swing.JDialog {
     }//GEN-LAST:event_frmExpences_tfAmountActionPerformed
 
     private void frmExpences_miSeeBudgetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeBudgetsActionPerformed
-        // TODO add your handling code here:
+        //set the combo box in Details to Budgets
+        Details details =new Details(null, true);
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmExpences_miSeeBudgetsActionPerformed
+
+    private void frmExpences_miAddIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddIncomeActionPerformed
+         AddIncome income=new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+
+    }//GEN-LAST:event_frmExpences_miAddIncomeActionPerformed
+
+    private void frmExpences_miAddExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddExpensesActionPerformed
+     AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);
+    }//GEN-LAST:event_frmExpences_miAddExpensesActionPerformed
+
+    private void frmExpences_miGoToReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miGoToReportsActionPerformed
+        GoToReports reports = new GoToReports(null, true);
+        reports.pack();
+        reports.setVisible(true);
+    }//GEN-LAST:event_frmExpences_miGoToReportsActionPerformed
+
+    private void frmExpences_miSeeExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeExpensesActionPerformed
+       //set the combo box in Details to Expenses
+ Details details =new Details(null, true);
+        details.pack();
+        details.setVisible(true);
+    }//GEN-LAST:event_frmExpences_miSeeExpensesActionPerformed
+
+    private void frmExpences_miSeeIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeIncomeActionPerformed
+    //set the combo box in Details to Income
+Details details =new Details(null, true);
+        details.pack();
+        details.setVisible(true);
+    }//GEN-LAST:event_frmExpences_miSeeIncomeActionPerformed
+
+    private void frmExpences_miCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miCSVActionPerformed
+        //We should make this as a function this is repeating for each frame
+       
+        gl.currentSession.seeFileChooser();
+    }//GEN-LAST:event_frmExpences_miCSVActionPerformed
+
+    private void frmExpences_miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miPDFActionPerformed
+         gl.currentSession.seeFileChooser();
+    }//GEN-LAST:event_frmExpences_miPDFActionPerformed
 
     /**
      * @param args the command line arguments

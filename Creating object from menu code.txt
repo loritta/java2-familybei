@@ -1,0 +1,23 @@
+AddIncome income=new AddIncome(this, true);
+        income.pack();
+        income.setVisible(true);
+AddExpenses expense = new AddExpenses(this, true);
+        expense.pack();
+        expense.setVisible(true);
+GoToReports reports = new GoToReports(this, true);
+        reports.pack();
+        reports.setVisible(true);
+//set the combo box in Details to Budgets
+Details seeBudget = new Details(this, true);
+        seeBudget.pack();
+        seeBudget.setVisible(true);
+ //set the combo box in Details to Expenses
+ Details details =new Details(this, true);
+        details.pack();
+        details.setVisible(true);
+//set the combo box in Details to Income
+Details details =new Details(this, true);
+        details.pack();
+        details.setVisible(true);
+//We should make this as a function this is repeating for each frame
+        fileChooser.setVisible(true);

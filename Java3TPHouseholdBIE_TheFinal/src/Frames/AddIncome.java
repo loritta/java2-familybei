@@ -113,6 +113,11 @@ public class AddIncome extends javax.swing.JDialog {
         frmIncome_mnuOperations1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmIncome_miAddIncome1.setText("Add Income");
+        frmIncome_miAddIncome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miAddIncome1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuOperations1.add(frmIncome_miAddIncome1);
 
         frmIncome_miAddExpenses1.setText("Add Expenses");
@@ -164,6 +169,12 @@ public class AddIncome extends javax.swing.JDialog {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void frmIncome_miAddIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddIncome1ActionPerformed
+        AddIncome income=new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+    }//GEN-LAST:event_frmIncome_miAddIncome1ActionPerformed
 
     /**
      * @param args the command line arguments

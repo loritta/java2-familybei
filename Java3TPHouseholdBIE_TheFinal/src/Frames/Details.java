@@ -9,12 +9,12 @@ package Frames;
  *
  * @author larisasabalin
  */
-public class SeeBudget extends javax.swing.JDialog {
+public class Details extends javax.swing.JDialog {
 
     /**
      * Creates new form SeeBudget
      */
-    public SeeBudget(java.awt.Frame parent, boolean modal) {
+    public Details(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -121,6 +121,11 @@ public class SeeBudget extends javax.swing.JDialog {
         mnuOperations6.setText("Operations");
 
         frmSeeBudget_miAddIncome6.setText("Add Income");
+        frmSeeBudget_miAddIncome6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miAddIncome6ActionPerformed(evt);
+            }
+        });
         mnuOperations6.add(frmSeeBudget_miAddIncome6);
 
         frmSeeBudget_miAddExpenses6.setText("Add Expenses");
@@ -167,6 +172,10 @@ public class SeeBudget extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
 
+    private void frmSeeBudget_miAddIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddIncome6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frmSeeBudget_miAddIncome6ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -184,20 +193,21 @@ public class SeeBudget extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SeeBudget.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(SeeBudget.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(SeeBudget.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(SeeBudget.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Details.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                SeeBudget dialog = new SeeBudget(new javax.swing.JFrame(), true);
+                Details dialog = new Details(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

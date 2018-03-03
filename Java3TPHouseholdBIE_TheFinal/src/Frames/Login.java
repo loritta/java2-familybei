@@ -20,10 +20,15 @@ public class Login extends javax.swing.JDialog {
     /**
      * Creates new form Login
      */
-    public Login() {  //from inside teh brackets: java.awt.Frame parent, boolean modal
-        //super(parent, modal);
+    public Login(java.awt.Frame parent, boolean modal) {  
+        super(parent, modal);
+        
         initComponents();
        
+    }
+    public Login(){
+        initComponents();
+        System.out.println("Frames.Login.<init>()");
     }
 
     /**
@@ -186,9 +191,9 @@ public class Login extends javax.swing.JDialog {
                 
                 gl.currentUser = gl.db.createUserObject(password, username);
                 System.out.println(gl.currentUser);
-                Welcome welcome = new Welcome();
-                welcome.pack();
-                welcome.setVisible(true);
+                
+                gl.currentSession.pack();
+                gl.currentSession.setVisible(true);
                 this.setVisible(false);
             } catch (SQLException| NullPointerException ex) {
                 JOptionPane.showMessageDialog(null,
