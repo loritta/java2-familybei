@@ -1,4 +1,4 @@
-Daily scrum - Every day at 9am
+﻿Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -46,9 +46,9 @@ Larisa:
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 6 days left/ 3 days gone
 02/03/2018
 Tung:
-1.
-2.
-3.
+1. Debugging codes in Registration, User, Database classes
+2. Fixing conflicts, start working on InitialInfo class
+3. Which event needs to be triggered to update the sum of slider's values (mouse move for now: might not be a best bet)
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 02/03/2018
 Larisa:
