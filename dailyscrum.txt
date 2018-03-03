@@ -1,4 +1,4 @@
-﻿Daily scrum - Every day at 9am
+Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -65,9 +65,9 @@ Tung:
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 03/03/2018
 Larisa:
-1.
-2.
-3.
+1. I didn't try to go back to the master. I will create another branch from master now in order to continue from there to make sure that nothing is creating conflicts. 
+2. The design of the app has to be slightly changed to minimize the quantity of windows that we have in the app for now. Up till now the login, registration and initial info were worked on.
+3. We need to collect the information what was done until now. All the functions of the connection to the database have to be in the database class. If there is an argument why it shouldn't be so we need to discuss it.
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 4 days left/ 5 days gone
 04/03/2018
 Tung:
