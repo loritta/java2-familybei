@@ -22,16 +22,17 @@ import javax.swing.JOptionPane;
 public class Database {
 
     //for Larisa
-    private final static String HOSTNAME = "den1.mysql6.gear.host";
-    private final static String DBNAME = "myjac";
-    private final static String USERNAME = "myjac";
-    private final static String PASSWORD = "Yt6wOA_!6byy";
+//    private final static String HOSTNAME = "den1.mysql6.gear.host";
+//    private final static String DBNAME = "myjac";
+//    private final static String USERNAME = "myjac";
+//    private final static String PASSWORD = "Yt6wOA_!6byy";
     public static final String DATE_FORMAT_SQL = "yyyy/MM/dd";
     //for Tung
-    /*private final static String HOSTNAME = "den1.mysql6.gear.host";
+    private final static String HOSTNAME = "den1.mysql6.gear.host";
     private final static String DBNAME = "familybei";
     private final static String USERNAME = "familybei";
-    private final static String PASSWORD = "tp%ipd12"; *///correct password tp%ipd12 removed one letter to test
+    private final static String PASSWORD = "tp%ipd12"; 
+    //correct password tp%ipd12 removed one letter to test
     //I changed it (Larisa 1March) can we somehow go around the connection to 
     //privatewhen an object s created from database?
     private Connection conn = null;
@@ -125,7 +126,7 @@ public static Timestamp nowSQL() {
         return currentTimestamp;
     }
  public Date strToDate(String str) {
-        SimpleDateFormat sdf = new SimpleDateFormat("DD/MM/YYYY");
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_SQL);
         Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
         try {
             java.util.Date utilDate = sdf.parse(str);
