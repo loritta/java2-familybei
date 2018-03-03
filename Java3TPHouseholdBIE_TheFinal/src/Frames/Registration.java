@@ -184,9 +184,9 @@ public class Registration extends javax.swing.JDialog {
         User user = new User(0, name, password, dob, familyName);
         user.insert();
         this.setVisible(false);
-        InitialInfo init = new InitialInfo(null, true);
-        init.pack();
-        init.setVisible(true);
+        Login login = new Login();
+        login.pack();
+        login.setVisible(true);
       } catch (InputMismatchException ex) {
         System.out.println(ex.getMessage());
         JOptionPane.showMessageDialog(this,
