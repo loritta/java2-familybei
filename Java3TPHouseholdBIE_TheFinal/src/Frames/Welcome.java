@@ -15,12 +15,14 @@ public class Welcome extends javax.swing.JFrame {
     
     Frames.Global gl=new Frames.Global();
     
+    
 
     /**
      * Creates new form Welcome
      */
     public Welcome() {
         initComponents();
+        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
         Login login = new Login();
         login.pack();
         login.setVisible(true);
@@ -28,9 +30,7 @@ public class Welcome extends javax.swing.JFrame {
         
         
     }
-    public void seeFileChooser(){
-        fileChooser.setVisible(true);
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -327,26 +327,28 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        Details seeBudget = new Details(this, true);
-        seeBudget.pack();
-        seeBudget.setVisible(true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-        Details details =new Details(this, true);
+       Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-        Details details =new Details(this, true);
+      Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
         details.pack();
-        details.setVisible(true);
+        details.setVisible(true);  
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
 
     private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed
-        //We should make this as a function this is repeating for each frame
-        fileChooser.setVisible(true);
+        gl.chooseFileCSV(fileChooser);//We should make this as a function this is repeating for each frame
     }//GEN-LAST:event_frmWelcome_miCSV9ActionPerformed
 
     private void frmWelcome_miPDF9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miPDF9ActionPerformed

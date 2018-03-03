@@ -2,6 +2,8 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <NonVisualComponents>
+    <Component class="javax.swing.JFileChooser" name="fileChooser">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar2">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="frmIncome_mnuOperations1">
@@ -24,11 +26,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Add Expenses"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmIncome_miAddExpenses1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmIncome_miGoToReports1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Go To Reports"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmIncome_miGoToReports1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmIncome_miSeeBudgets1">
               <Properties>
@@ -42,11 +50,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="See Expenses"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmIncome_miSeeExpenses1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmIncome_miSeeIncome1">
               <Properties>
                 <Property name="text" type="java.lang.String" value="See Income"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmIncome_miSeeIncome1ActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -62,6 +76,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="to CSV"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmIncome_miCSV1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmIncome_miPDF1">
               <Properties>

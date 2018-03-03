@@ -11,12 +11,17 @@ package Frames;
  */
 public class Details extends javax.swing.JDialog {
 
+    Frames.Global gl = new Frames.Global();
     /**
      * Creates new form SeeBudget
      */
     public Details(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    public void setDetailsComboBox(String choice) {
+        Details_cmbChoice.setSelectedItem(choice);
     }
 
     /**
@@ -28,6 +33,7 @@ public class Details extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         lblStatus6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -36,7 +42,8 @@ public class Details extends javax.swing.JDialog {
         jTable1 = new javax.swing.JTable();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        Details_cmbChoice = new javax.swing.JComboBox<>();
         jMenuBar7 = new javax.swing.JMenuBar();
         mnuOperations6 = new javax.swing.JMenu();
         frmSeeBudget_miAddIncome6 = new javax.swing.JMenuItem();
@@ -78,16 +85,24 @@ public class Details extends javax.swing.JDialog {
 
         jLabel32.setText("Year");
 
-        jLabel33.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 18)); // NOI18N
-        jLabel33.setText("Budget by category");
+        jLabel34.setText("You choice ");
+
+        Details_cmbChoice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Income", "Expenses", "Budget" }));
+        Details_cmbChoice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Details_cmbChoiceActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel33)
+                .addGap(36, 36, 36)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Details_cmbChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel31)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -110,7 +125,9 @@ public class Details extends javax.swing.JDialog {
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
                     .addComponent(jLabel32)
-                    .addComponent(jLabel33))
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Details_cmbChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel34)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -129,9 +146,19 @@ public class Details extends javax.swing.JDialog {
         mnuOperations6.add(frmSeeBudget_miAddIncome6);
 
         frmSeeBudget_miAddExpenses6.setText("Add Expenses");
+        frmSeeBudget_miAddExpenses6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miAddExpenses6ActionPerformed(evt);
+            }
+        });
         mnuOperations6.add(frmSeeBudget_miAddExpenses6);
 
         frmSeeBudget_miGoToReports6.setText("Go To Reports");
+        frmSeeBudget_miGoToReports6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miGoToReports6ActionPerformed(evt);
+            }
+        });
         mnuOperations6.add(frmSeeBudget_miGoToReports6);
 
         frmSeeBudget_miSeeBudgets6.setText("See Budget");
@@ -143,9 +170,19 @@ public class Details extends javax.swing.JDialog {
         mnuOperations6.add(frmSeeBudget_miSeeBudgets6);
 
         frmSeeBudget_miSeeExpenses6.setText("See Expenses");
+        frmSeeBudget_miSeeExpenses6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miSeeExpenses6ActionPerformed(evt);
+            }
+        });
         mnuOperations6.add(frmSeeBudget_miSeeExpenses6);
 
         frmSeeBudget_miSeeIncome6.setText("See Income");
+        frmSeeBudget_miSeeIncome6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miSeeIncome6ActionPerformed(evt);
+            }
+        });
         mnuOperations6.add(frmSeeBudget_miSeeIncome6);
 
         jMenuBar7.add(mnuOperations6);
@@ -153,6 +190,11 @@ public class Details extends javax.swing.JDialog {
         mnuExport6.setText("Export");
 
         frmSeeBudget_miCSV6.setText("to CSV");
+        frmSeeBudget_miCSV6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmSeeBudget_miCSV6ActionPerformed(evt);
+            }
+        });
         mnuExport6.add(frmSeeBudget_miCSV6);
 
         frmSeeBudget_miPDF6.setText("to PDF");
@@ -169,12 +211,49 @@ public class Details extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmSeeBudget_miSeeBudgets6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
 
     private void frmSeeBudget_miAddIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddIncome6ActionPerformed
-        // TODO add your handling code here:
+        AddIncome income = new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+
     }//GEN-LAST:event_frmSeeBudget_miAddIncome6ActionPerformed
+
+    private void Details_cmbChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Details_cmbChoiceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Details_cmbChoiceActionPerformed
+
+    private void frmSeeBudget_miAddExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddExpenses6ActionPerformed
+        AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);
+    }//GEN-LAST:event_frmSeeBudget_miAddExpenses6ActionPerformed
+
+    private void frmSeeBudget_miGoToReports6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miGoToReports6ActionPerformed
+        GoToReports reports = new GoToReports(null, true);
+        reports.pack();
+        reports.setVisible(true);
+    }//GEN-LAST:event_frmSeeBudget_miGoToReports6ActionPerformed
+
+    private void frmSeeBudget_miSeeExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
+
+    private void frmSeeBudget_miSeeIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeIncome6ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);     }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
+
+    private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
+        gl.chooseFileCSV(fileChooser);
+    }//GEN-LAST:event_frmSeeBudget_miCSV6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -220,6 +299,8 @@ public class Details extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Details_cmbChoice;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmSeeBudget_miAddExpenses6;
     private javax.swing.JMenuItem frmSeeBudget_miAddIncome6;
     private javax.swing.JMenuItem frmSeeBudget_miCSV6;
@@ -233,7 +314,7 @@ public class Details extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
     private javax.swing.JMenuBar jMenuBar7;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane5;

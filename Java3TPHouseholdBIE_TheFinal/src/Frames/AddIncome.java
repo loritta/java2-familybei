@@ -11,6 +11,8 @@ package Frames;
  */
 public class AddIncome extends javax.swing.JDialog {
 
+    Frames.Global gl = new Frames.Global();
+
     /**
      * Creates new form AddIncome
      */
@@ -28,6 +30,7 @@ public class AddIncome extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -121,9 +124,19 @@ public class AddIncome extends javax.swing.JDialog {
         frmIncome_mnuOperations1.add(frmIncome_miAddIncome1);
 
         frmIncome_miAddExpenses1.setText("Add Expenses");
+        frmIncome_miAddExpenses1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miAddExpenses1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuOperations1.add(frmIncome_miAddExpenses1);
 
         frmIncome_miGoToReports1.setText("Go To Reports");
+        frmIncome_miGoToReports1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miGoToReports1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuOperations1.add(frmIncome_miGoToReports1);
 
         frmIncome_miSeeBudgets1.setText("See Budget");
@@ -135,9 +148,19 @@ public class AddIncome extends javax.swing.JDialog {
         frmIncome_mnuOperations1.add(frmIncome_miSeeBudgets1);
 
         frmIncome_miSeeExpenses1.setText("See Expenses");
+        frmIncome_miSeeExpenses1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miSeeExpenses1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuOperations1.add(frmIncome_miSeeExpenses1);
 
         frmIncome_miSeeIncome1.setText("See Income");
+        frmIncome_miSeeIncome1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miSeeIncome1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuOperations1.add(frmIncome_miSeeIncome1);
 
         jMenuBar2.add(frmIncome_mnuOperations1);
@@ -146,6 +169,11 @@ public class AddIncome extends javax.swing.JDialog {
         frmIncome_mnuExport1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmIncome_miCSV1.setText("to CSV");
+        frmIncome_miCSV1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmIncome_miCSV1ActionPerformed(evt);
+            }
+        });
         frmIncome_mnuExport1.add(frmIncome_miCSV1);
 
         frmIncome_miPDF1.setText("to PDF");
@@ -163,7 +191,11 @@ public class AddIncome extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmIncome_miSeeBudgets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeBudgets1ActionPerformed
-        // TODO add your handling code here:
+//set the combo box in Details to Budgets
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
+        details.pack();
+        details.setVisible(true);
     }//GEN-LAST:event_frmIncome_miSeeBudgets1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
@@ -171,10 +203,42 @@ public class AddIncome extends javax.swing.JDialog {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void frmIncome_miAddIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddIncome1ActionPerformed
-        AddIncome income=new AddIncome(null, true);
+        AddIncome income = new AddIncome(null, true);
         income.pack();
         income.setVisible(true);
     }//GEN-LAST:event_frmIncome_miAddIncome1ActionPerformed
+
+    private void frmIncome_miAddExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddExpenses1ActionPerformed
+        AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);
+    }//GEN-LAST:event_frmIncome_miAddExpenses1ActionPerformed
+
+    private void frmIncome_miGoToReports1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miGoToReports1ActionPerformed
+        GoToReports reports = new GoToReports(null, true);
+        reports.pack();
+        reports.setVisible(true);
+    }//GEN-LAST:event_frmIncome_miGoToReports1ActionPerformed
+
+    private void frmIncome_miSeeExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeExpenses1ActionPerformed
+        //set the combo box in Details to Expenses
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);
+
+    }//GEN-LAST:event_frmIncome_miSeeExpenses1ActionPerformed
+
+    private void frmIncome_miSeeIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeIncome1ActionPerformed
+//set the combo box in Details to Income
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);    }//GEN-LAST:event_frmIncome_miSeeIncome1ActionPerformed
+
+    private void frmIncome_miCSV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miCSV1ActionPerformed
+       gl.chooseFileCSV(fileChooser);
+    }//GEN-LAST:event_frmIncome_miCSV1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,6 +283,7 @@ public class AddIncome extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel frmIncome_lblStatus1;
     private javax.swing.JMenuItem frmIncome_miAddExpenses1;
     private javax.swing.JMenuItem frmIncome_miAddIncome1;

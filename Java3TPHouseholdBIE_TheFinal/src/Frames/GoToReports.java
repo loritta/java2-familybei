@@ -11,6 +11,8 @@ package Frames;
  */
 public class GoToReports extends javax.swing.JDialog {
 
+    Frames.Global gl = new Frames.Global();
+
     /**
      * Creates new form GoToReports
      */
@@ -28,6 +30,7 @@ public class GoToReports extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -212,9 +215,19 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuOperations2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         frmGoToReports_miAddIncome2.setText("Add Income");
+        frmGoToReports_miAddIncome2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miAddIncome2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miAddIncome2);
 
         frmGoToReports_miAddExpenses2.setText("Add Expenses");
+        frmGoToReports_miAddExpenses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miAddExpenses2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miAddExpenses2);
 
         frmGoToReports_miGoToReports2.setText("Go To Reports");
@@ -229,9 +242,19 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeBudgets2);
 
         frmGoToReports_miSeeExpenses2.setText("See Expenses");
+        frmGoToReports_miSeeExpenses2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miSeeExpenses2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeExpenses2);
 
         frmGoToReports_miSeeIncome2.setText("See Income");
+        frmGoToReports_miSeeIncome2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmGoToReports_miSeeIncome2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuOperations2.add(frmGoToReports_miSeeIncome2);
 
         jMenuBar3.add(frmGoToReports_mnuOperations2);
@@ -240,6 +263,11 @@ public class GoToReports extends javax.swing.JDialog {
         frmGoToReports_mnuExport2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
 
         miCSV2.setText("to CSV");
+        miCSV2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCSV2ActionPerformed(evt);
+            }
+        });
         frmGoToReports_mnuExport2.add(miCSV2);
 
         miPDF2.setText("to PDF");
@@ -257,32 +285,62 @@ public class GoToReports extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmGoToReports_miSeeBudgets2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeBudgets2ActionPerformed
-        //set the combo box in Details to Budgets
-        Details details =new Details(null, true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmGoToReports_miSeeBudgets2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //set the combo box in Details to Expenses
-        Details details =new Details(null, true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //set the combo box in Details to Income
-        Details details =new Details(null, true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //set the combo box in Details to Budgets
-        Details details =new Details(null, true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void frmGoToReports_miAddIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddIncome2ActionPerformed
+        AddIncome income = new AddIncome(null, true);
+        income.pack();
+        income.setVisible(true);
+    }//GEN-LAST:event_frmGoToReports_miAddIncome2ActionPerformed
+
+    private void frmGoToReports_miAddExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddExpenses2ActionPerformed
+        AddExpenses expense = new AddExpenses(null, true);
+        expense.pack();
+        expense.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miAddExpenses2ActionPerformed
+
+    private void frmGoToReports_miSeeExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeExpenses2ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
+        details.pack();
+        details.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miSeeExpenses2ActionPerformed
+
+    private void frmGoToReports_miSeeIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeIncome2ActionPerformed
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
+        details.pack();
+        details.setVisible(true);     }//GEN-LAST:event_frmGoToReports_miSeeIncome2ActionPerformed
+
+    private void miCSV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCSV2ActionPerformed
+        gl.chooseFileCSV(fileChooser);
+    }//GEN-LAST:event_miCSV2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,6 +385,7 @@ public class GoToReports extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmGoToReports_miAddExpenses2;
     private javax.swing.JMenuItem frmGoToReports_miAddIncome2;
     private javax.swing.JMenuItem frmGoToReports_miGoToReports2;

@@ -10,7 +10,10 @@ package Frames;
  * @author larisasabalin
  */
 public class AddExpenses extends javax.swing.JDialog {
-Frames.Global gl=new Frames.Global();
+
+    Frames.Global gl = new Frames.Global();
+    
+
     /**
      * Creates new form AddExpenses
      */
@@ -28,6 +31,7 @@ Frames.Global gl=new Frames.Global();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -217,20 +221,21 @@ Frames.Global gl=new Frames.Global();
 
     private void frmExpences_miSeeBudgetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeBudgetsActionPerformed
         //set the combo box in Details to Budgets
-        Details details =new Details(null, true);
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmExpences_miSeeBudgetsActionPerformed
 
     private void frmExpences_miAddIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddIncomeActionPerformed
-         AddIncome income=new AddIncome(null, true);
+        AddIncome income = new AddIncome(null, true);
         income.pack();
         income.setVisible(true);
 
     }//GEN-LAST:event_frmExpences_miAddIncomeActionPerformed
 
     private void frmExpences_miAddExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddExpensesActionPerformed
-     AddExpenses expense = new AddExpenses(null, true);
+        AddExpenses expense = new AddExpenses(null, true);
         expense.pack();
         expense.setVisible(true);
     }//GEN-LAST:event_frmExpences_miAddExpensesActionPerformed
@@ -242,27 +247,28 @@ Frames.Global gl=new Frames.Global();
     }//GEN-LAST:event_frmExpences_miGoToReportsActionPerformed
 
     private void frmExpences_miSeeExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeExpensesActionPerformed
-       //set the combo box in Details to Expenses
- Details details =new Details(null, true);
+        //set the combo box in Details to Expenses
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmExpences_miSeeExpensesActionPerformed
 
     private void frmExpences_miSeeIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeIncomeActionPerformed
-    //set the combo box in Details to Income
-Details details =new Details(null, true);
+        //set the combo box in Details to Income
+        Details details = new Details(null, true);
+        details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmExpences_miSeeIncomeActionPerformed
 
     private void frmExpences_miCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miCSVActionPerformed
         //We should make this as a function this is repeating for each frame
-       
-        //.seeFileChooser();
+        gl.chooseFileCSV(fileChooser);
     }//GEN-LAST:event_frmExpences_miCSVActionPerformed
 
     private void frmExpences_miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miPDFActionPerformed
-         //gl.currentSession.seeFileChooser();
+        fileChooser.setVisible(true);
     }//GEN-LAST:event_frmExpences_miPDFActionPerformed
 
     /**
@@ -308,6 +314,7 @@ Details details =new Details(null, true);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JButton frmExpences_btnSave;
     private javax.swing.JComboBox<String> frmExpences_cmbType;
     private javax.swing.JLabel frmExpences_lblStatus;
