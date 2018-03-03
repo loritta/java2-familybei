@@ -9,23 +9,6 @@ import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JDialog {
-<<<<<<< HEAD
-
-    Frames.Global gl = new Frames.Global();
-
-    /**
-     * Creates new form Registration
-     */
-    public Registration(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();
-    }
-
-    private Registration() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-=======
->>>>>>> registration
 
   Global gl = new Global();
 
@@ -191,38 +174,6 @@ public class Registration extends javax.swing.JDialog {
   }// </editor-fold>//GEN-END:initComponents
 
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
-
-<<<<<<< HEAD
-        String familyName = reg_tfFamilyName.getText();
-//    Family f = new Family(0, familyName);
-//    f.insert();
-        String resultUser = "";
-        String name = reg_tfName.getText();
-        String password = new String(reg_pfPassword.getPassword());
-        String rePassword = new String(reg_pfRePassword.getPassword());
-        System.out.println(password.equals(rePassword));
-        try {
-            gl.db.comparePassword(password, rePassword);
-            Date dob = gl.db.strToDate(reg_tfDob.getText());
-            User user = new User(0, name, password, dob, familyName);
-            resultUser = user.insertUser();
-
-            if (resultUser.equals("")) {
-                JOptionPane.showMessageDialog(this, "Registered successfully.");
-
-                this.setVisible(false);
-            } else {
-                JOptionPane.showMessageDialog(this, resultUser);
-            }
-        } catch (InputMismatchException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(this,
-                    "Re-enter your passwords." + ex.getMessage(),
-                    "Passwords not matched!!!",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-=======
       String familyName = reg_tfFamilyName.getText();
       String name = reg_tfName.getText();
       String password = new String(reg_pfPassword.getPassword());
@@ -233,7 +184,7 @@ public class Registration extends javax.swing.JDialog {
         User user = new User(0, name, password, dob, familyName);
         user.insert();
         this.setVisible(false);
-        InitialInfo init = new InitialInfo();
+        InitialInfo init = new InitialInfo(null, true);
         init.pack();
         init.setVisible(true);
       } catch (InputMismatchException ex) {
@@ -243,7 +194,7 @@ public class Registration extends javax.swing.JDialog {
                 "Passwords not matched!!!",
                 JOptionPane.ERROR_MESSAGE);
       }
->>>>>>> registration
+
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed

@@ -168,7 +168,7 @@ public class Login extends javax.swing.JDialog {
     private void btnNewMbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMbActionPerformed
         //has to go to Regisartion page
         Registration registration;
-        registration = new Registration(null, true);
+        registration = new Registration();
         registration.pack();
         registration.setVisible(true);
         //dlgInitialInfo.getContentPane().setBackground(Color.getHSBColor(154, 254, 25));
