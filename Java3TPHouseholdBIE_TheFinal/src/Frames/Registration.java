@@ -16,6 +16,8 @@ public class Registration extends javax.swing.JDialog {
         initComponents();
     }
     
+    int userId = 0;
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,11 +211,16 @@ public class Registration extends javax.swing.JDialog {
             gl.comparePassword(password, rePassword);
             Date dob = gl.db.strToDate(reg_tfDob.getText());
             User user = new User(0, name, password, dob, familyName);
+            userId = user.getId();
+            System.out.println(userId);
             user.insert();
             this.setVisible(false);
-            Login login = new Login();
-            login.pack();
-            login.setVisible(true);
+//            Login login = new Login();
+//            login.pack();
+//            login.setVisible(true);
+            InitialInfo init = new InitialInfo(null, true);
+            init.pack();
+            init.setVisible(true);
         } catch (InputMismatchException ex) {
             System.out.println(ex.getMessage());
             JOptionPane.showMessageDialog(this,

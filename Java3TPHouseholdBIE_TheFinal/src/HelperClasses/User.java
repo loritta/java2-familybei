@@ -114,7 +114,18 @@ public class User {
   public User() {}
 
   public int getId() {
-    return id;
+    String sql = "select id from family where name = '" + name + "' limit 1";
+    int userId = 0;
+    try (Connection conn = getDb().connect();
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(sql)) {
+      if (result.next()) {
+        userId = result.getInt("id");
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    return userId;
   }
   
   @Override

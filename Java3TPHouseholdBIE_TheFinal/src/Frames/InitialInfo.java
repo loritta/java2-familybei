@@ -25,13 +25,14 @@ public class InitialInfo extends javax.swing.JDialog {
   private InitialInfo() {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-  
+  int userId = new Registration().userId;
   private void insertTransaction(String amountStr, String type) {
     DecimalFormat formatter = new DecimalFormat("###.##");
     formatter.setParseBigDecimal(true);
+    System.out.println(userId);
     try {
       BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-      Transaction trans = new Transaction(0, gl.currentUser.getId(), amount, gl.db.nowSQL(), type);
+      Transaction trans = new Transaction(0, userId, amount, gl.db.nowSQL(), type);
       trans.insert();
     } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
