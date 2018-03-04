@@ -222,6 +222,23 @@ public class Database {
     }
     return familyId;
   }
+    public ArrayList<String> getDatabaseFamilyMembersName(int familyId) {
+    String sql = "SELECT * FROM users WHERE familyid='"+familyId+"'";
+    ArrayList<String> list = new ArrayList<>();
+
+    try (   Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(sql)) {
+
+      while (result.next()) {
+        String name = result.getString("name");
+        
+        list.add(name);
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    return list;
+  } 
   }
  
 

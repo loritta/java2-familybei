@@ -5,8 +5,9 @@
  */
 package Frames;
 
-import HelperClasses.User;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,47 +18,55 @@ import java.util.logging.Logger;
 public class Welcome extends javax.swing.JFrame {
 
     private static Global gl;
-    
-    
 
     /**
      * Creates new form Welcome
      */
     public Welcome(Global gl) {
-        this.gl=gl;
+        this.gl = gl;
         initComponents();
         System.out.println(gl.currentUser.getId());
         callHistoryToTheDataBase(gl.currentUser.getId());
-        
+        lblUserName.setText(gl.currentUser.getName());
+        getFamilyInfo(gl.currentUser.getFamilyId());
+
     }
+
     public Welcome() {
         initComponents();
-        
 
         //this.setVisible(false);
-
     }
-    public void callHistoryToTheDataBase(Integer id){
+
+    public void callHistoryToTheDataBase(Integer id) {
         try {
-            String empty="empty";
-            
-            if (gl.db.transactionHistoryAvailable(id).equals(empty))
-            {
-                InitialInfo initialInfo=new InitialInfo(this, true, gl, this);
+            String empty = "empty";
+
+            if (gl.db.transactionHistoryAvailable(id).equals(empty)) {
+                InitialInfo initialInfo = new InitialInfo(this, true, gl, this);
                 initialInfo.pack();
                 initialInfo.setVisible(true);
-            }
-            else{
+            } else {
                 return;
             }
         } catch (SQLException ex) {
             Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void loadingTheData(){
+
+    public void getFamilyInfo(int familyId) {
+        ArrayList<String> list = gl.db.getDatabaseFamilyMembersName(familyId);
+        Iterator it = list.iterator();
+        String setText="";
+        while (it.hasNext()) {
+            setText= setText+it.next();
+        }
+    lblFamilyMemeber1.setText(setText);
+    }
+
+    public void loadingTheData() {
         lblUserName.setText(gl.currentUser.getName());
-            
+
     }
 
     /**
@@ -72,11 +81,15 @@ public class Welcome extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
         jPanel12 = new javax.swing.JPanel();
         lblUserName = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        pnlFamily = new javax.swing.JPanel();
+        lblFamilyMemeber1 = new javax.swing.JLabel();
+        lblFamilyMemeber2 = new javax.swing.JLabel();
+        lblFamilyMemeber3 = new javax.swing.JLabel();
+        lblFamilyMemeber4 = new javax.swing.JLabel();
+        lblFamilyMemeber5 = new javax.swing.JLabel();
+        lblFamilyMemeber6 = new javax.swing.JLabel();
+        lblFamilyMemeber7 = new javax.swing.JLabel();
+        lblFamilyMemeber8 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
@@ -128,49 +141,66 @@ public class Welcome extends javax.swing.JFrame {
 
         getContentPane().add(jPanel12, java.awt.BorderLayout.PAGE_START);
 
-        jPanel15.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Family Members", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
+        pnlFamily.setBackground(new java.awt.Color(204, 204, 255));
+        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Family Members", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel6.setText("User 1");
+        lblFamilyMemeber1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel9.setText("User 1");
+        lblFamilyMemeber2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        jLabel10.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel10.setText("User 1");
+        lblFamilyMemeber3.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        jLabel13.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel13.setText("User 1");
+        lblFamilyMemeber4.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        lblFamilyMemeber5.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+
+        lblFamilyMemeber6.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+
+        lblFamilyMemeber7.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+
+        lblFamilyMemeber8.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+
+        javax.swing.GroupLayout pnlFamilyLayout = new javax.swing.GroupLayout(pnlFamily);
+        pnlFamily.setLayout(pnlFamilyLayout);
+        pnlFamilyLayout.setHorizontalGroup(
+            pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel6)
+                .addComponent(lblFamilyMemeber1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel9)
+                .addComponent(lblFamilyMemeber2)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel10)
+                .addComponent(lblFamilyMemeber3)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addComponent(lblFamilyMemeber4)
+                .addGap(18, 18, 18)
+                .addComponent(lblFamilyMemeber5)
+                .addGap(18, 18, 18)
+                .addComponent(lblFamilyMemeber6)
+                .addGap(18, 18, 18)
+                .addComponent(lblFamilyMemeber7)
+                .addGap(18, 18, 18)
+                .addComponent(lblFamilyMemeber8)
+                .addContainerGap(438, Short.MAX_VALUE))
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        pnlFamilyLayout.setVerticalGroup(
+            pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblFamilyMemeber1)
+                    .addComponent(lblFamilyMemeber2)
+                    .addComponent(lblFamilyMemeber3)
+                    .addComponent(lblFamilyMemeber4)
+                    .addGroup(pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblFamilyMemeber5)
+                        .addComponent(lblFamilyMemeber6)
+                        .addComponent(lblFamilyMemeber7)
+                        .addComponent(lblFamilyMemeber8)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel15, java.awt.BorderLayout.CENTER);
+        getContentPane().add(pnlFamily, java.awt.BorderLayout.CENTER);
 
         jPanel11.setBackground(new java.awt.Color(204, 204, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "This month's statistics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
@@ -440,8 +470,6 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JMenu frmWelcome_mnuExit9;
     private javax.swing.JMenu frmWelcome_mnuExport9;
     private javax.swing.JMenu frmWelcome_mnuOperations9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
@@ -452,12 +480,18 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel15;
+    private javax.swing.JLabel lblFamilyMemeber1;
+    private javax.swing.JLabel lblFamilyMemeber2;
+    private javax.swing.JLabel lblFamilyMemeber3;
+    private javax.swing.JLabel lblFamilyMemeber4;
+    private javax.swing.JLabel lblFamilyMemeber5;
+    private javax.swing.JLabel lblFamilyMemeber6;
+    private javax.swing.JLabel lblFamilyMemeber7;
+    private javax.swing.JLabel lblFamilyMemeber8;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JPanel pnlFamily;
     // End of variables declaration//GEN-END:variables
 }
