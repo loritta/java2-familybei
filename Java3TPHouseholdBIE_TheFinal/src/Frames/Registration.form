@@ -183,6 +183,8 @@
             <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="reg_pfPasswordFocusGained"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="reg_pfPasswordMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reg_pfPasswordActionPerformed"/>
           </Events>
         </Component>
@@ -199,6 +201,8 @@
             <Property name="text" type="java.lang.String" value="jPasswordField1"/>
           </Properties>
           <Events>
+            <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="reg_pfRePasswordFocusGained"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="reg_pfRePasswordMouseClicked"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="reg_pfRePasswordActionPerformed"/>
           </Events>
         </Component>

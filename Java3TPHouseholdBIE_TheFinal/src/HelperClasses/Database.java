@@ -2,6 +2,7 @@ package HelperClasses;
 
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -12,6 +13,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.InputMismatchException;
 import java.util.logging.Level;
@@ -21,16 +23,16 @@ import javax.swing.JOptionPane;
 public class Database {
 
   //for Larisa
-  private final static String HOSTNAME = "den1.mysql6.gear.host";
+  /*private final static String HOSTNAME = "den1.mysql6.gear.host";
   private final static String DBNAME = "myjac";
   private final static String USERNAME = "myjac";
-  private final static String PASSWORD = "Yt6wOA_!6byy";
+  private final static String PASSWORD = "Yt6wOA_!6byy";*/
   public static final String DATE_FORMAT_SQL = "yyyy/MM/dd";
   //for Tung
-  /*private final static String HOSTNAME = "den1.mysql6.gear.host";
+  private final static String HOSTNAME = "den1.mysql6.gear.host";
   private final static String DBNAME = "familybei";
   private final static String USERNAME = "familybei";
-  private final static String PASSWORD = "tp%ipd12";*/
+  private final static String PASSWORD = "tp%ipd12";
   //correct password tp%ipd12 removed one letter to test
   //I changed it (Larisa 1March) can we somehow go around the connection to 
   //privatewhen an object s created from database?
@@ -135,12 +137,21 @@ public class Database {
     }
     return sqlDate;
   }
-
-  public void comparePassword(String password, String rePassword) {
-    if (password.equals(rePassword)) {
-      JOptionPane.showMessageDialog(null, "Passwords matched!");
-    } else {
-      throw new InputMismatchException();
+  public String transactionHistoryAvailable(int id) throws SQLException {
+        String sql = "SELECT * FROM transactions WHERE id='"+id+"' and Month(transdate)=MONTH(NOW())";
+    String msg="";
+    try (Statement stmt = conn.createStatement();
+          ResultSet result = stmt.executeQuery(sql)) {
+      Timestamp transDate;
+      while (result.next()) {
+        msg="empty";
+      }
     }
-  }
+    catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    return msg;
+    }
+  
+ 
 }

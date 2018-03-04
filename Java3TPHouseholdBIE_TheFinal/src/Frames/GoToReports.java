@@ -277,6 +277,11 @@ public class GoToReports extends javax.swing.JDialog {
 
         frmGoToReports_mnuExit2.setText("Exit");
         frmGoToReports_mnuExit2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
+        frmGoToReports_mnuExit2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frmGoToReports_mnuExit2MouseClicked(evt);
+            }
+        });
         jMenuBar3.add(frmGoToReports_mnuExit2);
 
         setJMenuBar(jMenuBar3);
@@ -341,6 +346,10 @@ public class GoToReports extends javax.swing.JDialog {
     private void miCSV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCSV2ActionPerformed
         gl.chooseFileCSV(fileChooser);
     }//GEN-LAST:event_miCSV2ActionPerformed
+
+    private void frmGoToReports_mnuExit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmGoToReports_mnuExit2MouseClicked
+       gl.closeApp();
+    }//GEN-LAST:event_frmGoToReports_mnuExit2MouseClicked
 
     /**
      * @param args the command line arguments

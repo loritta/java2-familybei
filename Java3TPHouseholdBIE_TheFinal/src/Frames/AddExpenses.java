@@ -208,6 +208,11 @@ public class AddExpenses extends javax.swing.JDialog {
 
         frmExpences_mnuExit.setText("Exit");
         frmExpences_mnuExit.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
+        frmExpences_mnuExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frmExpences_mnuExitMouseClicked(evt);
+            }
+        });
         jMenuBar1.add(frmExpences_mnuExit);
 
         setJMenuBar(jMenuBar1);
@@ -270,6 +275,9 @@ public class AddExpenses extends javax.swing.JDialog {
     private void frmExpences_miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miPDFActionPerformed
         fileChooser.setVisible(true);
     }//GEN-LAST:event_frmExpences_miPDFActionPerformed
+
+    private void frmExpences_mnuExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmExpences_mnuExitMouseClicked
+gl.closeApp();    }//GEN-LAST:event_frmExpences_mnuExitMouseClicked
 
     /**
      * @param args the command line arguments

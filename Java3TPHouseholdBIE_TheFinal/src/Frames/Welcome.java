@@ -5,32 +5,48 @@
  */
 package Frames;
 
-import HelperClasses.Database;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author larisasabalin
  */
 public class Welcome extends javax.swing.JFrame {
-    
-    Frames.Global gl=new Frames.Global();
-    
-    
+
+    Frames.Global gl = new Frames.Global();
 
     /**
      * Creates new form Welcome
      */
     public Welcome() {
         initComponents();
-        javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
-        Login login = new Login();
-        login.pack();
-        login.setVisible(true);
-        this.setVisible(false);
-        
-        
+        callHistoryToTheDataBase(gl.currentUser.getId());
+
+        //this.setVisible(false);
+
     }
-   
+    public void callHistoryToTheDataBase(Integer id){
+        try {
+            String empty="";
+            if (gl.db.transactionHistoryAvailable(id).equals(empty))
+            {
+                InitialInfo initialInfo=new InitialInfo(this, true);
+            }
+            else{
+                return;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void loadingTheData(){
+        lblUserName.setText(gl.currentUser.getName());
+            
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,7 +59,7 @@ public class Welcome extends javax.swing.JFrame {
 
         fileChooser = new javax.swing.JFileChooser();
         jPanel12 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblUserName = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -78,8 +94,8 @@ public class Welcome extends javax.swing.JFrame {
         jPanel12.setBackground(new java.awt.Color(204, 204, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Welcome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 12))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Zapfino", 0, 13)); // NOI18N
-        jLabel1.setText("Name of the user");
+        lblUserName.setFont(new java.awt.Font("Zapfino", 0, 13)); // NOI18N
+        lblUserName.setText("Name of the user");
 
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
@@ -87,14 +103,14 @@ public class Welcome extends javax.swing.JFrame {
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblUserName)
                 .addContainerGap(450, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(lblUserName)
                 .addContainerGap())
         );
 
@@ -301,6 +317,11 @@ public class Welcome extends javax.swing.JFrame {
         jMenuBar10.add(frmWelcome_mnuExport9);
 
         frmWelcome_mnuExit9.setText("Exit");
+        frmWelcome_mnuExit9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frmWelcome_mnuExit9MouseClicked(evt);
+            }
+        });
         jMenuBar10.add(frmWelcome_mnuExit9);
 
         setJMenuBar(jMenuBar10);
@@ -309,7 +330,7 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmWelcome_miAddIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddIncome9ActionPerformed
-        Frames.AddIncome income=new AddIncome(this, true);
+        Frames.AddIncome income = new AddIncome(this, true);
         income.pack();
         income.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
@@ -334,17 +355,17 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-       Details details = new Details(null, true);
+        Details details = new Details(null, true);
         details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-      Details details = new Details(null, true);
+        Details details = new Details(null, true);
         details.setDetailsComboBox("Income");
         details.pack();
-        details.setVisible(true);  
+        details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
 
     private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed
@@ -354,6 +375,10 @@ public class Welcome extends javax.swing.JFrame {
     private void frmWelcome_miPDF9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miPDF9ActionPerformed
 
     }//GEN-LAST:event_frmWelcome_miPDF9ActionPerformed
+
+    private void frmWelcome_mnuExit9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmWelcome_mnuExit9MouseClicked
+        gl.closeApp();
+    }//GEN-LAST:event_frmWelcome_mnuExit9MouseClicked
 
     /**
      * @param args the command line arguments
@@ -403,7 +428,6 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JMenu frmWelcome_mnuExit9;
     private javax.swing.JMenu frmWelcome_mnuExport9;
     private javax.swing.JMenu frmWelcome_mnuOperations9;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel20;
@@ -422,5 +446,6 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JLabel lblUserName;
     // End of variables declaration//GEN-END:variables
 }

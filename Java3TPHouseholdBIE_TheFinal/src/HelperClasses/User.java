@@ -11,12 +11,89 @@ import javax.swing.JOptionPane;
 
 
 public class User {
-  Database db = new Database();
-  int id;
-  String name;
-  String password;
-  Date dob;
-  int familyId;
+
+    /**
+     * @return the db
+     */
+    public Database getDb() {
+        return db;
+    }
+
+    /**
+     * @param db the db to set
+     */
+    public void setDb(Database db) {
+        this.db = db;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the dob
+     */
+    public Date getDob() {
+        return dob;
+    }
+
+    /**
+     * @param dob the dob to set
+     */
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    /**
+     * @return the familyId
+     */
+    public int getFamilyId() {
+        return familyId;
+    }
+
+    /**
+     * @param familyId the familyId to set
+     */
+    public void setFamilyId(int familyId) {
+        this.familyId = familyId;
+    }
+  private Database db = new Database();
+  private int id;
+  private String name;
+  private String password;
+  private Date dob;
+  private int familyId;
 
   public User(int id, String name, String password, Date dob, String familyName) {
     this.id = id;
@@ -42,13 +119,13 @@ public class User {
   
   @Override
   public String toString() {
-    return "#" + id + ", name=" + name + ", dob=" + dob + ", familyId=" + familyId;
+    return "#" + getId() + ", name=" + getName() + ", dob=" + getDob() + ", familyId=" + getFamilyId();
   }
   
   public int getFamilyId(String familyName) {
     String sql = "select id from family where name = '" + familyName + "' limit 1";
     int familyId = 0;
-    try (Connection conn = db.connect();
+    try (Connection conn = getDb().connect();
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql)) {
       if (result.next()) {
@@ -63,12 +140,12 @@ public class User {
   public void insert() {
     String sql = "INSERT INTO users(name, password, dob, familyId) VALUES(?,?,?,?)";
 
-    try (Connection conn = db.connect();
+    try (Connection conn = getDb().connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setString(1, name);
-      pstmt.setString(2, password);
-      pstmt.setDate(3, dob);
-      pstmt.setInt(4, familyId);
+      pstmt.setString(1, getName());
+      pstmt.setString(2, getPassword());
+      pstmt.setDate(3, getDob());
+      pstmt.setInt(4, getFamilyId());
       
       pstmt.executeUpdate();
       JOptionPane.showMessageDialog(null, "Registered successfully.");
@@ -84,9 +161,9 @@ public class User {
   public void delete() {
     String sql = "DELETE from users where id = ?";
 
-    try (Connection conn = db.connect();
+    try (Connection conn = getDb().connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, id);
+      pstmt.setInt(1, getId());
       pstmt.executeUpdate();
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
@@ -100,13 +177,13 @@ public class User {
             + "dob = ?,"
             + "familyId = ?\n"
             + "where id = ?;";
-    try (Connection conn = db.connect();
+    try (Connection conn = getDb().connect();
             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setString(1, name);
-      pstmt.setString(2, password);
-      pstmt.setDate(3, dob);
-      pstmt.setInt(4, familyId);
-      pstmt.setInt(5, id);
+      pstmt.setString(1, getName());
+      pstmt.setString(2, getPassword());
+      pstmt.setDate(3, getDob());
+      pstmt.setInt(4, getFamilyId());
+      pstmt.setInt(5, getId());
       pstmt.executeUpdate();
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
