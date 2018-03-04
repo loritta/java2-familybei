@@ -116,7 +116,7 @@ public class Transaction {
     }
   }
   public int getCategoryId(String catName) {
-    String sql = "select id from category where name = '" + catName + "' limit 1";
+    String sql = "select id from categories where name = '" + catName + "' limit 1";
         int catId=0;
     try (Connection conn = db.connect();
             Statement stmt = conn.createStatement();
