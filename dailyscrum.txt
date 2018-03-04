@@ -1,4 +1,4 @@
-Daily scrum - Every day at 9am
+﻿Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -74,9 +74,9 @@ Larisa:
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 4 days left/ 5 days gone
 04/03/2018
 Tung:
-1.
-2.
-3.
+1. Not done with InitialInfo yet
+2. Error "User already has more than 'max_user_connections' active connections" appears in InitialInfo
+3. Get more information about the error.
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 04/03/2018
 Larisa:
