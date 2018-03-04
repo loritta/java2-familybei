@@ -1,6 +1,5 @@
 package HelperClasses;
 
-
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -12,13 +11,14 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class Transaction {
+
   int id;
   int userId;
   int categoryId;
   private String category;
   BigDecimal amount;
   Timestamp transDate;
-  
+
   Database db = new Database();
 
   public Transaction(int id, int userId, BigDecimal amount, Timestamp transDate, String category) {
@@ -28,6 +28,7 @@ public class Transaction {
     this.amount = amount;
     this.transDate = transDate;
   }
+
   public Transaction(int id, int userId, int categoryId, BigDecimal amount, Timestamp transDate) {
     this.id = id;
     this.userId = userId;
@@ -35,21 +36,22 @@ public class Transaction {
     this.amount = amount;
     this.transDate = transDate;
   }
+
   @Override
   public String toString() {
     // user's name instead of userId?, category name for categoryId?
-    return "Transaction{" + "id=" + id + ", userId=" + userId + ", categoryId=" 
-          + categoryId + ", amount=" + amount + ", transDate=" + transDate + '}';
+    return "Transaction{" + "id=" + id + ", userId=" + userId + ", categoryId="
+            + categoryId + ", amount=" + amount + ", transDate=" + transDate + '}';
   }
-  
+
   public ArrayList<Transaction> getAll() {
     String sql = "SELECT * FROM transactions";
     ArrayList<Transaction> list = new ArrayList<>();
 
     try (Connection conn = db.connect();
-          Statement stmt = conn.createStatement();
-          ResultSet result = stmt.executeQuery(sql)) {
-      
+            Statement stmt = conn.createStatement();
+            ResultSet result = stmt.executeQuery(sql)) {
+
       while (result.next()) {
         id = result.getInt("id");
         userId = result.getInt("userId");
@@ -60,13 +62,12 @@ public class Transaction {
         Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
         list.add(trans);
       }
-    }
-    catch (SQLException ex) {
+    } catch (SQLException ex) {
       System.out.println(ex.getMessage());
     }
     return list;
   }
-  
+
   public void insert() {
     String sql = "INSERT INTO transactions(userId, categoryId, amount, transDate) "
             + "VALUES(?,?,?,?)";
@@ -77,13 +78,13 @@ public class Transaction {
       pstmt.setInt(2, categoryId);
       pstmt.setBigDecimal(3, amount);
       pstmt.setTimestamp(4, transDate);
-      
+
       pstmt.executeUpdate();
     } catch (SQLException e) {
       System.out.println(e.getMessage());
     }
   }
-  
+
   public void delete() {
     String sql = "DELETE from transactions where id = ?";
 
@@ -95,7 +96,7 @@ public class Transaction {
       System.out.println(ex.getMessage());
     }
   }
-  
+
   public void update() {
     String sql = "update transactions set "
             + "userId = ?,\n"
@@ -115,20 +116,21 @@ public class Transaction {
       System.out.println(ex.getMessage());
     }
   }
+
   public int getCategoryId(String catName) {
     String sql = "select id from categories where name = '" + catName + "' limit 1";
-        int catId=0;
+    int catId = 0;
     try (Connection conn = db.connect();
             Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql)) {
       if (result.next()) {
-          catId = result.getInt("id");      
-          System.out.println(getCategoryId(catName));
+        catId = result.getInt("id");
+        System.out.println(getCategoryId(catName));
       }
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
     }
-    
-    return catId ;
+
+    return catId;
   }
 }
