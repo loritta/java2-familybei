@@ -95,8 +95,7 @@ public class User {
   private Date dob;
   private int familyId;
 
-  public User(int id, String name, String password, Date dob, String familyName) {
-    this.id = id;
+  public User(String name, String password, Date dob, String familyName) {
     this.name = name;
     this.password = password;
     this.dob = dob;
@@ -114,7 +113,7 @@ public class User {
   public User() {}
 
   public int getId() {
-    String sql = "select id from family where name = '" + name + "' limit 1";
+    String sql = "select id from users where name = '" + name + "' limit 1";
     int userId = 0;
     try (Connection conn = getDb().connect();
             Statement stmt = conn.createStatement();
