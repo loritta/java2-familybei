@@ -10,3 +10,9 @@ https://blogs.windows.com/devices/2014/01/27/10-best-windows-phone-apps-managing
 https://www.abskillz.com/10-money-management-windows-apps-for-effective-budgeting/
 
 https://netbeans.org/kb/docs/java/quickstart-gui.html#first_things
+
+For the connection of all the frames:
+https://stackoverflow.com/questions/16637345/java-program-with-multiple-windowsjpanel-how-to-connect-them-to-jframe
+
+https://github.com/DeepzSandra/LoginApp/blob/master/src/view/LoginDialog.java
+https://stackoverflow.com/questions/24817541/calling-methods-of-an-object-instantiated-in-another-class

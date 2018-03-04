@@ -1,4 +1,4 @@
-﻿Daily scrum - Every day at 9am
+Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -80,9 +80,9 @@ Tung:
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 04/03/2018
 Larisa:
-1.
-2.
-3.
+1.Not done with the passing the information on the currentUser from one frame to another. We need to clarify how to do it as for now the user is reset in each Frame instead of using the one passed in the previous.
+2.Rearranged all the visual. Worked on the piping up of the initial info after login in no history in the transactions for the past month. This is were I found that we need to organize the whole app differently. 
+3.Need to figure this connection story somehow.
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 3 days left/ 6 days gone
 05/03/2018
 Tung:
