@@ -183,6 +183,11 @@ public class AddIncome extends javax.swing.JDialog {
 
         frmIncome_mnuExit1.setText("Exit");
         frmIncome_mnuExit1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
+        frmIncome_mnuExit1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                frmIncome_mnuExit1MouseClicked(evt);
+            }
+        });
         jMenuBar2.add(frmIncome_mnuExit1);
 
         setJMenuBar(jMenuBar2);
@@ -239,6 +244,9 @@ public class AddIncome extends javax.swing.JDialog {
     private void frmIncome_miCSV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miCSV1ActionPerformed
        gl.chooseFileCSV(fileChooser);
     }//GEN-LAST:event_frmIncome_miCSV1ActionPerformed
+
+    private void frmIncome_mnuExit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIncome_mnuExit1MouseClicked
+gl.closeApp();    }//GEN-LAST:event_frmIncome_mnuExit1MouseClicked
 
     /**
      * @param args the command line arguments

@@ -19,6 +19,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -48,6 +49,24 @@ public class Global {
             return file;
     }
     
+    public void closeApp(){
+        int value = JOptionPane.YES_NO_OPTION;
+        int dialogResult = JOptionPane.showConfirmDialog 
+        (null, 
+                "Are you sure you would like to teminate your session?"
+                ,"Warning",value);
+         
+        if (dialogResult == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }
+    public void comparePassword(String password, String rePassword) {
+    if (password.equals(rePassword)) {
+      JOptionPane.showMessageDialog(null, "Passwords matched!");
+    } else {
+      throw new InputMismatchException();
+    }
+  }
 
     
 }

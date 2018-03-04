@@ -66,6 +66,16 @@ public class Registration extends javax.swing.JDialog {
         jLabel10.setText("Password:");
 
         reg_pfPassword.setText("jPasswordField1");
+        reg_pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                reg_pfPasswordFocusGained(evt);
+            }
+        });
+        reg_pfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reg_pfPasswordMouseClicked(evt);
+            }
+        });
         reg_pfPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reg_pfPasswordActionPerformed(evt);
@@ -76,6 +86,16 @@ public class Registration extends javax.swing.JDialog {
         jLabel13.setText("Password verification:");
 
         reg_pfRePassword.setText("jPasswordField1");
+        reg_pfRePassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                reg_pfRePasswordFocusGained(evt);
+            }
+        });
+        reg_pfRePassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                reg_pfRePasswordMouseClicked(evt);
+            }
+        });
         reg_pfRePassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reg_pfRePasswordActionPerformed(evt);
@@ -186,7 +206,7 @@ public class Registration extends javax.swing.JDialog {
         String password = new String(reg_pfPassword.getPassword());
         String rePassword = new String(reg_pfRePassword.getPassword());
         try {
-            gl.db.comparePassword(password, rePassword);
+            gl.comparePassword(password, rePassword);
             Date dob = gl.db.strToDate(reg_tfDob.getText());
             User user = new User(0, name, password, dob, familyName);
             user.insert();
@@ -205,7 +225,7 @@ public class Registration extends javax.swing.JDialog {
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed
-        System.exit(0);
+        gl.closeApp();
     }//GEN-LAST:event_reg_btnCancelActionPerformed
 
     private void reg_tfDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_tfDobActionPerformed
@@ -219,6 +239,19 @@ public class Registration extends javax.swing.JDialog {
     private void reg_pfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_pfPasswordActionPerformed
         reg_pfPassword.setText("");            // TODO add your handling code here:
     }//GEN-LAST:event_reg_pfPasswordActionPerformed
+
+    private void reg_pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfPasswordMouseClicked
+reg_pfPassword.setText(""); 
+    }//GEN-LAST:event_reg_pfPasswordMouseClicked
+
+    private void reg_pfRePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfRePasswordMouseClicked
+reg_pfRePassword.setText("");    }//GEN-LAST:event_reg_pfRePasswordMouseClicked
+
+    private void reg_pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reg_pfPasswordFocusGained
+reg_pfPassword.setText("");    }//GEN-LAST:event_reg_pfPasswordFocusGained
+
+    private void reg_pfRePasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reg_pfRePasswordFocusGained
+reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
 
     /**
      * @param args the command line arguments

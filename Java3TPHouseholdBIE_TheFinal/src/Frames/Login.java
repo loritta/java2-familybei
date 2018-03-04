@@ -121,9 +121,19 @@ public class Login extends javax.swing.JDialog {
 
         pfPassword.setText("jPasswordField1");
         pfPassword.setToolTipText("");
+        pfPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pfPasswordFocusGained(evt);
+            }
+        });
         pfPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 pfPasswordMouseClicked(evt);
+            }
+        });
+        pfPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pfPasswordActionPerformed(evt);
             }
         });
 
@@ -213,12 +223,20 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLoginActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        System.exit(0);
+        gl.closeApp();
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pfPasswordMouseClicked
         pfPassword.setText("");     
     }//GEN-LAST:event_pfPasswordMouseClicked
+
+    private void pfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfPasswordActionPerformed
+         pfPassword.setText(""); 
+    }//GEN-LAST:event_pfPasswordActionPerformed
+
+    private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
+        pfPassword.setText(""); 
+    }//GEN-LAST:event_pfPasswordFocusGained
 
     /**
      * @param args the command line arguments
