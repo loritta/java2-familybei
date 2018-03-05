@@ -35,8 +35,7 @@ public class InitialInfo extends javax.swing.JDialog {
     formatter.setParseBigDecimal(true);
     try {
       BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-      Transaction trans = new Transaction(0, gl.currentUser.getId(), amount, gl.db.nowSQL(), type);
-      trans.insert();
+      gl.db.insertTransaction(gl.currentUser.getId(), gl.db.getCategoryId(type), amount);
     } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
     }

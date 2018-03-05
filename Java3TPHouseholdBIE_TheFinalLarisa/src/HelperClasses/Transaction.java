@@ -15,10 +15,10 @@ public class Transaction {
   int id;
   int userId;
 
-    public int getCategoryId(String categoryName) {
-        this.categoryId=db.getCategoryId(categoryName);
-        return categoryId;
-    }
+  public int getCategoryId(String categoryName) {
+    this.categoryId = db.getCategoryId(categoryName);
+    return categoryId;
+  }
   int categoryId;
   private String category;
   BigDecimal amount;
@@ -41,9 +41,10 @@ public class Transaction {
     this.amount = amount;
     this.transDate = transDate;
   }
-  public Transaction(int userId){
-      this.userId=userId;
-      
+
+  public Transaction(int userId) {
+    this.userId = userId;
+
   }
 
   @Override
@@ -55,65 +56,16 @@ public class Transaction {
 
   public ArrayList<Transaction> getAll() {
     ArrayList<Transaction> list;
-    return list=db.getAllTransactions();
+    return list = db.getAllTransactions();
   }
+
   public BigDecimal getAllGeneralExpenses(int userId) {
-    BigDecimal amount=null;
-    return amount=db.getAllGeneralExpenses(userId,1);
+    BigDecimal amount = null;
+    return amount = db.getAllGeneralExpenses(userId, 1);
   }
+
   public BigDecimal getAllGeneralIncome(int userId) {
-    BigDecimal amount=null;
-    return amount=db.getAllGeneralIncome(userId,1);
+    BigDecimal amount = null;
+    return amount = db.getAllGeneralIncome(userId, 1);
   }
-
-  public void insert() {
-    String sql = "INSERT INTO transactions(userId, categoryId, amount, transDate) "
-            + "VALUES(?,?,?,?)";
-
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, categoryId);
-      pstmt.setBigDecimal(3, amount);
-      pstmt.setTimestamp(4, transDate);
-
-      pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
-  }
-
-  public void delete() {
-    String sql = "DELETE from transactions where id = ?";
-
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, id);
-      pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-  }
-
-  public void update() {
-    String sql = "update transactions set "
-            + "userId = ?,\n"
-            + "categoryId = ?,\n"
-            + "amount = ?,"
-            + "transDate = ?\n"
-            + "where id = ?;";
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, categoryId);
-      pstmt.setBigDecimal(3, amount);
-      pstmt.setTimestamp(4, transDate);
-      pstmt.setInt(5, id);
-      pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-  }
-
-  
 }
