@@ -74,6 +74,16 @@ public class Global {
     }
   }
     
-
+    public void insertTransaction(String amountStr, String type) {
+    DecimalFormat formatter = new DecimalFormat("###.##");
+    formatter.setParseBigDecimal(true);
+    try {
+      BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
+      db.insertTransaction(currentUser.getId(), db.getCategoryId(type), amount);
+    } catch (ParseException ex) {
+      JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
+    }
+    
+  }
     
 }

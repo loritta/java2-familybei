@@ -30,18 +30,6 @@ public class InitialInfo extends javax.swing.JDialog {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
   
-  private void insertTransaction(String amountStr, String type) {
-    DecimalFormat formatter = new DecimalFormat("###.##");
-    formatter.setParseBigDecimal(true);
-    try {
-      BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-      gl.db.insertTransaction(gl.currentUser.getId(), gl.db.getCategoryId(type), amount);
-    } catch (ParseException ex) {
-      JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
-    }
-    
-  }
-
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always
@@ -320,13 +308,13 @@ public class InitialInfo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void init_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_init_btnSaveActionPerformed
-      insertTransaction(init_tfIncome.getText(), "Income");
-      insertTransaction(init_tfExpense.getText(), "Expense");
-      insertTransaction(init_lblMortgage.getText(), "Mortgage");
-      insertTransaction(init_lblFood.getText(), "Food");
-      insertTransaction(init_lblChemical.getText(), "Chemical");
-      insertTransaction(init_lblCar.getText(), "Car");
-      insertTransaction(init_lblOther.getText(), "Other");
+      gl.insertTransaction(init_tfIncome.getText(), "Income");
+      gl.insertTransaction(init_tfExpense.getText(), "Expense");
+      gl.insertTransaction(init_lblMortgage.getText(), "Mortgage");
+      gl.insertTransaction(init_lblFood.getText(), "Food");
+      gl.insertTransaction(init_lblChemical.getText(), "Chemical");
+      gl.insertTransaction(init_lblCar.getText(), "Car");
+      gl.insertTransaction(init_lblOther.getText(), "Other");
       // insertTransaction(init_lblBudgetRequired.getText(), "BudgetRequired");
       this.setVisible(false);
       welcome.pack();
