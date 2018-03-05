@@ -7,13 +7,29 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class Category {
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Cat getName() {
+        return name;
+    }
+
+    public void setName(Cat name) {
+        this.name = name;
+    }
   int id;
   Cat name;
   
   Database db = new Database();
   
   public enum Cat {
-    Income, GeneralExpenses, Food, Chemicals, Car, House, Other
+    Income, General, Food, Chemicals, Car, House, Other
   }
 
   public Category(int id, Cat name) {
