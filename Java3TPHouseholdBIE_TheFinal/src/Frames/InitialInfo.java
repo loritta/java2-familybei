@@ -26,12 +26,12 @@ public class InitialInfo extends javax.swing.JDialog {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
   
-  private void insertTransaction(String amountStr, String type) {
+  public void insertTransaction(String amountStr, String type) {
     DecimalFormat formatter = new DecimalFormat("###.##");
     formatter.setParseBigDecimal(true);
     try {
       BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-      Transaction trans = new Transaction(0, gl.currentUser.getId(), amount, gl.db.nowSQL(), type);
+      Transaction trans = new Transaction(0, user.getId(), amount, gl.db.nowSQL(), type);
       trans.insert();
     } catch (ParseException ex) {
       JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
@@ -316,14 +316,19 @@ public class InitialInfo extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    User user;
+//    int userId = user.getId();
     private void init_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_init_btnSaveActionPerformed
+//      System.out.println(user.getId());
+//      Transaction trans = new Transaction(0, 70, BigDecimal.TEN, gl.db.nowSQL(), "income");
+//      System.out.println(trans);
       insertTransaction(init_tfIncome.getText(), "Income");
-      insertTransaction(init_tfExpense.getText(), "Expense");
-      insertTransaction(init_lblMortgage.getText(), "Mortgage");
-      insertTransaction(init_lblFood.getText(), "Food");
-      insertTransaction(init_lblChemical.getText(), "Chemical");
-      insertTransaction(init_lblCar.getText(), "Car");
-      insertTransaction(init_lblOther.getText(), "Other");
+//      insertTransaction(init_tfExpense.getText(), "Expense");
+//      insertTransaction(init_lblMortgage.getText(), "Mortgage");
+//      insertTransaction(init_lblFood.getText(), "Food");
+//      insertTransaction(init_lblChemical.getText(), "Chemical");
+//      insertTransaction(init_lblCar.getText(), "Car");
+//      insertTransaction(init_lblOther.getText(), "Other");
       // insertTransaction(init_lblBudgetRequired.getText(), "BudgetRequired");
     }//GEN-LAST:event_init_btnSaveActionPerformed
 

@@ -30,8 +30,7 @@ import javax.swing.JOptionPane;
  */
 public class Global {
     public Database db = new Database();
-    public User currentUser= new User();
-    
+    public User currentUser = new User();
     
     public File chooseFileCSV(javax.swing.JFileChooser fileChooser){
         int ret = fileChooser.showDialog(null, "Save to the file");
