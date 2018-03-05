@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JDialog {
 
-  Global gl = new Global();
+  Global gl;
 
   public Registration() {
     initComponents();
@@ -26,7 +26,7 @@ public class Registration extends javax.swing.JDialog {
       gl.comparePassword(password, rePassword);
       Date dob = gl.db.strToDate(reg_tfDob.getText());
       user = new User(name, password, dob, familyName);
-    } catch (InputMismatchException ex) {
+    } catch (InputMismatchException |NullPointerException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(this,
               "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
