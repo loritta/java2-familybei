@@ -5,6 +5,8 @@
  */
 package Frames;
 
+import HelperClasses.*;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,6 +20,8 @@ import java.util.logging.Logger;
 public class Welcome extends javax.swing.JFrame {
 
     private static Global gl;
+    private Transaction trans;
+    private BudgetsMonthly budg;
 
     /**
      * Creates new form Welcome
@@ -25,10 +29,10 @@ public class Welcome extends javax.swing.JFrame {
     public Welcome(Global gl) {
         this.gl = gl;
         initComponents();
-        System.out.println(gl.currentUser.getId());
         callHistoryToTheDataBase(gl.currentUser.getId());
         lblUserName.setText(gl.currentUser.getName());
         getFamilyInfo(gl.currentUser.getFamilyId());
+        getTransactionsAndBudget(gl.currentUser.getId());
 
     }
 
@@ -57,15 +61,29 @@ public class Welcome extends javax.swing.JFrame {
     public void getFamilyInfo(int familyId) {
         ArrayList<String> list = gl.db.getDatabaseFamilyMembersName(familyId);
         Iterator it = list.iterator();
-        String setText="";
+        String setText = "";
         while (it.hasNext()) {
-            setText= setText+it.next();
+            setText = setText + " " + it.next();
         }
-    lblFamilyMemeber1.setText(setText);
+        lblFamilyMemeber1.setText(setText);
     }
 
-    public void loadingTheData() {
-        lblUserName.setText(gl.currentUser.getName());
+    public void getTransactionsAndBudget(int id) {
+        trans = new Transaction(gl.currentUser.getId());
+        BigDecimal result;
+        BigDecimal expense=trans.getAllGeneralExpenses(id);
+        lblExpenses.setText(expense.toString());
+        BigDecimal income=trans.getAllGeneralIncome(id);
+        lblIncome.setText(income.toString());
+        
+        budg= new BudgetsMonthly(gl.currentUser.getId());
+        BigDecimal budget=budg.getAllGeneralBudget(id);
+        lblBudgetVsExpens.setText(budget.toString());
+        result=budget.subtract(income);
+        lblBudgetVsIncome.setText(result.toString());
+        result=budget.subtract(expense);
+        lblBudgetVsExpens.setText(result.toString());
+        
 
     }
 
@@ -83,24 +101,17 @@ public class Welcome extends javax.swing.JFrame {
         lblUserName = new javax.swing.JLabel();
         pnlFamily = new javax.swing.JPanel();
         lblFamilyMemeber1 = new javax.swing.JLabel();
-        lblFamilyMemeber2 = new javax.swing.JLabel();
-        lblFamilyMemeber3 = new javax.swing.JLabel();
-        lblFamilyMemeber4 = new javax.swing.JLabel();
-        lblFamilyMemeber5 = new javax.swing.JLabel();
-        lblFamilyMemeber6 = new javax.swing.JLabel();
-        lblFamilyMemeber7 = new javax.swing.JLabel();
-        lblFamilyMemeber8 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
+        lblIncome = new javax.swing.JLabel();
+        lblExpenses = new javax.swing.JLabel();
+        lblBudget = new javax.swing.JLabel();
+        lblBudgetVsIncome = new javax.swing.JLabel();
+        lblBudgetVsExpens = new javax.swing.JLabel();
         jMenuBar10 = new javax.swing.JMenuBar();
         frmWelcome_mnuOperations9 = new javax.swing.JMenu();
         frmWelcome_miAddIncome9 = new javax.swing.JMenuItem();
@@ -129,7 +140,7 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblUserName)
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,20 +157,6 @@ public class Welcome extends javax.swing.JFrame {
 
         lblFamilyMemeber1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        lblFamilyMemeber2.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber3.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber4.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber5.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber6.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber7.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
-        lblFamilyMemeber8.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-
         javax.swing.GroupLayout pnlFamilyLayout = new javax.swing.GroupLayout(pnlFamily);
         pnlFamily.setLayout(pnlFamilyLayout);
         pnlFamilyLayout.setHorizontalGroup(
@@ -167,36 +164,13 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(lblFamilyMemeber1)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber2)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber3)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber4)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber5)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber6)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber7)
-                .addGap(18, 18, 18)
-                .addComponent(lblFamilyMemeber8)
-                .addContainerGap(438, Short.MAX_VALUE))
+                .addContainerGap(701, Short.MAX_VALUE))
         );
         pnlFamilyLayout.setVerticalGroup(
             pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFamilyMemeber1)
-                    .addComponent(lblFamilyMemeber2)
-                    .addComponent(lblFamilyMemeber3)
-                    .addComponent(lblFamilyMemeber4)
-                    .addGroup(pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblFamilyMemeber5)
-                        .addComponent(lblFamilyMemeber6)
-                        .addComponent(lblFamilyMemeber7)
-                        .addComponent(lblFamilyMemeber8)))
+                .addComponent(lblFamilyMemeber1)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -220,50 +194,59 @@ public class Welcome extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jLabel37.setText("Budget vs Expenses");
 
-        jLabel38.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel38.setText("...");
+        lblIncome.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblIncome.setText("...");
 
-        jLabel39.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel39.setText("...");
+        lblExpenses.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblExpenses.setText("...");
 
-        jLabel40.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel40.setText("...");
+        lblBudget.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudget.setText("...");
 
-        jLabel41.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel41.setText("...");
+        lblBudgetVsIncome.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudgetVsIncome.setText("...");
 
-        jLabel45.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel45.setText("...");
+        lblBudgetVsExpens.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudgetVsExpens.setText("...");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel20)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel21)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel22)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel27)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel37)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel39)
-                .addGap(68, 68, 68)
-                .addComponent(jLabel40)
-                .addGap(92, 92, 92)
-                .addComponent(jLabel41)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel45)
-                .addGap(89, 89, 89))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(lblIncome))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21)
+                    .addComponent(lblExpenses))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(lblBudget))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblBudgetVsIncome, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addComponent(lblBudgetVsExpens))
+                .addGap(85, 85, 85))
         );
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel20, lblIncome});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel21, lblExpenses});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel22, lblBudget});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel27, lblBudgetVsIncome});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel37, lblBudgetVsExpens});
+
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -276,11 +259,11 @@ public class Welcome extends javax.swing.JFrame {
                     .addComponent(jLabel37))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel39)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41)
-                    .addComponent(jLabel45))
+                    .addComponent(lblIncome)
+                    .addComponent(lblExpenses)
+                    .addComponent(lblBudget)
+                    .addComponent(lblBudgetVsIncome)
+                    .addComponent(lblBudgetVsExpens))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -475,22 +458,15 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel45;
     private javax.swing.JMenuBar jMenuBar10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
+    private javax.swing.JLabel lblBudget;
+    private javax.swing.JLabel lblBudgetVsExpens;
+    private javax.swing.JLabel lblBudgetVsIncome;
+    private javax.swing.JLabel lblExpenses;
     private javax.swing.JLabel lblFamilyMemeber1;
-    private javax.swing.JLabel lblFamilyMemeber2;
-    private javax.swing.JLabel lblFamilyMemeber3;
-    private javax.swing.JLabel lblFamilyMemeber4;
-    private javax.swing.JLabel lblFamilyMemeber5;
-    private javax.swing.JLabel lblFamilyMemeber6;
-    private javax.swing.JLabel lblFamilyMemeber7;
-    private javax.swing.JLabel lblFamilyMemeber8;
+    private javax.swing.JLabel lblIncome;
     private javax.swing.JLabel lblUserName;
     private javax.swing.JPanel pnlFamily;
     // End of variables declaration//GEN-END:variables

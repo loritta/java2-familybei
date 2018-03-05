@@ -14,6 +14,11 @@ public class Transaction {
 
   int id;
   int userId;
+
+    public int getCategoryId(String categoryName) {
+        this.categoryId=db.getCategoryId(categoryName);
+        return categoryId;
+    }
   int categoryId;
   private String category;
   BigDecimal amount;
@@ -36,6 +41,10 @@ public class Transaction {
     this.amount = amount;
     this.transDate = transDate;
   }
+  public Transaction(int userId){
+      this.userId=userId;
+      
+  }
 
   @Override
   public String toString() {
@@ -45,27 +54,16 @@ public class Transaction {
   }
 
   public ArrayList<Transaction> getAll() {
-    String sql = "SELECT * FROM transactions";
-    ArrayList<Transaction> list = new ArrayList<>();
-
-    try (Connection conn = db.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(sql)) {
-
-      while (result.next()) {
-        id = result.getInt("id");
-        userId = result.getInt("userId");
-        categoryId = result.getInt("categoryId");
-        amount = result.getBigDecimal("amount");
-        transDate = result.getTimestamp("transDate");
-
-        Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
-        list.add(trans);
-      }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-    return list;
+    ArrayList<Transaction> list;
+    return list=db.getAllTransactions();
+  }
+  public BigDecimal getAllGeneralExpenses(int userId) {
+    BigDecimal amount=null;
+    return amount=db.getAllGeneralExpenses(userId,1);
+  }
+  public BigDecimal getAllGeneralIncome(int userId) {
+    BigDecimal amount=null;
+    return amount=db.getAllGeneralIncome(userId,1);
   }
 
   public void insert() {
@@ -117,20 +115,5 @@ public class Transaction {
     }
   }
 
-  public int getCategoryId(String catName) {
-    String sql = "select id from categories where name = '" + catName + "' limit 1";
-    int catId = 0;
-    try (Connection conn = db.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(sql)) {
-      if (result.next()) {
-        catId = result.getInt("id");
-        System.out.println(getCategoryId(catName));
-      }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-
-    return catId;
-  }
+  
 }
