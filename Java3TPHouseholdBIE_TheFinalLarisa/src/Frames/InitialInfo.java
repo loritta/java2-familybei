@@ -329,6 +329,9 @@ public class InitialInfo extends javax.swing.JDialog {
       insertTransaction(init_lblCar.getText(), "Car");
       insertTransaction(init_lblOther.getText(), "Other");
       // insertTransaction(init_lblBudgetRequired.getText(), "BudgetRequired");
+      this.setVisible(false);
+      welcome.pack();
+      welcome.setVisible(true);
       
     }//GEN-LAST:event_init_btnSaveActionPerformed
 

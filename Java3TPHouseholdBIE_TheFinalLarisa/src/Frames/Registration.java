@@ -36,6 +36,7 @@ public class Registration extends javax.swing.JDialog {
     String rePassword = new String(reg_pfRePassword.getPassword());
     try {
       gl.comparePassword(password, rePassword);
+      
       Date dob = gl.db.strToDate(reg_tfDob.getText());
       int familyId=gl.db.getFamilyId(familyName);
       gl.db.insertUser(name, password, dob, familyId);
