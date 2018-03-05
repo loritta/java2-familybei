@@ -17,6 +17,7 @@ public class Registration extends javax.swing.JDialog {
     public Registration(Frame owner, boolean modal, 
             Global gl, Welcome welcome) {
         super(owner, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.gl=gl;
         this.welcome=welcome;
         initComponents();
@@ -237,9 +238,10 @@ public class Registration extends javax.swing.JDialog {
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
       User user = getUser();
       Login loginDialog=new Login(welcome, true, gl, welcome);
-      this.setVisible(false);
+      setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
       loginDialog.pack();
       loginDialog.setVisible(true);
+      gl.closeWindow(this);
 
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
@@ -305,12 +307,12 @@ reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
                
                 Registration dialog=new Registration(welcome, true, gl, welcome);
                 dialog.setVisible(true);
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
-                });
+                });*/
             }
         });
     }

@@ -21,6 +21,7 @@ public class InitialInfo extends javax.swing.JDialog {
   public InitialInfo(java.awt.Frame parent, boolean modal,
           Global gl, Welcome welcome) {
     super(parent, modal);
+    
     this.welcome=welcome;
     this.gl=gl;
     initComponents();
@@ -391,7 +392,7 @@ public class InitialInfo extends javax.swing.JDialog {
                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        gl.closeApp();
                     }
                 });
       }

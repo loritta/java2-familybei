@@ -17,17 +17,16 @@ public class Login extends javax.swing.JDialog {
 
     private static Frames.Global gl;
     private static Welcome welcome;
-    
 
     /**
      * Creates new form Login
      */
-    public Login(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {        
+    public Login(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
-        this.welcome=welcome;
-        this.gl=gl;
+        this.welcome = welcome;
+        this.gl = gl;
         initComponents();
-        
+
     }
 
     public Login() {
@@ -193,7 +192,7 @@ public class Login extends javax.swing.JDialog {
     private void btnNewMbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewMbActionPerformed
         //has to go to Regisartion page
         Registration registration;
-        registration = new Registration(welcome, true, gl, welcome);
+        registration = new Registration(null, true, gl, welcome);
         registration.pack();
         registration.setVisible(true);
         //dlgInitialInfo.getContentPane().setBackground(Color.getHSBColor(154, 254, 25));
@@ -201,20 +200,20 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btnNewMbActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        
+
         String password = pfPassword.getText();
         String username = tfName.getText();
-        
+
         String result = gl.db.loginVerif(password, username);
-        
+
         if (result.equals("success")) {
             try {
                 gl.currentUser = gl.db.createUserObject(password, username);
                 System.out.println(gl.currentUser);
-                Welcome welcome = new Welcome(gl);
+                welcome = new Welcome(gl);
                 welcome.pack();
                 welcome.setVisible(true);
-                this.setVisible(false);
+                gl.closeWindow(this);
             } catch (SQLException | NullPointerException ex) {
                 JOptionPane.showMessageDialog(null,
                         "Error connecting to database: " + ex.getMessage(),
@@ -229,15 +228,15 @@ public class Login extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelActionPerformed
 
     private void pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pfPasswordMouseClicked
-        pfPassword.setText("");     
+        pfPassword.setText("");
     }//GEN-LAST:event_pfPasswordMouseClicked
 
     private void pfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfPasswordActionPerformed
-         pfPassword.setText(""); 
+        pfPassword.setText("");
     }//GEN-LAST:event_pfPasswordActionPerformed
 
     private void pfPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pfPasswordFocusGained
-        pfPassword.setText(""); 
+        pfPassword.setText("");
     }//GEN-LAST:event_pfPasswordFocusGained
 
     /**
@@ -270,24 +269,24 @@ public class Login extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               /* Login dialog = new Login();
+                /* Login dialog = new Login();
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     
                 });
                 dialog.setVisible(true);*/
-               Login dialog=new Login(welcome, true, gl, welcome);
-               dialog.setVisible(true);
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                Login dialog = new Login(welcome, true, gl, welcome);
+                dialog.setVisible(true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                
+
             }
-        
-                });
-                }
+
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;

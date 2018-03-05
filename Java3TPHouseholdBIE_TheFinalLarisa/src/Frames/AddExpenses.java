@@ -5,6 +5,10 @@
  */
 package Frames;
 
+import java.awt.Component;
+import java.awt.Window;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author larisasabalin
@@ -20,6 +24,7 @@ public class AddExpenses extends javax.swing.JDialog {
      */
     public AddExpenses(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.welcome=welcome;
         this.gl=gl;
         initComponents();
@@ -229,54 +234,63 @@ public class AddExpenses extends javax.swing.JDialog {
 
     private void frmExpences_miSeeBudgetsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeBudgetsActionPerformed
         //set the combo box in Details to Budgets
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
+        
     }//GEN-LAST:event_frmExpences_miSeeBudgetsActionPerformed
 
     private void frmExpences_miAddIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddIncomeActionPerformed
-        AddIncome income = new AddIncome(welcome, true, gl, welcome);
+        AddIncome income = new AddIncome(null, true, gl, welcome);
         income.pack();
         income.setVisible(true);
+        gl.closeWindow(this);
 
     }//GEN-LAST:event_frmExpences_miAddIncomeActionPerformed
 
     private void frmExpences_miAddExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddExpensesActionPerformed
-        AddExpenses expense = new AddExpenses(welcome, true, gl, welcome);
+        AddExpenses expense = new AddExpenses(null, true, gl, welcome);
         expense.pack();
         expense.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miAddExpensesActionPerformed
 
     private void frmExpences_miGoToReportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miGoToReportsActionPerformed
-        GoToReports reports = new GoToReports(welcome, true, gl, welcome);
+        GoToReports reports = new GoToReports(null, true, gl, welcome);
         reports.pack();
         reports.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miGoToReportsActionPerformed
 
     private void frmExpences_miSeeExpensesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeExpensesActionPerformed
         //set the combo box in Details to Expenses
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miSeeExpensesActionPerformed
 
     private void frmExpences_miSeeIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miSeeIncomeActionPerformed
         //set the combo box in Details to Income
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miSeeIncomeActionPerformed
 
     private void frmExpences_miCSVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miCSVActionPerformed
         //We should make this as a function this is repeating for each frame
         gl.chooseFileCSV(fileChooser);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miCSVActionPerformed
 
     private void frmExpences_miPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miPDFActionPerformed
         fileChooser.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmExpences_miPDFActionPerformed
 
     private void frmExpences_mnuExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmExpences_mnuExitMouseClicked
@@ -313,15 +327,15 @@ gl.closeApp();    }//GEN-LAST:event_frmExpences_mnuExitMouseClicked
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                AddExpenses dialog=new AddExpenses(welcome, true, gl, welcome);
+                AddExpenses dialog=new AddExpenses(null, true, gl, welcome);
                         dialog.setVisible(true);
                 
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
-                });
+                });*/
             }
         });
     }

@@ -330,8 +330,8 @@ public class Database {
   }
 
   public BigDecimal getAllGeneralBudget(int userId, int categoryId) {
-    String sql = "SELECT amount FROM budget where userid='" + userId
-            + "' and Month(transdate)=MONTH(NOW()) and budgtecatid<>'" + categoryId + "'";
+    String sql = "SELECT amount FROM budget where userid='"+userId
+                +"' and Month(monthofyear)=MONTH(NOW()) and budgetcatid<>'"+categoryId+"'";
 
     BigDecimal amount = null;
 
