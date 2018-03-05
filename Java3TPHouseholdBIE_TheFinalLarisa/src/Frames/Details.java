@@ -18,6 +18,7 @@ public class Details extends javax.swing.JDialog {
      */
     public Details(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.welcome=welcome;
         this.gl=gl;
         initComponents();
@@ -220,15 +221,17 @@ public class Details extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmSeeBudget_miSeeBudgets6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Budget");
+        gl.closeWindow(this);
         details.pack();
         details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
 
     private void frmSeeBudget_miAddIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddIncome6ActionPerformed
-        AddIncome income = new AddIncome(welcome, true, gl,welcome);
+        AddIncome income = new AddIncome(null, true, gl,welcome);
         income.pack();
         income.setVisible(true);
+        gl.closeWindow(this);
 
     }//GEN-LAST:event_frmSeeBudget_miAddIncome6ActionPerformed
 
@@ -237,31 +240,36 @@ public class Details extends javax.swing.JDialog {
     }//GEN-LAST:event_Details_cmbChoiceActionPerformed
 
     private void frmSeeBudget_miAddExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddExpenses6ActionPerformed
-        AddExpenses expense = new AddExpenses(welcome, true, gl, welcome);
+        AddExpenses expense = new AddExpenses(null, true, gl, welcome);
         expense.pack();
         expense.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miAddExpenses6ActionPerformed
 
     private void frmSeeBudget_miGoToReports6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miGoToReports6ActionPerformed
-        GoToReports reports = new GoToReports(welcome, true, gl, welcome);
+        GoToReports reports = new GoToReports(null, true, gl, welcome);
         reports.pack();
         reports.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miGoToReports6ActionPerformed
 
     private void frmSeeBudget_miSeeExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
+        gl.closeWindow(this);
         details.pack();
         details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
 
     private void frmSeeBudget_miSeeIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeIncome6ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Income");
+        gl.closeWindow(this);
         details.pack();
         details.setVisible(true);     }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
 
     private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
         gl.chooseFileCSV(fileChooser);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miCSV6ActionPerformed
 
     private void frmSeeBudget_mnuExit6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmSeeBudget_mnuExit6MouseClicked
@@ -300,14 +308,14 @@ gl.closeApp();
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-               Details dialog= new Details(welcome, true, gl, welcome);
+               Details dialog= new Details(null, true, gl, welcome);
                dialog.setVisible(true);
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
-                });
+                });*/
             }
         });
     }

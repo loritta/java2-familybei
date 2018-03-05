@@ -355,39 +355,42 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmWelcome_miAddIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddIncome9ActionPerformed
-        Frames.AddIncome income = new AddIncome(this, true, gl, this);
+        Frames.AddIncome income = new AddIncome(null, true, gl, this);
         income.pack();
         income.setVisible(true);
+        
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
 
     private void frmWelcome_miAddExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddExpenses9ActionPerformed
-        AddExpenses expense = new AddExpenses(this, true, gl, this);
+        AddExpenses expense = new AddExpenses(null, true, gl, this);
         expense.pack();
         expense.setVisible(true);
+        
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-        GoToReports reports = new GoToReports(this, true, gl, this);
+        GoToReports reports = new GoToReports(null, true, gl, this);
         reports.pack();
         reports.setVisible(true);
+        
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        Details details = new Details(this, true, gl, this);
+        Details details = new Details(null, true, gl, this);
         details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-        Details details = new Details(this, true, gl, this);
+        Details details = new Details(null, true, gl, this);
         details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-        Details details = new Details(this, true, gl, this);
+        Details details = new Details(null, true, gl, this);
         details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);
@@ -435,7 +438,14 @@ public class Welcome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Welcome(gl).setVisible(true);
+                Welcome welcome=new Welcome(gl);
+                        welcome.setVisible(true);
+                welcome.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        gl.closeApp();
+                    }
+                });
             }
         });
     }

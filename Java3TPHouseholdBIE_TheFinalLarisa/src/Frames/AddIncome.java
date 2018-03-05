@@ -22,6 +22,7 @@ public class AddIncome extends javax.swing.JDialog {
      */
     public AddIncome(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.welcome=welcome;
         this.gl=gl;
         initComponents();
@@ -208,7 +209,7 @@ public class AddIncome extends javax.swing.JDialog {
 
     private void frmIncome_miSeeBudgets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeBudgets1ActionPerformed
 //set the combo box in Details to Budgets
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
@@ -219,26 +220,26 @@ public class AddIncome extends javax.swing.JDialog {
     }//GEN-LAST:event_addIncome_tfAmountActionPerformed
 
     private void frmIncome_miAddIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddIncome1ActionPerformed
-        AddIncome income = new AddIncome(welcome, true, gl, welcome);
+        AddIncome income = new AddIncome(null, true, gl, welcome);
         income.pack();
         income.setVisible(true);
     }//GEN-LAST:event_frmIncome_miAddIncome1ActionPerformed
 
     private void frmIncome_miAddExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddExpenses1ActionPerformed
-        AddExpenses expense = new AddExpenses(welcome, true, gl, welcome);
+        AddExpenses expense = new AddExpenses(null, true, gl, welcome);
         expense.pack();
         expense.setVisible(true);
     }//GEN-LAST:event_frmIncome_miAddExpenses1ActionPerformed
 
     private void frmIncome_miGoToReports1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miGoToReports1ActionPerformed
-        GoToReports reports = new GoToReports(welcome, true, gl, welcome);
+        GoToReports reports = new GoToReports(null, true, gl, welcome);
         reports.pack();
         reports.setVisible(true);
     }//GEN-LAST:event_frmIncome_miGoToReports1ActionPerformed
 
     private void frmIncome_miSeeExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeExpenses1ActionPerformed
         //set the combo box in Details to Expenses
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
@@ -247,7 +248,7 @@ public class AddIncome extends javax.swing.JDialog {
 
     private void frmIncome_miSeeIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeIncome1ActionPerformed
 //set the combo box in Details to Income
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);    }//GEN-LAST:event_frmIncome_miSeeIncome1ActionPerformed
@@ -294,7 +295,7 @@ public class AddIncome extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 
-                AddIncome dialog=new AddIncome(welcome, true, gl, welcome);
+                AddIncome dialog=new AddIncome(null, true, gl, welcome);
                 dialog.setVisible(true);
                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

@@ -19,6 +19,7 @@ public class GoToReports extends javax.swing.JDialog {
      */
     public GoToReports(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         this.welcome=welcome;
         this.gl=gl;
         initComponents();
@@ -293,65 +294,75 @@ public class GoToReports extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmGoToReports_miSeeBudgets2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeBudgets2ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmGoToReports_miSeeBudgets2ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         //set the combo box in Details to Expenses
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //set the combo box in Details to Income
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Income");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //set the combo box in Details to Budgets
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Budget");
         details.pack();
         details.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void frmGoToReports_miAddIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddIncome2ActionPerformed
-        AddIncome income = new AddIncome(welcome, true, gl, welcome);
+        AddIncome income = new AddIncome(null, true, gl, welcome);
         income.pack();
         income.setVisible(true);
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmGoToReports_miAddIncome2ActionPerformed
 
     private void frmGoToReports_miAddExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miAddExpenses2ActionPerformed
-        AddExpenses expense = new AddExpenses(welcome, true, gl, welcome);
+        AddExpenses expense = new AddExpenses(null, true, gl, welcome);
+        gl.closeWindow(this);
         expense.pack();
         expense.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miAddExpenses2ActionPerformed
 
     private void frmGoToReports_miSeeExpenses2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeExpenses2ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
+        gl.closeWindow(this);
         details.pack();
         details.setVisible(true);    }//GEN-LAST:event_frmGoToReports_miSeeExpenses2ActionPerformed
 
     private void frmGoToReports_miSeeIncome2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmGoToReports_miSeeIncome2ActionPerformed
-        Details details = new Details(welcome, true, gl, welcome);
+        Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Income");
+        gl.closeWindow(this);
         details.pack();
         details.setVisible(true);     }//GEN-LAST:event_frmGoToReports_miSeeIncome2ActionPerformed
 
     private void miCSV2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCSV2ActionPerformed
         gl.chooseFileCSV(fileChooser);
+        gl.closeWindow(this);
     }//GEN-LAST:event_miCSV2ActionPerformed
 
     private void frmGoToReports_mnuExit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmGoToReports_mnuExit2MouseClicked
        gl.closeApp();
+       gl.closeWindow(this);
     }//GEN-LAST:event_frmGoToReports_mnuExit2MouseClicked
 
     /**
@@ -385,14 +396,14 @@ public class GoToReports extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                
-        GoToReports dialog =new GoToReports(welcome, true, gl, welcome);
+        GoToReports dialog =new GoToReports(null, true, gl, welcome);
         dialog.setVisible(true);
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        gl.closeWindow();
                     }
-                });
+                });*/
     }
         });
                 }

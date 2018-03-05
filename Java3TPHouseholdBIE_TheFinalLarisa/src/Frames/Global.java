@@ -7,22 +7,16 @@ package Frames;
 
 import HelperClasses.Database;
 import HelperClasses.User;
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
+import java.awt.Component;
+import java.awt.Window;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.InputMismatchException;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -66,6 +60,14 @@ public class Global {
             System.exit(0);
         }
     }
+    
+    public void closeWindow(Component e
+                    ){
+        Window frame = SwingUtilities.windowForComponent(e);
+        frame.setVisible(false);
+    }
+    
+    
     public void comparePassword(String password, String rePassword) {
     if (password.equals(rePassword)) {
       JOptionPane.showMessageDialog(null, "Passwords matched!");
