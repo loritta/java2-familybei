@@ -30,8 +30,8 @@ import javax.swing.JOptionPane;
  */
 public class Global {
     
-    Database db = new Database();
-    User currentUser= new User();
+    Database db;
+    User currentUser;
 
     public Global() {
         db = new Database();
