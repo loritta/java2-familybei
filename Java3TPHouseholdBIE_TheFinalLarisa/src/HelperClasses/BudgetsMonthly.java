@@ -27,6 +27,9 @@ public class BudgetsMonthly {
     this.amount = amount;
     this.monthOfYear = monthOfYear;
   }
+  public BudgetsMonthly(int userId){
+      this.userId=userId;
+  }
 
   @Override
   public String toString() {
@@ -126,5 +129,10 @@ public class BudgetsMonthly {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
     }
+     
+  }
+  public BigDecimal getAllGeneralBudget(int userId) {
+    BigDecimal amount=null;
+    return amount=db.getAllGeneralBudget(userId,1);
   }
 }
