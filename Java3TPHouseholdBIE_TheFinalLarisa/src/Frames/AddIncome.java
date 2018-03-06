@@ -23,8 +23,8 @@ public class AddIncome extends javax.swing.JDialog {
     public AddIncome(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.welcome=welcome;
-        this.gl=gl;
+        this.welcome = welcome;
+        this.gl = gl;
         initComponents();
     }
 
@@ -254,14 +254,14 @@ public class AddIncome extends javax.swing.JDialog {
         details.setVisible(true);    }//GEN-LAST:event_frmIncome_miSeeIncome1ActionPerformed
 
     private void frmIncome_miCSV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miCSV1ActionPerformed
-       gl.chooseFileCSV(fileChooser);
+        gl.chooseFileCSV(fileChooser);
     }//GEN-LAST:event_frmIncome_miCSV1ActionPerformed
 
     private void frmIncome_mnuExit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIncome_mnuExit1MouseClicked
       gl.closeApp();    }//GEN-LAST:event_frmIncome_mnuExit1MouseClicked
 
   private void addIncome_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIncome_btnSaveActionPerformed
-    gl.insertTransaction(addIncome_tfAmount.getText(), "income");
+      gl.insertTransaction(addIncome_tfAmount.getText(), "income");
   }//GEN-LAST:event_addIncome_btnSaveActionPerformed
 
     /**
@@ -294,16 +294,16 @@ public class AddIncome extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                AddIncome dialog=new AddIncome(null, true, gl, welcome);
+
+                AddIncome dialog = new AddIncome(null, true, gl, welcome);
                 dialog.setVisible(true);
-               dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                        
+
             }
         });
     }

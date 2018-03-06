@@ -23,69 +23,67 @@ import javax.swing.SwingUtilities;
  * @author larisasabalin
  */
 public class Global {
-    
+
     Database db;
     User currentUser;
 
     public Global() {
         db = new Database();
-        currentUser= new User();
+        currentUser = new User();
     }
-    
-    
-    public File chooseFileCSV(javax.swing.JFileChooser fileChooser){
+
+    public File chooseFileCSV(javax.swing.JFileChooser fileChooser) {
         int ret = fileChooser.showDialog(null, "Save to the file");
-        File file=null;
+        File file = null;
         if (ret == JFileChooser.APPROVE_OPTION) {
-            
-                file = fileChooser.getSelectedFile();
-                String filename = file.getAbsolutePath();
 
-                if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}") /*file.getName().toLowerCase().endsWith(".csv")*/) {
+            file = fileChooser.getSelectedFile();
+            String filename = file.getAbsolutePath();
 
-                    file = new File(filename + ".csv");
-               
-        }}
-            return file;
+            if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}") /*file.getName().toLowerCase().endsWith(".csv")*/) {
+
+                file = new File(filename + ".csv");
+
+            }
+        }
+        return file;
     }
-    
-    public void closeApp(){
+
+    public void closeApp() {
         int value = JOptionPane.YES_NO_OPTION;
-        int dialogResult = JOptionPane.showConfirmDialog 
-        (null, 
-                "Are you sure you would like to teminate your session?"
-                ,"Warning",value);
-         
+        int dialogResult = JOptionPane.showConfirmDialog(null,
+                "Are you sure you would like to teminate your session?",
+                 "Warning", value);
+
         if (dialogResult == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
     }
-    
+
     public void closeWindow(Component e
-                    ){
+    ) {
         Window frame = SwingUtilities.windowForComponent(e);
         frame.setVisible(false);
     }
-    
-    
+
     public void comparePassword(String password, String rePassword) {
-    if (password.equals(rePassword)) {
-      JOptionPane.showMessageDialog(null, "Passwords matched!");
-    } else {
-      throw new InputMismatchException();
+        if (password.equals(rePassword)) {
+            JOptionPane.showMessageDialog(null, "Passwords matched!");
+        } else {
+            throw new InputMismatchException();
+        }
     }
-  }
-    
+
     public void insertTransaction(String amountStr, String type) {
-    DecimalFormat formatter = new DecimalFormat("###.##");
-    formatter.setParseBigDecimal(true);
-    try {
-      BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-      db.insertTransaction(currentUser.getId(), db.getCategoryId(type), amount);
-    } catch (ParseException ex) {
-      JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
+        DecimalFormat formatter = new DecimalFormat("###.##");
+        formatter.setParseBigDecimal(true);
+        try {
+            BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
+            db.insertTransaction(currentUser.getId(), db.getCategoryId(type), amount);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
+        }
+
     }
-    
-  }
-    
+
 }

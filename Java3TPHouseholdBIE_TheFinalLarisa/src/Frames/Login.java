@@ -279,7 +279,7 @@ public class Login extends javax.swing.JDialog {
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
+                        gl.closeApp();
                     }
                 });
 

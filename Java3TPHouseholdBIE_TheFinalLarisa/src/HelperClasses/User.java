@@ -100,6 +100,11 @@ public class User {
   }
   
   public User() {}
+  
+  public User(int familyId, String name) {
+  this.familyId = familyId;
+  this.name = name;
+  }
 
   public int getId() {
     return id;
@@ -126,4 +131,5 @@ public class User {
   public void update(int id) {
     db.updateUser(name, password, dob, familyId, id);
   }
+  
 }

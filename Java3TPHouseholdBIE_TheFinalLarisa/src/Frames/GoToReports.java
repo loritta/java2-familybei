@@ -20,8 +20,8 @@ public class GoToReports extends javax.swing.JDialog {
     public GoToReports(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.welcome=welcome;
-        this.gl=gl;
+        this.welcome = welcome;
+        this.gl = gl;
         initComponents();
     }
 
@@ -361,8 +361,8 @@ public class GoToReports extends javax.swing.JDialog {
     }//GEN-LAST:event_miCSV2ActionPerformed
 
     private void frmGoToReports_mnuExit2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmGoToReports_mnuExit2MouseClicked
-       gl.closeApp();
-       gl.closeWindow(this);
+        gl.closeApp();
+        gl.closeWindow(this);
     }//GEN-LAST:event_frmGoToReports_mnuExit2MouseClicked
 
     /**
@@ -395,18 +395,18 @@ public class GoToReports extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
-        GoToReports dialog =new GoToReports(null, true, gl, welcome);
-        dialog.setVisible(true);
-               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                GoToReports dialog = new GoToReports(null, true, gl, welcome);
+                dialog.setVisible(true);
+                /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         gl.closeWindow();
                     }
                 });*/
-    }
+            }
         });
-                }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fileChooser;
@@ -441,4 +441,3 @@ public class GoToReports extends javax.swing.JDialog {
     private javax.swing.JMenuItem miPDF2;
     // End of variables declaration//GEN-END:variables
 }
-                
