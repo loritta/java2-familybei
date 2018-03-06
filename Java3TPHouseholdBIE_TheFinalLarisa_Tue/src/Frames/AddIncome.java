@@ -13,6 +13,7 @@ public class AddIncome extends javax.swing.JDialog {
     public AddIncome(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        addIncome_lblName.setText(gl.currentUser.getName());
         this.welcome = welcome;
         this.gl = gl;
         initComponents();

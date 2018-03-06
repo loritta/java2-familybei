@@ -404,4 +404,14 @@ public class Database {
             pstmt.executeUpdate();
         }
     }
+    
+    private void updateTableExpenses(int userid){
+        String sql="select*from transactions where userid='"+userid+"'";
+    }
+    private void updateTableIncome(){
+        
+    }
+    private void updateTableBudget(){
+        
+    }
 }

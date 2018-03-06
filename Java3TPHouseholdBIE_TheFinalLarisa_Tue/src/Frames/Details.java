@@ -27,6 +27,9 @@ public class Details extends javax.swing.JDialog {
     public void setDetailsComboBox(String choice) {
         Details_cmbChoice.setSelectedItem(choice);
     }
+    private void updateTable(){
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,13 +77,28 @@ public class Details extends javax.swing.JDialog {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1", "Title 2", "Title 3"
             }
         ));
         jScrollPane5.setViewportView(jTable1);
