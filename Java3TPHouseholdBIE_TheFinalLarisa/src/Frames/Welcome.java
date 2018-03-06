@@ -60,7 +60,7 @@ public class Welcome extends javax.swing.JFrame {
   }
 
   public void getFamilyInfo(int familyId) {
-    ArrayList<String> list = new ArrayList<>();
+    ArrayList<User> list = new ArrayList<>();
     try {
       list = gl.db.getDatabaseFamilyMembersName(familyId);
     } catch (SQLException ex) {
