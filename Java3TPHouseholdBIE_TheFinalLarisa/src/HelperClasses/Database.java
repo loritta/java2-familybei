@@ -256,22 +256,27 @@ public class Database {
     return categoryId;
   }
 
-  public ArrayList<String> getDatabaseFamilyMembersName(int familyId)
+  public ArrayList<User> getDatabaseFamilyMembersName(int familyId)
           throws SQLException {
     String sql = "SELECT * FROM users WHERE familyid='" + familyId + "'";
-    ArrayList<String> list = new ArrayList<>();
+    User userOfFamily;
+    ArrayList<User> usersOfFamily=new ArrayList<>();
 
     try (Statement stmt = conn.createStatement();
             ResultSet result = stmt.executeQuery(sql)) {
 
       while (result.next()) {
         String name = result.getString("name");
-
-        list.add(name);
+        int id=result.getInt("userid");
+        userOfFamily=new User(id, name);
+        usersOfFamily.add(userOfFamily);
       }
     }
-    return list;
+    return usersOfFamily;
   }
+  
+ 
+  
 
   public ArrayList<Transaction> getAllTransactions() throws SQLException {
     String sql = "SELECT * FROM transactions";
@@ -403,3 +408,5 @@ public class Database {
     }
   }
 }
+
+
