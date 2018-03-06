@@ -1,4 +1,4 @@
-﻿Daily scrum - Every day at 9am
+Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -86,15 +86,15 @@ Larisa:
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 3 days left/ 6 days gone
 05/03/2018
 Tung:
-1. Having error max-user-connection
-2. Inserting data in to table transactions, try to move all CRUD methods into database.
-3. Need some help from teacher
-◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
-05/03/2018
-Larisa:
 1.
 2.
 3.
+◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+05/03/2018
+Larisa:
+1.login, registration(left to check the existence of the same user in the same family), welcome, initial info(to make sure that the information actually gets to the welcome)
+2.I'm working on the 2 things left in the above point. I will make sure the pages connect and open/close properly. And will start working on Report and Details.
+3.For now everything is good. The 2 things that are not working may be saved together.
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 2 days left/ 7 days gone
 06/03/2018
 Tung:
