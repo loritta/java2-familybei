@@ -1,4 +1,4 @@
-Daily scrum - Every day at 9am
+﻿Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -86,9 +86,9 @@ Larisa:
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 3 days left/ 6 days gone
 05/03/2018
 Tung:
-1.
-2.
-3.
+1. 'max-user-connections' is addressed: too many unnessessary connections to the database at once.
+2. Clean classes by removing overkill CRUD methods to database using 1 connection. Reorganize some helper methods. Implement AddIncome, AddExpense windows
+3. Which event triggered similar to on-open to setText() on textfield name of AddIncome, AddExpense.
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 05/03/2018
 Larisa:
