@@ -20,15 +20,14 @@ public class App {
 
             @Override
             public void run() {
-                gl=new Global();
+                gl = new Global();
                 //welcome = new Welcome(gl);
                 loginDialog = new Login(welcome, true, gl, welcome);
                 loginDialog.pack();
                 loginDialog.setVisible(true);
-                
+
                 //welcome.pack();
                 //welcome.setVisible(true);
-
             }
         });
     }
@@ -43,4 +42,4 @@ public class App {
         loginDialog.pack();
         loginDialog.setVisible(true);
 
-        */
+ */

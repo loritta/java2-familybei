@@ -71,19 +71,18 @@ public class Welcome extends javax.swing.JFrame {
     public void getTransactionsAndBudget(int id) {
         trans = new Transaction(gl.currentUser.getId());
         BigDecimal result;
-        BigDecimal expense=trans.getAllGeneralExpenses(id);
+        BigDecimal expense = trans.getAllGeneralExpenses(id);
         lblExpenses.setText(expense.toString());
-        BigDecimal income=trans.getAllGeneralIncome(id);
+        BigDecimal income = trans.getAllGeneralIncome(id);
         lblIncome.setText(income.toString());
-        
-        budg= new BudgetsMonthly(gl.currentUser.getId());
-        BigDecimal budget=budg.getAllGeneralBudget(id);
+
+        budg = new BudgetsMonthly(gl.currentUser.getId());
+        BigDecimal budget = budg.getAllGeneralBudget(id);
         lblBudgetVsExpens.setText(budget.toString());
-        result=budget.subtract(income);
+        result = budget.subtract(income);
         lblBudgetVsIncome.setText(result.toString());
-        result=budget.subtract(expense);
+        result = budget.subtract(expense);
         lblBudgetVsExpens.setText(result.toString());
-        
 
     }
 
@@ -358,21 +357,21 @@ public class Welcome extends javax.swing.JFrame {
         Frames.AddIncome income = new AddIncome(null, true, gl, this);
         income.pack();
         income.setVisible(true);
-        
+
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
 
     private void frmWelcome_miAddExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddExpenses9ActionPerformed
         AddExpenses expense = new AddExpenses(null, true, gl, this);
         expense.pack();
         expense.setVisible(true);
-        
+
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
         GoToReports reports = new GoToReports(null, true, gl, this);
         reports.pack();
         reports.setVisible(true);
-        
+
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
@@ -438,8 +437,8 @@ public class Welcome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Welcome welcome=new Welcome(gl);
-                        welcome.setVisible(true);
+                Welcome welcome = new Welcome(gl);
+                welcome.setVisible(true);
                 welcome.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

@@ -10,47 +10,51 @@ import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JDialog {
-    
+
     private static Global gl;
     private static Welcome welcome;
 
-    public Registration(Frame owner, boolean modal, 
+    public Registration(Frame owner, boolean modal,
             Global gl, Welcome welcome) {
         super(owner, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.gl=gl;
-        this.welcome=welcome;
+        this.gl = gl;
+        this.welcome = welcome;
         initComponents();
     }
-    
-    
-    
+
     public Registration() {
-        
+
         initComponents();
     }
-    public User getUser() {
-    User user = new User();
-    String familyName = reg_tfFamilyName.getText();
-    String name = reg_tfName.getText();
-    String password = new String(reg_pfPassword.getPassword());
-    String rePassword = new String(reg_pfRePassword.getPassword());
-    try {
-      gl.comparePassword(password, rePassword);
-      
-      Date dob = gl.db.strToDate(reg_tfDob.getText());
-      int familyId=gl.db.getFamilyId(familyName);
-      gl.db.insertUser(name, password, dob, familyId);
-    } catch (InputMismatchException ex) {
-      System.out.println(ex.getMessage());
-      JOptionPane.showMessageDialog(this,
-              "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
-              "Passwords not matched!!!",
-              JOptionPane.ERROR_MESSAGE);
+
+    public void getUser() {
+       
+        String familyName = reg_tfFamilyName.getText();
+        String name = reg_tfName.getText();
+        String password = new String(reg_pfPassword.getPassword());
+        String rePassword = new String(reg_pfRePassword.getPassword());
+        try {
+            gl.comparePassword(password, rePassword);
+
+            Date dob = gl.db.strToDate(reg_tfDob.getText());
+            int familyId = gl.db.getFamilyId(familyName);
+            gl.db.insertUser(name, password, dob, familyId);
+        } catch (InputMismatchException ex) {
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(this,
+                    "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
+                    "Passwords not matched!!!",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        JOptionPane.showMessageDialog(this,
+                    "Your information was registred",
+                    "Success!!!",
+                    JOptionPane.INFORMATION_MESSAGE);
+        
+        
     }
-    return user;
-  }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -236,12 +240,12 @@ public class Registration extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
-      User user = getUser();
-      Login loginDialog=new Login(welcome, true, gl, welcome);
-      setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-      loginDialog.pack();
-      loginDialog.setVisible(true);
-      gl.closeWindow(this);
+        getUser();
+        Login loginDialog = new Login(welcome, true, gl, welcome);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        loginDialog.pack();
+        loginDialog.setVisible(true);
+        gl.closeWindow(this);
 
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
@@ -262,7 +266,7 @@ public class Registration extends javax.swing.JDialog {
     }//GEN-LAST:event_reg_pfPasswordActionPerformed
 
     private void reg_pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfPasswordMouseClicked
-reg_pfPassword.setText(""); 
+        reg_pfPassword.setText("");
     }//GEN-LAST:event_reg_pfPasswordMouseClicked
 
     private void reg_pfRePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfRePasswordMouseClicked
@@ -304,10 +308,10 @@ reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-               
-                Registration dialog=new Registration(welcome, true, gl, welcome);
+
+                Registration dialog = new Registration(welcome, true, gl, welcome);
                 dialog.setVisible(true);
-               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

@@ -17,7 +17,6 @@ public class AddExpenses extends javax.swing.JDialog {
 
     private static Frames.Global gl;
     private static Welcome welcome;
-    
 
     /**
      * Creates new form AddExpenses
@@ -25,8 +24,8 @@ public class AddExpenses extends javax.swing.JDialog {
     public AddExpenses(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.welcome=welcome;
-        this.gl=gl;
+        this.welcome = welcome;
+        this.gl = gl;
         initComponents();
     }
 
@@ -239,7 +238,7 @@ public class AddExpenses extends javax.swing.JDialog {
         details.pack();
         details.setVisible(true);
         gl.closeWindow(this);
-        
+
     }//GEN-LAST:event_frmExpences_miSeeBudgetsActionPerformed
 
     private void frmExpences_miAddIncomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmExpences_miAddIncomeActionPerformed
@@ -326,11 +325,11 @@ gl.closeApp();    }//GEN-LAST:event_frmExpences_mnuExitMouseClicked
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-                AddExpenses dialog=new AddExpenses(null, true, gl, welcome);
-                        dialog.setVisible(true);
-                
-               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                AddExpenses dialog = new AddExpenses(null, true, gl, welcome);
+                dialog.setVisible(true);
+
+                /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

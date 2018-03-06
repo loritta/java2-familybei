@@ -1,7 +1,5 @@
 package HelperClasses;
 
-import java.awt.Toolkit;
-import java.awt.event.WindowEvent;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.Date;
@@ -15,9 +13,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.InputMismatchException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
 import javax.swing.JOptionPane;
 
 public class Database {
@@ -179,6 +175,40 @@ public class Database {
               JOptionPane.ERROR_MESSAGE);
     }
   }
+  
+  /*public String userExists(String username, int familyid, String familyCode){
+       String sql = "select * from users where name = ? and familyid = ? ";
+    String msg = "";
+    ArrayList<User> accounts=new ArrayList<User>();
+    ArrayList<User> accounts2=new ArrayList<User>();
+    try {
+      pst = conn.prepareStatement(sql);
+      pst.setString(1, username);
+      pst.setInt(2, familyid);
+      
+      rs = pst.executeQuery();
+      while (rs.next()) {
+          accounts.add(new User(familyid, username));
+      }
+      accounts2.addAll(accounts);
+      Collections.reverse(accounts2);
+      for (User itemA : accounts) {
+    accounts2.remove(accounts2.size()-1);
+        for (User itemZ : accounts2) {
+        if (())
+    }
+}
+        JOptionPane.showMessageDialog(null, "Invalid username and password");
+      
+    } catch (SQLException | NullPointerException e) {
+      JOptionPane.showMessageDialog(null,
+              "Error connecting to database: " + e.getMessage(),
+              "Database error",
+              JOptionPane.ERROR_MESSAGE);
+    }
+    return msg;
+      
+  }*/
 
   public void deleteUser(int id) {
     String sql = "DELETE from users where id = ?";
