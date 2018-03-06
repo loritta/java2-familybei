@@ -55,7 +55,11 @@ public class Welcome extends javax.swing.JFrame {
         return;
       }
     } catch (SQLException ex) {
-      Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
     }
   }
 
