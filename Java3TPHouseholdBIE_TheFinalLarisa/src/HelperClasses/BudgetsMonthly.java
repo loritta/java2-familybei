@@ -131,7 +131,7 @@ public class BudgetsMonthly {
     }
      
   }
-  public BigDecimal getAllGeneralBudget(int userId) {
+  public BigDecimal getAllGeneralBudget(int userId) throws SQLException {
     BigDecimal amount=null;
     return amount=db.getAllGeneralBudget(userId,1);
   }

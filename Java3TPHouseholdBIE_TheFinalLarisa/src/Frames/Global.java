@@ -11,6 +11,7 @@ import java.awt.Component;
 import java.awt.Window;
 import java.io.File;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.InputMismatchException;
@@ -82,8 +83,12 @@ public class Global {
             db.insertTransaction(currentUser.getId(), db.getCategoryId(type), amount);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
-        }
-
+        } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+        JOptionPane.showMessageDialog(null,
+                "Fatal error connecting database\n" + ex.getMessage(),
+                "Error connecting",
+                JOptionPane.ERROR_MESSAGE);
+      }
     }
-
 }

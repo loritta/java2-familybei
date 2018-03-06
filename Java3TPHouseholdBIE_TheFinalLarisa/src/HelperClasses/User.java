@@ -83,7 +83,7 @@ public class User {
   private Date dob;
   private int familyId;
 
-  public User(int id, String name, String password, Date dob, String familyName) {
+  public User(int id, String name, String password, Date dob, String familyName) throws SQLException {
     this.id = id;
     this.name = name;
     this.password = password;
@@ -115,12 +115,12 @@ public class User {
     return "#" + getId() + ", name=" + getName() + ", dob=" + getDob() + ", familyId=" + getFamilyId();
   }
   
-  public int getFamilyId(String familyName) {
+  public int getFamilyId(String familyName) throws SQLException {
     return familyId=db.getFamilyId(familyName);
     
   }
   
-  public void insert(String name, String password, Date dob, int familyId) {
+  public void insert(String name, String password, Date dob, int familyId) throws SQLException {
     db.insertUser(name, password, dob, familyId);
   }
   
@@ -128,7 +128,7 @@ public class User {
     db.deleteUser(id);
   }
   
-  public void update(int id) {
+  public void update(int id) throws SQLException {
     db.updateUser(name, password, dob, familyId, id);
   }
   

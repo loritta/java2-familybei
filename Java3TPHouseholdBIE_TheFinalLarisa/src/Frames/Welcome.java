@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,79 +20,96 @@ import java.util.logging.Logger;
  */
 public class Welcome extends javax.swing.JFrame {
 
-    private static Global gl;
-    private Transaction trans;
-    private BudgetsMonthly budg;
+  private static Global gl;
+  private Transaction trans;
+  private BudgetsMonthly budg;
 
-    /**
-     * Creates new form Welcome
-     */
-    public Welcome(Global gl) {
-        this.gl = gl;
-        initComponents();
-        callHistoryToTheDataBase(gl.currentUser.getId());
-        lblUserName.setText(gl.currentUser.getName());
-        getFamilyInfo(gl.currentUser.getFamilyId());
-        getTransactionsAndBudget(gl.currentUser.getId());
+  /**
+   * Creates new form Welcome
+   */
+  public Welcome(Global gl) {
+    this.gl = gl;
+    initComponents();
+    callHistoryToTheDataBase(gl.currentUser.getId());
+    lblUserName.setText(gl.currentUser.getName());
+    getFamilyInfo(gl.currentUser.getFamilyId());
+    getTransactionsAndBudget(gl.currentUser.getId());
 
+  }
+
+  public Welcome() {
+    initComponents();
+
+    //this.setVisible(false);
+  }
+
+  public void callHistoryToTheDataBase(Integer id) {
+    try {
+      String empty = "empty";
+
+      if (gl.db.transactionHistoryAvailable(id).equals(empty)) {
+        InitialInfo initialInfo = new InitialInfo(this, true, gl, this);
+        initialInfo.pack();
+        initialInfo.setVisible(true);
+      } else {
+        return;
+      }
+    } catch (SQLException ex) {
+      Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
+    }
+  }
+
+  public void getFamilyInfo(int familyId) {
+    ArrayList<String> list = new ArrayList<>();
+    try {
+      list = gl.db.getDatabaseFamilyMembersName(familyId);
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
+    }
+    Iterator it = list.iterator();
+    String setText = "";
+    while (it.hasNext()) {
+      setText = setText + " " + it.next();
+    }
+    lblFamilyMemeber1.setText(setText);
+  }
+
+  public void getTransactionsAndBudget(int id) {
+    try {
+      trans = new Transaction(gl.currentUser.getId());
+      BigDecimal result;
+      BigDecimal expense = trans.getAllGeneralExpenses(id);
+      lblExpenses.setText(expense.toString());
+      BigDecimal income = trans.getAllGeneralIncome(id);
+      lblIncome.setText(income.toString());
+
+      budg = new BudgetsMonthly(gl.currentUser.getId());
+      BigDecimal budget = budg.getAllGeneralBudget(id);
+      lblBudgetVsExpens.setText(budget.toString());
+      result = budget.subtract(income);
+      lblBudgetVsIncome.setText(result.toString());
+      result = budget.subtract(expense);
+      lblBudgetVsExpens.setText(result.toString());
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
     }
 
-    public Welcome() {
-        initComponents();
+  }
 
-        //this.setVisible(false);
-    }
-
-    public void callHistoryToTheDataBase(Integer id) {
-        try {
-            String empty = "empty";
-
-            if (gl.db.transactionHistoryAvailable(id).equals(empty)) {
-                InitialInfo initialInfo = new InitialInfo(this, true, gl, this);
-                initialInfo.pack();
-                initialInfo.setVisible(true);
-            } else {
-                return;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Welcome.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void getFamilyInfo(int familyId) {
-        ArrayList<String> list = gl.db.getDatabaseFamilyMembersName(familyId);
-        Iterator it = list.iterator();
-        String setText = "";
-        while (it.hasNext()) {
-            setText = setText + " " + it.next();
-        }
-        lblFamilyMemeber1.setText(setText);
-    }
-
-    public void getTransactionsAndBudget(int id) {
-        trans = new Transaction(gl.currentUser.getId());
-        BigDecimal result;
-        BigDecimal expense = trans.getAllGeneralExpenses(id);
-        lblExpenses.setText(expense.toString());
-        BigDecimal income = trans.getAllGeneralIncome(id);
-        lblIncome.setText(income.toString());
-
-        budg = new BudgetsMonthly(gl.currentUser.getId());
-        BigDecimal budget = budg.getAllGeneralBudget(id);
-        lblBudgetVsExpens.setText(budget.toString());
-        result = budget.subtract(income);
-        lblBudgetVsIncome.setText(result.toString());
-        result = budget.subtract(expense);
-        lblBudgetVsExpens.setText(result.toString());
-
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+  /**
+   * This method is called from within the constructor to initialize the form.
+   * WARNING: Do NOT modify this code. The content of this method is always
+   * regenerated by the Form Editor.
+   */
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -354,49 +372,49 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmWelcome_miAddIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddIncome9ActionPerformed
-        Frames.AddIncome income = new AddIncome(null, true, gl, this);
-        income.pack();
-        income.setVisible(true);
+      Frames.AddIncome income = new AddIncome(null, true, gl, this);
+      income.pack();
+      income.setVisible(true);
 
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
 
     private void frmWelcome_miAddExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddExpenses9ActionPerformed
-        AddExpenses expense = new AddExpenses(null, true, gl, this);
-        expense.pack();
-        expense.setVisible(true);
+      AddExpenses expense = new AddExpenses(null, true, gl, this);
+      expense.pack();
+      expense.setVisible(true);
 
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-        GoToReports reports = new GoToReports(null, true, gl, this);
-        reports.pack();
-        reports.setVisible(true);
+      GoToReports reports = new GoToReports(null, true, gl, this);
+      reports.pack();
+      reports.setVisible(true);
 
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        Details details = new Details(null, true, gl, this);
-        details.setDetailsComboBox("Budget");
-        details.pack();
-        details.setVisible(true);
+      Details details = new Details(null, true, gl, this);
+      details.setDetailsComboBox("Budget");
+      details.pack();
+      details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-        Details details = new Details(null, true, gl, this);
-        details.setDetailsComboBox("Expenses");
-        details.pack();
-        details.setVisible(true);
+      Details details = new Details(null, true, gl, this);
+      details.setDetailsComboBox("Expenses");
+      details.pack();
+      details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-        Details details = new Details(null, true, gl, this);
-        details.setDetailsComboBox("Income");
-        details.pack();
-        details.setVisible(true);
+      Details details = new Details(null, true, gl, this);
+      details.setDetailsComboBox("Income");
+      details.pack();
+      details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
 
     private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed
-        gl.chooseFileCSV(fileChooser);//We should make this as a function this is repeating for each frame
+      gl.chooseFileCSV(fileChooser);//We should make this as a function this is repeating for each frame
     }//GEN-LAST:event_frmWelcome_miCSV9ActionPerformed
 
     private void frmWelcome_miPDF9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miPDF9ActionPerformed
@@ -404,50 +422,50 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miPDF9ActionPerformed
 
     private void frmWelcome_mnuExit9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmWelcome_mnuExit9MouseClicked
-        gl.closeApp();
+      gl.closeApp();
     }//GEN-LAST:event_frmWelcome_mnuExit9MouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     */
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                Welcome welcome = new Welcome(gl);
-                welcome.setVisible(true);
-                welcome.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        gl.closeApp();
-                    }
-                });
-            }
-        });
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(Welcome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
+        Welcome welcome = new Welcome(gl);
+        welcome.setVisible(true);
+        welcome.addWindowListener(new java.awt.event.WindowAdapter() {
+          @Override
+          public void windowClosing(java.awt.event.WindowEvent e) {
+            gl.closeApp();
+          }
+        });
+      }
+    });
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser fileChooser;

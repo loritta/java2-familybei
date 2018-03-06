@@ -19,16 +19,16 @@ import javax.swing.JOptionPane;
 public class Database {
 
   //for Larisa
-  private final static String HOSTNAME = "den1.mysql6.gear.host";
-  private final static String DBNAME = "myjac";
-  private final static String USERNAME = "myjac";
-  private final static String PASSWORD = "Yt6wOA_!6byy";
+//  private final static String HOSTNAME = "den1.mysql6.gear.host";
+//  private final static String DBNAME = "myjac";
+//  private final static String USERNAME = "myjac";
+//  private final static String PASSWORD = "Yt6wOA_!6byy";
   public static final String DATE_FORMAT_SQL = "yyyy/MM/dd";
   //for Tung
-  /*private final static String HOSTNAME = "den1.mysql6.gear.host";
+  private final static String HOSTNAME = "den1.mysql6.gear.host";
   private final static String DBNAME = "familybei";
   private final static String USERNAME = "familybei";
-  private final static String PASSWORD = "tp%ipd12";*/
+  private final static String PASSWORD = "tp%ipd12";
   //correct password tp%ipd12 removed one letter to test
   //I changed it (Larisa 1March) can we somehow go around the connection to 
   //privatewhen an object s created from database?
@@ -51,7 +51,6 @@ public class Database {
     }
   }
 
-  //why didn't you do it in the constructor???
   public Connection connect() {
 
     try {
@@ -156,7 +155,8 @@ public class Database {
     return msg;
   }
 
-  public void insertUser(String name, String password, Date dob, int familyId) {
+  public void insertUser(String name, String password, Date dob, int familyId)
+          throws SQLException {
     String sql = "INSERT INTO users(name, password, dob, familyId) VALUES(?,?,?,?)";
 
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -167,15 +167,9 @@ public class Database {
 
       pstmt.executeUpdate();
       JOptionPane.showMessageDialog(null, "Registered successfully.");
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-      JOptionPane.showMessageDialog(null,
-              "Inserting error\n" + e.getMessage(),
-              "Error insert into table",
-              JOptionPane.ERROR_MESSAGE);
     }
   }
-  
+
   /*public String userExists(String username, int familyid, String familyCode){
        String sql = "select * from users where name = ? and familyid = ? ";
     String msg = "";
@@ -209,7 +203,6 @@ public class Database {
     return msg;
       
   }*/
-
   public void deleteUser(int id) {
     String sql = "DELETE from users where id = ?";
 
@@ -221,7 +214,8 @@ public class Database {
     }
   }
 
-  public void updateUser(String name, String password, Date dob, int familyId, int id) {
+  public void updateUser(String name, String password, Date dob, int familyId, int id)
+          throws SQLException {
     String sql = "update users set "
             + "name = ?,\n"
             + "password = ?,\n"
@@ -235,12 +229,10 @@ public class Database {
       pstmt.setInt(4, familyId);
       pstmt.setInt(5, id);
       pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
   }
 
-  public int getFamilyId(String familyName) {
+  public int getFamilyId(String familyName) throws SQLException {
     String sql = "select id from family where name = '" + familyName + "' limit 1";
     int familyId = 0;
     try (Statement stmt = conn.createStatement();
@@ -248,13 +240,11 @@ public class Database {
       if (result.next()) {
         familyId = result.getInt("id");
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     return familyId;
   }
 
-  public int getCategoryId(String categoryName) {
+  public int getCategoryId(String categoryName) throws SQLException {
     String sql = "select id from category where name = '" + categoryName + "'";
     int categoryId = 0;
     try (Statement stmt = conn.createStatement();
@@ -262,13 +252,12 @@ public class Database {
       if (result.next()) {
         categoryId = result.getInt("id");
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     return categoryId;
   }
 
-  public ArrayList<String> getDatabaseFamilyMembersName(int familyId) {
+  public ArrayList<String> getDatabaseFamilyMembersName(int familyId)
+          throws SQLException {
     String sql = "SELECT * FROM users WHERE familyid='" + familyId + "'";
     ArrayList<String> list = new ArrayList<>();
 
@@ -280,13 +269,11 @@ public class Database {
 
         list.add(name);
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     return list;
   }
 
-  public ArrayList<Transaction> getAllTransactions() {
+  public ArrayList<Transaction> getAllTransactions() throws SQLException {
     String sql = "SELECT * FROM transactions";
     ArrayList<Transaction> list = new ArrayList<>();
     int id;
@@ -307,13 +294,11 @@ public class Database {
         Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
         list.add(trans);
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     return list;
   }
 
-  public BigDecimal getAllGeneralExpenses(int userId, int categoryId) {
+  public BigDecimal getAllGeneralExpenses(int userId, int categoryId) throws SQLException {
     String sql = "SELECT sum(amount) FROM transactions where userid='" + userId
             + "' and Month(transdate)=MONTH(NOW()) and categoryid<>'" + categoryId + "'";
 
@@ -325,8 +310,6 @@ public class Database {
       while (result.next()) {
         amount = result.getBigDecimal("sum(amount)");
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     if (amount == null) {
       amount = BigDecimal.valueOf(0);
@@ -336,7 +319,7 @@ public class Database {
     return amount;
   }
 
-  public BigDecimal getAllGeneralIncome(int userId, int categoryId) {
+  public BigDecimal getAllGeneralIncome(int userId, int categoryId) throws SQLException {
     String sql = "SELECT amount FROM transactions where userid='" + userId
             + "' and Month(transdate)=MONTH(NOW()) and categoryid='" + categoryId + "'";
 
@@ -348,8 +331,6 @@ public class Database {
       while (result.next()) {
         amount = result.getBigDecimal("amount");
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     if (amount == null) {
       amount = BigDecimal.valueOf(0);
@@ -359,9 +340,10 @@ public class Database {
     return amount;
   }
 
-  public BigDecimal getAllGeneralBudget(int userId, int categoryId) {
-    String sql = "SELECT amount FROM budget where userid='"+userId
-                +"' and Month(monthofyear)=MONTH(NOW()) and budgetcatid<>'"+categoryId+"'";
+  public BigDecimal getAllGeneralBudget(int userId, int categoryId)
+          throws SQLException {
+    String sql = "SELECT amount FROM budget where userid='" + userId
+            + "' and Month(monthofyear)=MONTH(NOW()) and budgetcatid<>'" + categoryId + "'";
 
     BigDecimal amount = null;
 
@@ -371,8 +353,6 @@ public class Database {
       while (result.next()) {
         amount = result.getBigDecimal("amount");
       }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
     if (amount == null) {
       amount = BigDecimal.valueOf(0);
@@ -382,7 +362,8 @@ public class Database {
     return amount;
   }
 
-  public void insertTransaction(int userId, int categoryId, BigDecimal amount) {
+  public void insertTransaction(int userId, int categoryId, BigDecimal amount)
+          throws SQLException {
     String sql = "INSERT INTO transactions(userId, categoryId, amount) "
             + "VALUES(?,?,?)";
 
@@ -392,24 +373,20 @@ public class Database {
       pstmt.setBigDecimal(3, amount);
 
       pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
     }
   }
 
-  public void deleteTransaction(int id) {
+  public void deleteTransaction(int id) throws SQLException {
     String sql = "DELETE from transactions where id = ?";
 
     try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setInt(1, id);
       pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
   }
 
   public void updateTransaction(int userId, int categoryId, BigDecimal amount,
-          Timestamp transDate, int id) {
+          Timestamp transDate, int id) throws SQLException {
     String sql = "update transactions set "
             + "userId = ?,\n"
             + "categoryId = ?,\n"
@@ -423,8 +400,6 @@ public class Database {
       pstmt.setTimestamp(4, transDate);
       pstmt.setInt(5, id);
       pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
     }
   }
 }

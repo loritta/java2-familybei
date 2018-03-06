@@ -3,6 +3,7 @@ package Frames;
 import HelperClasses.User;
 import java.awt.Frame;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,51 +12,56 @@ import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JDialog {
 
-    private static Global gl;
-    private static Welcome welcome;
+  private static Global gl;
+  private static Welcome welcome;
 
-    public Registration(Frame owner, boolean modal,
-            Global gl, Welcome welcome) {
-        super(owner, modal);
-        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.gl = gl;
-        this.welcome = welcome;
-        initComponents();
+  public Registration(Frame owner, boolean modal,
+          Global gl, Welcome welcome) {
+    super(owner, modal);
+    setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+    this.gl = gl;
+    this.welcome = welcome;
+    initComponents();
+  }
+
+  public Registration() {
+
+    initComponents();
+  }
+
+  public void getUser() {
+
+    String familyName = reg_tfFamilyName.getText();
+    String name = reg_tfName.getText();
+    String password = new String(reg_pfPassword.getPassword());
+    String rePassword = new String(reg_pfRePassword.getPassword());
+    try {
+      gl.comparePassword(password, rePassword);
+
+      Date dob = gl.db.strToDate(reg_tfDob.getText());
+      int familyId = gl.db.getFamilyId(familyName);
+      gl.db.insertUser(name, password, dob, familyId);
+    } catch (InputMismatchException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(this,
+              "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
+              "Passwords not matched!!!",
+              JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
     }
+    JOptionPane.showMessageDialog(this,
+            "Your information was registred",
+            "Success!!!",
+            JOptionPane.INFORMATION_MESSAGE);
 
-    public Registration() {
+  }
 
-        initComponents();
-    }
-
-    public void getUser() {
-       
-        String familyName = reg_tfFamilyName.getText();
-        String name = reg_tfName.getText();
-        String password = new String(reg_pfPassword.getPassword());
-        String rePassword = new String(reg_pfRePassword.getPassword());
-        try {
-            gl.comparePassword(password, rePassword);
-
-            Date dob = gl.db.strToDate(reg_tfDob.getText());
-            int familyId = gl.db.getFamilyId(familyName);
-            gl.db.insertUser(name, password, dob, familyId);
-        } catch (InputMismatchException ex) {
-            System.out.println(ex.getMessage());
-            JOptionPane.showMessageDialog(this,
-                    "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
-                    "Passwords not matched!!!",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        JOptionPane.showMessageDialog(this,
-                    "Your information was registred",
-                    "Success!!!",
-                    JOptionPane.INFORMATION_MESSAGE);
-        
-        
-    }
-
-    @SuppressWarnings("unchecked")
+  @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -240,33 +246,33 @@ public class Registration extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
-        getUser();
-        Login loginDialog = new Login(welcome, true, gl, welcome);
-        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        loginDialog.pack();
-        loginDialog.setVisible(true);
-        gl.closeWindow(this);
+      getUser();
+      Login loginDialog = new Login(welcome, true, gl, welcome);
+      setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+      loginDialog.pack();
+      loginDialog.setVisible(true);
+      gl.closeWindow(this);
 
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed
-        gl.closeApp();
+      gl.closeApp();
     }//GEN-LAST:event_reg_btnCancelActionPerformed
 
     private void reg_tfDobActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_tfDobActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
     }//GEN-LAST:event_reg_tfDobActionPerformed
 //those two lines to check if it's ok with Tung to add.
   private void reg_pfRePasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_pfRePasswordActionPerformed
-      reg_pfRePassword.setText("");    // TODO add your handling code here:
+    reg_pfRePassword.setText("");    // TODO add your handling code here:
   }//GEN-LAST:event_reg_pfRePasswordActionPerformed
 
     private void reg_pfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_pfPasswordActionPerformed
-        reg_pfPassword.setText("");            // TODO add your handling code here:
+      reg_pfPassword.setText("");            // TODO add your handling code here:
     }//GEN-LAST:event_reg_pfPasswordActionPerformed
 
     private void reg_pfPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfPasswordMouseClicked
-        reg_pfPassword.setText("");
+      reg_pfPassword.setText("");
     }//GEN-LAST:event_reg_pfPasswordMouseClicked
 
     private void reg_pfRePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reg_pfRePasswordMouseClicked
@@ -278,48 +284,48 @@ reg_pfPassword.setText("");    }//GEN-LAST:event_reg_pfPasswordFocusGained
     private void reg_pfRePasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_reg_pfRePasswordFocusGained
 reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+  /**
+   * @param args the command line arguments
+   */
+  public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+     */
+    try {
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+        if ("Nimbus".equals(info.getName())) {
+          javax.swing.UIManager.setLookAndFeel(info.getClassName());
+          break;
         }
-        //</editor-fold>
+      }
+    } catch (ClassNotFoundException ex) {
+      java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+      java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+      java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+      java.util.logging.Logger.getLogger(Registration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
 
-        /* Create and display the dialog */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+    /* Create and display the dialog */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+      public void run() {
 
-                Registration dialog = new Registration(welcome, true, gl, welcome);
-                dialog.setVisible(true);
-                /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+        Registration dialog = new Registration(welcome, true, gl, welcome);
+        dialog.setVisible(true);
+        /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });*/
-            }
-        });
-    }
+      }
+    });
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Registration;
