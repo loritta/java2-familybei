@@ -291,7 +291,7 @@ public class Database {
 
       while (result.next()) {
         id = result.getInt("id");
-        userId = result.getInt("userId");
+        userId = result.getInt("userid");
         categoryId = result.getInt("categoryId");
         amount = result.getBigDecimal("amount");
         transDate = result.getTimestamp("transDate");
