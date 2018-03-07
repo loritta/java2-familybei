@@ -1,7 +1,9 @@
 package Frames;
 
 import HelperClasses.User;
+import java.awt.Frame;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,31 +12,53 @@ import javax.swing.JOptionPane;
 
 public class Registration extends javax.swing.JDialog {
 
-  Global gl;
+  private static Global gl;
+  private static Welcome welcome;
 
-  public Registration() {
+  public Registration(Frame owner, boolean modal,
+          Global gl, Welcome welcome) {
+    super(owner, modal);
+    setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+    this.gl = gl;
+    this.welcome = welcome;
     initComponents();
   }
 
-  public User getUser() {
-    User user = new User();
+  public Registration() {
+
+    initComponents();
+  }
+
+  public boolean getUser() {
+
+    boolean result=false;
     String familyName = reg_tfFamilyName.getText();
     String name = reg_tfName.getText();
     String password = new String(reg_pfPassword.getPassword());
     String rePassword = new String(reg_pfRePassword.getPassword());
     try {
-      gl.comparePassword(password, rePassword);
       Date dob = gl.db.strToDate(reg_tfDob.getText());
-      user = new User(name, password, dob, familyName);
-    } catch (InputMismatchException |NullPointerException ex) {
+      int familyId = gl.db.getFamilyId(familyName);
+      System.out.println("Frames.Registration.getUser()");
+      gl.db.userExists(name, password, rePassword, dob, familyId);
+    } catch (InputMismatchException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(this,
               "Password not matched or DOB is not formated \"DD/MM/YYYY\" " + ex.getMessage(),
               "Passwords not matched!!!",
               JOptionPane.ERROR_MESSAGE);
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
     }
-    return user;
+    return result;
+
   }
+  
+        
 
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -221,13 +245,13 @@ public class Registration extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
-      User user = getUser();
-      user.insert();
-      InitialInfo init = new InitialInfo(null, true);
-      init.user = user;
-      this.setVisible(false);
-      init.pack();
-      init.setVisible(true);
+      if(getUser()){
+      Login loginDialog = new Login(welcome, true, gl, welcome);
+      setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+      loginDialog.pack();
+      loginDialog.setVisible(true);
+      gl.closeWindow(this);}
+
     }//GEN-LAST:event_reg_btnRegisterActionPerformed
 
     private void reg_btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnCancelActionPerformed
@@ -289,14 +313,15 @@ reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
     /* Create and display the dialog */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        Registration dialog = new Registration();
-        dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-          @Override
-          public void windowClosing(java.awt.event.WindowEvent e) {
-            System.exit(0);
-          }
-        });
+
+        Registration dialog = new Registration(null, true, gl, welcome);
         dialog.setVisible(true);
+        /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });*/
       }
     });
   }

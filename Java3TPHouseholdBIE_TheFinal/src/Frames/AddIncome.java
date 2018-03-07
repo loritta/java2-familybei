@@ -1,23 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Frames;
 
-/**
- *
- * @author larisasabalin
- */
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+
+
 public class AddIncome extends javax.swing.JDialog {
 
-    Frames.Global gl = new Frames.Global();
+    private static Frames.Global gl;
+    private static Welcome welcome;
 
-    /**
-     * Creates new form AddIncome
-     */
-    public AddIncome(java.awt.Frame parent, boolean modal) {
+    public AddIncome(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
+        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        addIncome_lblName.setText(gl.currentUser.getName());
+        this.welcome = welcome;
+        this.gl = gl;
         initComponents();
     }
 
@@ -33,23 +31,10 @@ public class AddIncome extends javax.swing.JDialog {
         fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
+        addIncome_lblName = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
-        frmIncome_lblStatus1 = new javax.swing.JLabel();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        frmIncome_mnuOperations1 = new javax.swing.JMenu();
-        frmIncome_miAddIncome1 = new javax.swing.JMenuItem();
-        frmIncome_miAddExpenses1 = new javax.swing.JMenuItem();
-        frmIncome_miGoToReports1 = new javax.swing.JMenuItem();
-        frmIncome_miSeeBudgets1 = new javax.swing.JMenuItem();
-        frmIncome_miSeeExpenses1 = new javax.swing.JMenuItem();
-        frmIncome_miSeeIncome1 = new javax.swing.JMenuItem();
-        frmIncome_mnuExport1 = new javax.swing.JMenu();
-        frmIncome_miCSV1 = new javax.swing.JMenuItem();
-        frmIncome_miPDF1 = new javax.swing.JMenuItem();
-        frmIncome_mnuExit1 = new javax.swing.JMenu();
+        addIncome_tfAmount = new javax.swing.JTextField();
+        addIncome_btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -58,17 +43,22 @@ public class AddIncome extends javax.swing.JDialog {
 
         jLabel28.setText("Name");
 
-        jLabel29.setText("...");
+        addIncome_lblName.setText("...");
 
         jLabel30.setText("Amount");
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        addIncome_tfAmount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                addIncome_tfAmountActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Save");
+        addIncome_btnSave.setText("Save");
+        addIncome_btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addIncome_btnSaveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,176 +67,49 @@ public class AddIncome extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton4)
+                    .addComponent(addIncome_btnSave)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel30)
                             .addComponent(jLabel28))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2)
+                            .addComponent(addIncome_tfAmount)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel29)
+                                .addComponent(addIncome_lblName)
                                 .addGap(0, 157, Short.MAX_VALUE)))))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(39, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28)
-                    .addComponent(jLabel29))
+                    .addComponent(addIncome_lblName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addIncome_tfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jButton4)
+                .addComponent(addIncome_btnSave)
                 .addGap(28, 28, 28))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.CENTER);
 
-        frmIncome_lblStatus1.setText("Status");
-        getContentPane().add(frmIncome_lblStatus1, java.awt.BorderLayout.PAGE_END);
-
-        frmIncome_mnuOperations1.setText("Operations");
-        frmIncome_mnuOperations1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
-
-        frmIncome_miAddIncome1.setText("Add Income");
-        frmIncome_miAddIncome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miAddIncome1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miAddIncome1);
-
-        frmIncome_miAddExpenses1.setText("Add Expenses");
-        frmIncome_miAddExpenses1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miAddExpenses1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miAddExpenses1);
-
-        frmIncome_miGoToReports1.setText("Go To Reports");
-        frmIncome_miGoToReports1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miGoToReports1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miGoToReports1);
-
-        frmIncome_miSeeBudgets1.setText("See Budget");
-        frmIncome_miSeeBudgets1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miSeeBudgets1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miSeeBudgets1);
-
-        frmIncome_miSeeExpenses1.setText("See Expenses");
-        frmIncome_miSeeExpenses1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miSeeExpenses1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miSeeExpenses1);
-
-        frmIncome_miSeeIncome1.setText("See Income");
-        frmIncome_miSeeIncome1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miSeeIncome1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuOperations1.add(frmIncome_miSeeIncome1);
-
-        jMenuBar2.add(frmIncome_mnuOperations1);
-
-        frmIncome_mnuExport1.setText("Export");
-        frmIncome_mnuExport1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
-
-        frmIncome_miCSV1.setText("to CSV");
-        frmIncome_miCSV1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmIncome_miCSV1ActionPerformed(evt);
-            }
-        });
-        frmIncome_mnuExport1.add(frmIncome_miCSV1);
-
-        frmIncome_miPDF1.setText("to PDF");
-        frmIncome_mnuExport1.add(frmIncome_miPDF1);
-
-        jMenuBar2.add(frmIncome_mnuExport1);
-
-        frmIncome_mnuExit1.setText("Exit");
-        frmIncome_mnuExit1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 14)); // NOI18N
-        frmIncome_mnuExit1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                frmIncome_mnuExit1MouseClicked(evt);
-            }
-        });
-        jMenuBar2.add(frmIncome_mnuExit1);
-
-        setJMenuBar(jMenuBar2);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void frmIncome_miSeeBudgets1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeBudgets1ActionPerformed
-//set the combo box in Details to Budgets
-        Details details = new Details(null, true);
-        details.setDetailsComboBox("Budget");
-        details.pack();
-        details.setVisible(true);
-    }//GEN-LAST:event_frmIncome_miSeeBudgets1ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void addIncome_tfAmountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIncome_tfAmountActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_addIncome_tfAmountActionPerformed
 
-    private void frmIncome_miAddIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddIncome1ActionPerformed
-        AddIncome income = new AddIncome(null, true);
-        income.pack();
-        income.setVisible(true);
-    }//GEN-LAST:event_frmIncome_miAddIncome1ActionPerformed
-
-    private void frmIncome_miAddExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miAddExpenses1ActionPerformed
-        AddExpenses expense = new AddExpenses(null, true);
-        expense.pack();
-        expense.setVisible(true);
-    }//GEN-LAST:event_frmIncome_miAddExpenses1ActionPerformed
-
-    private void frmIncome_miGoToReports1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miGoToReports1ActionPerformed
-        GoToReports reports = new GoToReports(null, true);
-        reports.pack();
-        reports.setVisible(true);
-    }//GEN-LAST:event_frmIncome_miGoToReports1ActionPerformed
-
-    private void frmIncome_miSeeExpenses1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeExpenses1ActionPerformed
-        //set the combo box in Details to Expenses
-        Details details = new Details(null, true);
-        details.setDetailsComboBox("Expenses");
-        details.pack();
-        details.setVisible(true);
-
-    }//GEN-LAST:event_frmIncome_miSeeExpenses1ActionPerformed
-
-    private void frmIncome_miSeeIncome1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miSeeIncome1ActionPerformed
-//set the combo box in Details to Income
-        Details details = new Details(null, true);
-        details.setDetailsComboBox("Income");
-        details.pack();
-        details.setVisible(true);    }//GEN-LAST:event_frmIncome_miSeeIncome1ActionPerformed
-
-    private void frmIncome_miCSV1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmIncome_miCSV1ActionPerformed
-       gl.chooseFileCSV(fileChooser);
-    }//GEN-LAST:event_frmIncome_miCSV1ActionPerformed
-
-    private void frmIncome_mnuExit1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmIncome_mnuExit1MouseClicked
-gl.closeApp();    }//GEN-LAST:event_frmIncome_mnuExit1MouseClicked
+  private void addIncome_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addIncome_btnSaveActionPerformed
+      gl.insertTransaction(addIncome_tfAmount.getText(), "income");
+      gl.closeWindow(this);
+  }//GEN-LAST:event_addIncome_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,42 +137,34 @@ gl.closeApp();    }//GEN-LAST:event_frmIncome_mnuExit1MouseClicked
             java.util.logging.Logger.getLogger(AddIncome.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddIncome dialog = new AddIncome(new javax.swing.JFrame(), true);
+
+                AddIncome dialog = new AddIncome(null, true, gl, welcome);
+                dialog.setVisible(true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
                     }
                 });
-                dialog.setVisible(true);
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addIncome_btnSave;
+    private javax.swing.JLabel addIncome_lblName;
+    private javax.swing.JTextField addIncome_tfAmount;
     private javax.swing.JFileChooser fileChooser;
-    private javax.swing.JLabel frmIncome_lblStatus1;
-    private javax.swing.JMenuItem frmIncome_miAddExpenses1;
-    private javax.swing.JMenuItem frmIncome_miAddIncome1;
-    private javax.swing.JMenuItem frmIncome_miCSV1;
-    private javax.swing.JMenuItem frmIncome_miGoToReports1;
-    private javax.swing.JMenuItem frmIncome_miPDF1;
-    private javax.swing.JMenuItem frmIncome_miSeeBudgets1;
-    private javax.swing.JMenuItem frmIncome_miSeeExpenses1;
-    private javax.swing.JMenuItem frmIncome_miSeeIncome1;
-    private javax.swing.JMenu frmIncome_mnuExit1;
-    private javax.swing.JMenu frmIncome_mnuExport1;
-    private javax.swing.JMenu frmIncome_mnuOperations1;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

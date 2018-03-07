@@ -14,17 +14,70 @@ public class Transaction {
 
   int id;
   int userId;
+
+  public int getCategoryId(String categoryName) throws SQLException {
+    this.categoryId = db.getCategoryId(categoryName);
+    return categoryId;
+  }
   int categoryId;
   private String category;
   BigDecimal amount;
   Timestamp transDate;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Timestamp getTransDate() {
+        return transDate;
+    }
+
+    public void setTransDate(Timestamp transDate) {
+        this.transDate = transDate;
+    }
+
   Database db = new Database();
 
-  public Transaction(int id, int userId, BigDecimal amount, Timestamp transDate, String category) {
+  public Transaction(int id, int userId, BigDecimal amount, Timestamp transDate, String category) throws SQLException {
     this.id = id;
     this.userId = userId;
-    this.categoryId = getCategoryId(category);
+    this.category = category;
     this.amount = amount;
     this.transDate = transDate;
   }
@@ -37,6 +90,12 @@ public class Transaction {
     this.transDate = transDate;
   }
 
+  public Transaction(int userId) {
+    this.userId = userId;
+
+  }
+  
+
   @Override
   public String toString() {
     // user's name instead of userId?, category name for categoryId?
@@ -44,93 +103,24 @@ public class Transaction {
             + categoryId + ", amount=" + amount + ", transDate=" + transDate + '}';
   }
 
-  public ArrayList<Transaction> getAll() {
-    String sql = "SELECT * FROM transactions";
-    ArrayList<Transaction> list = new ArrayList<>();
-
-    try (Connection conn = db.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(sql)) {
-
-      while (result.next()) {
-        id = result.getInt("id");
-        userId = result.getInt("userId");
-        categoryId = result.getInt("categoryId");
-        amount = result.getBigDecimal("amount");
-        transDate = result.getTimestamp("transDate");
-
-        Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
-        list.add(trans);
-      }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-    return list;
+  public ArrayList<Transaction> getAll() throws SQLException {
+    ArrayList<Transaction> list;
+    return list = db.getAllTransactions();
   }
 
-  public void insert() {
-    String sql = "INSERT INTO transactions(userId, categoryId, amount, transDate) "
-            + "VALUES(?,?,?,?)";
-
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, categoryId);
-      pstmt.setBigDecimal(3, amount);
-      pstmt.setTimestamp(4, transDate);
-
-      pstmt.executeUpdate();
-    } catch (SQLException e) {
-      System.out.println(e.getMessage());
-    }
+  public BigDecimal getAllGeneralExpenses(int userId) throws SQLException {
+    BigDecimal amount = null;
+    return amount = db.getAllGeneralExpenses(userId, 6);
   }
 
-  public void delete() {
-    String sql = "DELETE from transactions where id = ?";
-
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, id);
-      pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
+  public BigDecimal getAllGeneralIncome(int userId) throws SQLException {
+    BigDecimal amount = null;
+    return amount = db.getAllGeneralIncome(userId, 5);
   }
-
-  public void update() {
-    String sql = "update transactions set "
-            + "userId = ?,\n"
-            + "categoryId = ?,\n"
-            + "amount = ?,"
-            + "transDate = ?\n"
-            + "where id = ?;";
-    try (Connection conn = db.connect();
-            PreparedStatement pstmt = conn.prepareStatement(sql)) {
-      pstmt.setInt(1, userId);
-      pstmt.setInt(2, categoryId);
-      pstmt.setBigDecimal(3, amount);
-      pstmt.setTimestamp(4, transDate);
-      pstmt.setInt(5, id);
-      pstmt.executeUpdate();
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-  }
-
-  public int getCategoryId(String catName) {
-    String sql = "select id from categories where name = '" + catName + "' limit 1";
-    int catId = 0;
-    try (Connection conn = db.connect();
-            Statement stmt = conn.createStatement();
-            ResultSet result = stmt.executeQuery(sql)) {
-      if (result.next()) {
-        catId = result.getInt("id");
-        System.out.println(getCategoryId(catName));
-      }
-    } catch (SQLException ex) {
-      System.out.println(ex.getMessage());
-    }
-
-    return catId;
+ 
+  public String getCategoryName(int catId) throws SQLException {
+    String catName;
+      return catName=db.getCatName(catId);
+    
   }
 }

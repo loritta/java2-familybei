@@ -1,31 +1,57 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Frames;
 
+import HelperClasses.*;
+import java.math.BigDecimal;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
+/**
+ *
+ * @author larisasabalin
+ */
 public class Welcome extends javax.swing.JFrame {
 
-  Frames.Global gl = new Frames.Global();
+  private static Global gl;
+  private Transaction trans;
+  private BudgetsMonthly budg;
 
   /**
    * Creates new form Welcome
    */
-  public Welcome() {
+  public Welcome(Global gl) {
+    this.gl = gl;
     initComponents();
     callHistoryToTheDataBase(gl.currentUser.getId());
+    lblUserName.setText(gl.currentUser.getName());
+    getFamilyInfo(gl.currentUser.getFamilyId());
+    getTransactionsAndBudget(gl.currentUser.getId());
+
+  }
+
+  public Welcome() {
+    initComponents();
 
     //this.setVisible(false);
   }
 
   public void callHistoryToTheDataBase(Integer id) {
     try {
-      String empty = "";
+      String empty = "empty";
+
       if (gl.db.transactionHistoryAvailable(id).equals(empty)) {
-        InitialInfo initialInfo = new InitialInfo(this, true);
+        InitialInfo initialInfo = new InitialInfo(this, true, gl, this);
+        initialInfo.pack();
+        initialInfo.setVisible(true);
       } else {
         return;
       }
@@ -34,8 +60,54 @@ public class Welcome extends javax.swing.JFrame {
     }
   }
 
-  public void loadingTheData() {
-    lblUserName.setText(gl.currentUser.getName());
+  public void getFamilyInfo(int familyId) {
+    ArrayList<String> lists = new ArrayList<>();
+    String stText="";
+    try {
+      lists = gl.db.getDatabaseFamilyMembersName(familyId);
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
+    }
+    stText=String.join("    ", lists);
+    
+    lblFamilyMemeber1.setText(stText);
+  }
+
+  public void getTransactionsAndBudget(int id) {
+    try {
+      trans = new Transaction(gl.currentUser.getId());
+      budg = new BudgetsMonthly(gl.currentUser.getId());
+      
+      BigDecimal result;
+      //setting expences
+      BigDecimal expense = trans.getAllGeneralExpenses(id);
+      lblExpenses.setText(expense.toString());
+      
+      //setting income
+      BigDecimal income = trans.getAllGeneralIncome(id);
+      lblIncome.setText(income.toString());
+      //setting budget
+      BigDecimal budget = budg.getAllGeneralBudget(id);
+      lblBudget.setText(budget.toString());
+      //setting budget vs Exp
+      result = budget.subtract(expense);
+      lblBudgetVsExpens.setText(result.toString());
+      //setting budget vs income
+      result = budget.subtract(income);
+      lblBudgetVsIncome.setText(result.toString());
+      
+      
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+      JOptionPane.showMessageDialog(null,
+              "Fatal error connecting database\n" + ex.getMessage(),
+              "Error connecting",
+              JOptionPane.ERROR_MESSAGE);
+    }
 
   }
 
@@ -51,22 +123,19 @@ public class Welcome extends javax.swing.JFrame {
         fileChooser = new javax.swing.JFileChooser();
         jPanel12 = new javax.swing.JPanel();
         lblUserName = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        pnlFamily = new javax.swing.JPanel();
+        lblFamilyMemeber1 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
-        jLabel39 = new javax.swing.JLabel();
-        jLabel40 = new javax.swing.JLabel();
-        jLabel41 = new javax.swing.JLabel();
-        jLabel45 = new javax.swing.JLabel();
+        lblIncome = new javax.swing.JLabel();
+        lblExpenses = new javax.swing.JLabel();
+        lblBudget = new javax.swing.JLabel();
+        lblBudgetVsIncome = new javax.swing.JLabel();
+        lblBudgetVsExpens = new javax.swing.JLabel();
         jMenuBar10 = new javax.swing.JMenuBar();
         frmWelcome_mnuOperations9 = new javax.swing.JMenu();
         frmWelcome_miAddIncome9 = new javax.swing.JMenuItem();
@@ -95,7 +164,7 @@ public class Welcome extends javax.swing.JFrame {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblUserName)
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap(587, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,49 +176,29 @@ public class Welcome extends javax.swing.JFrame {
 
         getContentPane().add(jPanel12, java.awt.BorderLayout.PAGE_START);
 
-        jPanel15.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel15.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Family Members", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
+        pnlFamily.setBackground(new java.awt.Color(204, 204, 255));
+        pnlFamily.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Family Members", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
 
-        jLabel6.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel6.setText("User 1");
+        lblFamilyMemeber1.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
 
-        jLabel9.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel9.setText("User 1");
-
-        jLabel10.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel10.setText("User 1");
-
-        jLabel13.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel13.setText("User 1");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlFamilyLayout = new javax.swing.GroupLayout(pnlFamily);
+        pnlFamily.setLayout(pnlFamilyLayout);
+        pnlFamilyLayout.setHorizontalGroup(
+            pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel6)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel10)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel13)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addComponent(lblFamilyMemeber1)
+                .addContainerGap(701, Short.MAX_VALUE))
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        pnlFamilyLayout.setVerticalGroup(
+            pnlFamilyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlFamilyLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel13))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(lblFamilyMemeber1)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel15, java.awt.BorderLayout.CENTER);
+        getContentPane().add(pnlFamily, java.awt.BorderLayout.CENTER);
 
         jPanel11.setBackground(new java.awt.Color(204, 204, 255));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "This month's statistics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
@@ -169,50 +218,59 @@ public class Welcome extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
         jLabel37.setText("Budget vs Expenses");
 
-        jLabel38.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel38.setText("...");
+        lblIncome.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblIncome.setText("...");
 
-        jLabel39.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel39.setText("...");
+        lblExpenses.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblExpenses.setText("...");
 
-        jLabel40.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel40.setText("...");
+        lblBudget.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudget.setText("...");
 
-        jLabel41.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel41.setText("...");
+        lblBudgetVsIncome.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudgetVsIncome.setText("...");
 
-        jLabel45.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
-        jLabel45.setText("...");
+        lblBudgetVsExpens.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
+        lblBudgetVsExpens.setText("...");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel20)
-                .addGap(29, 29, 29)
-                .addComponent(jLabel21)
-                .addGap(35, 35, 35)
-                .addComponent(jLabel22)
-                .addGap(27, 27, 27)
-                .addComponent(jLabel27)
-                .addGap(28, 28, 28)
-                .addComponent(jLabel37)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel11Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel38)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel39)
-                .addGap(68, 68, 68)
-                .addComponent(jLabel40)
-                .addGap(92, 92, 92)
-                .addComponent(jLabel41)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel45)
-                .addGap(89, 89, 89))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel20)
+                    .addComponent(lblIncome))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel21)
+                    .addComponent(lblExpenses))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel22)
+                    .addComponent(lblBudget))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblBudgetVsIncome, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(46, 46, 46)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel37)
+                    .addComponent(lblBudgetVsExpens))
+                .addGap(85, 85, 85))
         );
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel20, lblIncome});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel21, lblExpenses});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel22, lblBudget});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel27, lblBudgetVsIncome});
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jLabel37, lblBudgetVsExpens});
+
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
@@ -225,11 +283,11 @@ public class Welcome extends javax.swing.JFrame {
                     .addComponent(jLabel37))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel38)
-                    .addComponent(jLabel39)
-                    .addComponent(jLabel40)
-                    .addComponent(jLabel41)
-                    .addComponent(jLabel45))
+                    .addComponent(lblIncome)
+                    .addComponent(lblExpenses)
+                    .addComponent(lblBudget)
+                    .addComponent(lblBudgetVsIncome)
+                    .addComponent(lblBudgetVsExpens))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -321,39 +379,42 @@ public class Welcome extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void frmWelcome_miAddIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddIncome9ActionPerformed
-      Frames.AddIncome income = new AddIncome(this, true);
+      Frames.AddIncome income = new AddIncome(null, true, gl, this);
       income.pack();
       income.setVisible(true);
+
     }//GEN-LAST:event_frmWelcome_miAddIncome9ActionPerformed
 
     private void frmWelcome_miAddExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miAddExpenses9ActionPerformed
-      AddExpenses expense = new AddExpenses(this, true);
+      AddExpenses expense = new AddExpenses(null, true, gl, this);
       expense.pack();
       expense.setVisible(true);
+
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-      GoToReports reports = new GoToReports(this, true);
+      GoToReports reports = new GoToReports(null, true, gl, this);
       reports.pack();
       reports.setVisible(true);
+
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-      Details details = new Details(null, true);
+      Details details = new Details(null, true, gl, this);
       details.setDetailsComboBox("Budget");
       details.pack();
       details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
-      Details details = new Details(null, true);
+      Details details = new Details(null, true, gl, this);
       details.setDetailsComboBox("Expenses");
       details.pack();
       details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed
 
     private void frmWelcome_miSeeIncome9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeIncome9ActionPerformed
-      Details details = new Details(null, true);
+      Details details = new Details(null, true, gl, this);
       details.setDetailsComboBox("Income");
       details.pack();
       details.setVisible(true);
@@ -401,7 +462,14 @@ public class Welcome extends javax.swing.JFrame {
     /* Create and display the form */
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
-        new Welcome().setVisible(true);
+        Welcome welcome = new Welcome(gl);
+        welcome.setVisible(true);
+        welcome.addWindowListener(new java.awt.event.WindowAdapter() {
+          @Override
+          public void windowClosing(java.awt.event.WindowEvent e) {
+            gl.closeApp();
+          }
+        });
       }
     });
   }
@@ -419,24 +487,21 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JMenu frmWelcome_mnuExit9;
     private javax.swing.JMenu frmWelcome_mnuExport9;
     private javax.swing.JMenu frmWelcome_mnuOperations9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel37;
-    private javax.swing.JLabel jLabel38;
-    private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
-    private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenuBar jMenuBar10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel15;
+    private javax.swing.JLabel lblBudget;
+    private javax.swing.JLabel lblBudgetVsExpens;
+    private javax.swing.JLabel lblBudgetVsIncome;
+    private javax.swing.JLabel lblExpenses;
+    private javax.swing.JLabel lblFamilyMemeber1;
+    private javax.swing.JLabel lblIncome;
     private javax.swing.JLabel lblUserName;
+    private javax.swing.JPanel pnlFamily;
     // End of variables declaration//GEN-END:variables
 }
