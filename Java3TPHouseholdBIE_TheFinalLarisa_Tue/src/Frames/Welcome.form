@@ -61,29 +61,6 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="frmWelcome_mnuExport9">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Export"/>
-          </Properties>
-          <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="frmWelcome_miCSV9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="to CSV"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmWelcome_miCSV9ActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="frmWelcome_miPDF9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="to PDF"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmWelcome_miPDF9ActionPerformed"/>
-              </Events>
-            </MenuItem>
-          </SubComponents>
-        </Menu>
         <Menu class="javax.swing.JMenu" name="frmWelcome_mnuExit9">
           <Properties>
             <Property name="text" type="java.lang.String" value="Exit"/>

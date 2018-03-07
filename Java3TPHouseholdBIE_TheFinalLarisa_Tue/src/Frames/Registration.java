@@ -40,7 +40,10 @@ public class Registration extends javax.swing.JDialog {
       Date dob = gl.db.strToDate(reg_tfDob.getText());
       int familyId = gl.db.getFamilyId(familyName);
       System.out.println("Frames.Registration.getUser()");
-      gl.db.userExists(name, password, rePassword, dob, familyId);
+      if(gl.db.userExists(name, password, rePassword, dob, familyId)){
+          result=true;
+      };
+      
     } catch (InputMismatchException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(this,
