@@ -43,7 +43,6 @@ public class Registration extends javax.swing.JDialog {
       if(gl.db.userExists(name, password, rePassword, dob, familyId)){
           result=true;
       };
-      
     } catch (InputMismatchException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(this,

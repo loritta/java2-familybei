@@ -164,7 +164,7 @@ public class Database {
             pstmt.setInt(4, familyId);
 
             pstmt.executeUpdate();
-            System.out.println("HelperClasses.Database.insertUser()");
+            
             JOptionPane.showMessageDialog(null, "Registered successfully.");
         }
     }
@@ -175,7 +175,7 @@ public class Database {
         String sql = "select * from users where name = ?";
         String result=null;
         boolean choice=false;
-        System.out.println("HelperClasses.Database.userExists()-first");
+        
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, username);
             rs = pst.executeQuery();
@@ -183,7 +183,7 @@ public class Database {
             {result = rs.getString("name");}
                 if (result == null) {
                     comparePassword(password, rePassword);
-                    System.out.println("Frames.Registration.userExistVerif()");
+                    
                     insertUser(username, password, dob, familyid);
                     choice=true;
 

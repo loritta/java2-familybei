@@ -57,7 +57,7 @@ public class Global {
         int value = JOptionPane.YES_NO_OPTION;
         int dialogResult = JOptionPane.showConfirmDialog(null,
                 "Are you sure you would like to teminate your session?",
-                 "Warning", value);
+                "Warning", value);
 
         if (dialogResult == JOptionPane.YES_OPTION) {
             System.exit(0);
@@ -79,14 +79,15 @@ public class Global {
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
         } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-        JOptionPane.showMessageDialog(null,
-                "Fatal error connecting database\n" + ex.getMessage(),
-                "Error connecting",
-                JOptionPane.ERROR_MESSAGE);
-      }
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    "Fatal error connecting database\n" + ex.getMessage(),
+                    "Error connecting",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
-      public void insertBudget(String amountStr, String type) {
+
+    public void insertBudget(String amountStr, String type) {
         DecimalFormat formatter = new DecimalFormat("###.##");
         formatter.setParseBigDecimal(true);
         try {
@@ -95,11 +96,11 @@ public class Global {
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
         } catch (SQLException ex) {
-        System.out.println(ex.getMessage());
-        JOptionPane.showMessageDialog(null,
-                "Fatal error connecting database\n" + ex.getMessage(),
-                "Error connecting",
-                JOptionPane.ERROR_MESSAGE);
-      }
+            System.out.println(ex.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    "Fatal error connecting database\n" + ex.getMessage(),
+                    "Error connecting",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 }
