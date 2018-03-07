@@ -7,6 +7,10 @@ package Frames;
 
 import HelperClasses.BudgetsMonthly;
 import HelperClasses.Transaction;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import static java.lang.String.valueOf;
 import java.math.BigDecimal;
 import java.sql.SQLException;
@@ -14,6 +18,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,11 +39,17 @@ public class Details extends javax.swing.JDialog {
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         try {
             addRowToTable();
-        } catch (SQLException|NullPointerException ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Error connecting to database(Details): " + ex.getMessage()
                             +"\nSorry no data to display for now",
                     "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null,
+                    ":) A null pointer.. not sure where :)" + ex.getMessage(),
+                    "Something went wrong",
                     JOptionPane.ERROR_MESSAGE);
         }
         this.welcome = welcome;
@@ -108,13 +119,11 @@ public class Details extends javax.swing.JDialog {
         mnuOperations6 = new javax.swing.JMenu();
         frmSeeBudget_miAddIncome6 = new javax.swing.JMenuItem();
         frmSeeBudget_miAddExpenses6 = new javax.swing.JMenuItem();
-        frmSeeBudget_miGoToReports6 = new javax.swing.JMenuItem();
         frmSeeBudget_miSeeBudgets6 = new javax.swing.JMenuItem();
         frmSeeBudget_miSeeExpenses6 = new javax.swing.JMenuItem();
         frmSeeBudget_miSeeIncome6 = new javax.swing.JMenuItem();
         mnuExport6 = new javax.swing.JMenu();
         frmSeeBudget_miCSV6 = new javax.swing.JMenuItem();
-        frmSeeBudget_miPDF6 = new javax.swing.JMenuItem();
         frmSeeBudget_mnuExit6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -190,14 +199,6 @@ public class Details extends javax.swing.JDialog {
         });
         mnuOperations6.add(frmSeeBudget_miAddExpenses6);
 
-        frmSeeBudget_miGoToReports6.setText("Go To Reports");
-        frmSeeBudget_miGoToReports6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmSeeBudget_miGoToReports6ActionPerformed(evt);
-            }
-        });
-        mnuOperations6.add(frmSeeBudget_miGoToReports6);
-
         frmSeeBudget_miSeeBudgets6.setText("See Budget");
         frmSeeBudget_miSeeBudgets6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,9 +234,6 @@ public class Details extends javax.swing.JDialog {
             }
         });
         mnuExport6.add(frmSeeBudget_miCSV6);
-
-        frmSeeBudget_miPDF6.setText("to PDF");
-        mnuExport6.add(frmSeeBudget_miPDF6);
 
         jMenuBar7.add(mnuExport6);
 
@@ -286,13 +284,6 @@ public class Details extends javax.swing.JDialog {
         gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miAddExpenses6ActionPerformed
 
-    private void frmSeeBudget_miGoToReports6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miGoToReports6ActionPerformed
-        GoToReports reports = new GoToReports(null, true, gl, welcome);
-        reports.pack();
-        reports.setVisible(true);
-        gl.closeWindow(this);
-    }//GEN-LAST:event_frmSeeBudget_miGoToReports6ActionPerformed
-
     private void frmSeeBudget_miSeeExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
         Details details = new Details(null, true, gl, welcome);
         details.setDetailsComboBox("Expenses");
@@ -309,6 +300,37 @@ public class Details extends javax.swing.JDialog {
 
     private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
         gl.chooseFileCSV(fileChooser);
+         int ret = fileChooser.showDialog(null, "Save to the file");
+
+        if (ret == JFileChooser.APPROVE_OPTION) {
+            try {
+                File file = fileChooser.getSelectedFile();
+                String filename = file.getAbsolutePath();
+
+                if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}") /*file.getName().toLowerCase().endsWith(".csv")*/) {
+
+                    file = new File(filename + ".csv");
+                }
+                try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
+                    ArrayList<Transaction> list = gl.db.getAllTransactions();
+                    for (Transaction t : list) {
+                        out.printf("%.2f;%.2f;%s\n", t.getCategory(), t.getAmount(), t.getTransDate());
+                    }
+                     ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
+                    for (BudgetsMonthly t : listBuget) {
+                        out.printf("%.2f;%.2f;%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear());
+                    }
+                }
+            } catch (IOException | SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(this,
+                        "Error saving data to file:\n" + ex.getMessage(),
+                        "File saving error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+
         gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miCSV6ActionPerformed
 
@@ -367,8 +389,6 @@ public class Details extends javax.swing.JDialog {
     private javax.swing.JMenuItem frmSeeBudget_miAddExpenses6;
     private javax.swing.JMenuItem frmSeeBudget_miAddIncome6;
     private javax.swing.JMenuItem frmSeeBudget_miCSV6;
-    private javax.swing.JMenuItem frmSeeBudget_miGoToReports6;
-    private javax.swing.JMenuItem frmSeeBudget_miPDF6;
     private javax.swing.JMenuItem frmSeeBudget_miSeeBudgets6;
     private javax.swing.JMenuItem frmSeeBudget_miSeeExpenses6;
     private javax.swing.JMenuItem frmSeeBudget_miSeeIncome6;

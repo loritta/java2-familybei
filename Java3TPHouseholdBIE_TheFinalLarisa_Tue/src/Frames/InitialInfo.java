@@ -311,12 +311,12 @@ public class InitialInfo extends javax.swing.JDialog {
     private void init_btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_init_btnSaveActionPerformed
         gl.insertTransaction(init_tfIncome.getText(), "Income");
         gl.insertTransaction(init_tfExpense.getText(), "Expense");
-        gl.insertBudget(init_lblMortgage.getText(), "Mortgage");
+        gl.insertBudget(init_lblMortgage.getText(), "House");
         gl.insertBudget(init_lblFood.getText(), "Food");
         gl.insertBudget(init_lblChemical.getText(), "Chemical");
         gl.insertBudget(init_lblCar.getText(), "Car");
         gl.insertBudget(init_lblOther.getText(), "Other");
-        gl.insertBudget(init_lblBudgetRequired.getText(), "Expenses");
+        gl.insertBudget(init_lblBudgetRequired.getText(), "Expense");
         this.setVisible(false);
         welcome.pack();
         welcome.setVisible(true);

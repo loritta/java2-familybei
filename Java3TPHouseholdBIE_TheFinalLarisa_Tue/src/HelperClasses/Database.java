@@ -170,10 +170,11 @@ public class Database {
     }
 //called in
 
-    public void userExists(String username, String password,
+    public boolean userExists(String username, String password,
             String rePassword, Date dob, int familyid) throws SQLException, NullPointerException {
         String sql = "select * from users where name = ?";
         String result=null;
+        boolean choice=false;
         System.out.println("HelperClasses.Database.userExists()-first");
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, username);
@@ -184,6 +185,7 @@ public class Database {
                     comparePassword(password, rePassword);
                     System.out.println("Frames.Registration.userExistVerif()");
                     insertUser(username, password, dob, familyid);
+                    choice=true;
 
                 } else {
                     JOptionPane.showMessageDialog(null,
@@ -192,7 +194,7 @@ public class Database {
                             JOptionPane.ERROR_MESSAGE);
                 }
             }
-
+return choice;
         }
     
 
@@ -248,6 +250,17 @@ public class Database {
         }
         return categoryId;
     }
+    public int getBudgCategoryId(String categoryName) throws SQLException {
+        String sql = "select id from budgetcat where name = '" + categoryName + "'";
+        int categoryId = 0;
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+            if (result.next()) {
+                categoryId = result.getInt("id");
+            }
+        }
+        return categoryId;
+    }
 
     public ArrayList<String> getDatabaseFamilyMembersName(int familyId)
             throws SQLException {
@@ -272,6 +285,7 @@ public class Database {
         int id;
         int userId;
         int categoryId;
+        String category;
         BigDecimal amount;
         Timestamp transDate;
         try (Statement stmt = conn.createStatement();
@@ -283,8 +297,35 @@ public class Database {
                 categoryId = result.getInt("categoryId");
                 amount = result.getBigDecimal("amount");
                 transDate = result.getTimestamp("transDate");
+                category = getCatName(categoryId);
 
-                Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
+                Transaction trans = new Transaction(id, userId, amount, transDate, category);
+                list.add(trans);
+            }
+        }
+        return list;
+    }
+    public ArrayList<BudgetsMonthly> getAllBudgets() throws SQLException{
+        String sql = "SELECT * FROM transactions";
+        ArrayList<BudgetsMonthly> list = new ArrayList<>();
+        int id;
+        int userId;
+        int categoryId;
+        String category;
+        BigDecimal amount;
+        Timestamp transDate;
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+
+            while (result.next()) {
+                id = result.getInt("id");
+                userId = result.getInt("userId");
+                categoryId = result.getInt("categoryId");
+                amount = result.getBigDecimal("amount");
+                transDate = result.getTimestamp("transDate");
+                category = getCatNameBudget(categoryId);
+
+                BudgetsMonthly trans = new BudgetsMonthly(id, userId, categoryId, amount, transDate);
                 list.add(trans);
             }
         }

@@ -144,9 +144,6 @@ public class Welcome extends javax.swing.JFrame {
         frmWelcome_miSeeBudgets9 = new javax.swing.JMenuItem();
         frmWelcome_miSeeExpenses9 = new javax.swing.JMenuItem();
         frmWelcome_miSeeIncome9 = new javax.swing.JMenuItem();
-        frmWelcome_mnuExport9 = new javax.swing.JMenu();
-        frmWelcome_miCSV9 = new javax.swing.JMenuItem();
-        frmWelcome_miPDF9 = new javax.swing.JMenuItem();
         frmWelcome_mnuExit9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -345,26 +342,6 @@ public class Welcome extends javax.swing.JFrame {
 
         jMenuBar10.add(frmWelcome_mnuOperations9);
 
-        frmWelcome_mnuExport9.setText("Export");
-
-        frmWelcome_miCSV9.setText("to CSV");
-        frmWelcome_miCSV9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmWelcome_miCSV9ActionPerformed(evt);
-            }
-        });
-        frmWelcome_mnuExport9.add(frmWelcome_miCSV9);
-
-        frmWelcome_miPDF9.setText("to PDF");
-        frmWelcome_miPDF9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmWelcome_miPDF9ActionPerformed(evt);
-            }
-        });
-        frmWelcome_mnuExport9.add(frmWelcome_miPDF9);
-
-        jMenuBar10.add(frmWelcome_mnuExport9);
-
         frmWelcome_mnuExit9.setText("Exit");
         frmWelcome_mnuExit9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -393,9 +370,7 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-      GoToReports reports = new GoToReports(null, true, gl, this);
-      reports.pack();
-      reports.setVisible(true);
+      
 
     }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
@@ -421,14 +396,6 @@ public class Welcome extends javax.swing.JFrame {
       details.pack();
       details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeIncome9ActionPerformed
-
-    private void frmWelcome_miCSV9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miCSV9ActionPerformed
-      gl.chooseFileCSV(fileChooser);//We should make this as a function this is repeating for each frame
-    }//GEN-LAST:event_frmWelcome_miCSV9ActionPerformed
-
-    private void frmWelcome_miPDF9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miPDF9ActionPerformed
-
-    }//GEN-LAST:event_frmWelcome_miPDF9ActionPerformed
 
     private void frmWelcome_mnuExit9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmWelcome_mnuExit9MouseClicked
       gl.closeApp();
@@ -480,14 +447,11 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmWelcome_miAddExpenses9;
     private javax.swing.JMenuItem frmWelcome_miAddIncome9;
-    private javax.swing.JMenuItem frmWelcome_miCSV9;
     private javax.swing.JMenuItem frmWelcome_miGoToReports9;
-    private javax.swing.JMenuItem frmWelcome_miPDF9;
     private javax.swing.JMenuItem frmWelcome_miSeeBudgets9;
     private javax.swing.JMenuItem frmWelcome_miSeeExpenses9;
     private javax.swing.JMenuItem frmWelcome_miSeeIncome9;
     private javax.swing.JMenu frmWelcome_mnuExit9;
-    private javax.swing.JMenu frmWelcome_mnuExport9;
     private javax.swing.JMenu frmWelcome_mnuOperations9;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;

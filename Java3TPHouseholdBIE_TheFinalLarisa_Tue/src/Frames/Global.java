@@ -91,7 +91,7 @@ public class Global {
         formatter.setParseBigDecimal(true);
         try {
             BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
-            db.insertBudget(currentUser.getId(), db.getCategoryId(type), amount);
+            db.insertBudget(currentUser.getId(), db.getBudgCategoryId(type), amount);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
         } catch (SQLException ex) {

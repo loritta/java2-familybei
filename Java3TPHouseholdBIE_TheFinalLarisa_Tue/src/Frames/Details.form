@@ -27,14 +27,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmSeeBudget_miAddExpenses6ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="frmSeeBudget_miGoToReports6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Go To Reports"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmSeeBudget_miGoToReports6ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmSeeBudget_miSeeBudgets6">
               <Properties>
                 <Property name="text" type="java.lang.String" value="See Budget"/>
@@ -73,11 +65,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmSeeBudget_miCSV6ActionPerformed"/>
               </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="frmSeeBudget_miPDF6">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="to PDF"/>
-              </Properties>
             </MenuItem>
           </SubComponents>
         </Menu>
