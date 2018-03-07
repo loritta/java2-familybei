@@ -204,7 +204,8 @@ public class Login extends javax.swing.JDialog {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
         try {
-            String password = pfPassword.getPassword()+"";
+           
+            String password = pfPassword.getText();
             String username = tfName.getText();
             
             String result = gl.db.loginVerif(password, username);
@@ -214,7 +215,8 @@ public class Login extends javax.swing.JDialog {
                     welcome = new Welcome(gl);
                     welcome.pack();
                     welcome.setVisible(true);
-                    gl.closeWindow(this);
+                    setVisible(false);
+                    //gl.closeWindow(this);
                
             }
         } catch (SQLException ex) {

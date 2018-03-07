@@ -12,7 +12,8 @@ public class App {
 
     private static Welcome welcome;
     private static Global gl;
-    private static Login loginDialog;
+    //private static Login loginDialog;
+    
 
     public static void main(String[] args) {
 
@@ -22,9 +23,12 @@ public class App {
             public void run() {
                 gl = new Global();
                 //welcome = new Welcome(gl);
-                loginDialog = new Login(welcome, true, gl, welcome);
-                loginDialog.pack();
-                loginDialog.setVisible(true);
+                welcome=new Welcome(gl);
+                welcome.pack();
+                welcome.setVisible(true);
+//                loginDialog = new Login(welcome, true, gl, welcome);
+//                loginDialog.pack();
+//                loginDialog.setVisible(true);
 
                 //welcome.pack();
                 //welcome.setVisible(true);
