@@ -15,11 +15,43 @@ public class BudgetsMonthly {
   int id;
   int userId;
   int budgetMonthlyByCatId;
+
+    public String getCatName() {
+        return catName;
+    }
+
+    public void setCatName(String catName) {
+        this.catName = catName;
+    }
+
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Timestamp getMonthOfYear() {
+        return monthOfYear;
+    }
+
+    public void setMonthOfYear(Timestamp monthOfYear) {
+        this.monthOfYear = monthOfYear;
+    }
+  String catName;
   BigDecimal amount;
   Timestamp monthOfYear;
-  
-  Database db = new Database();
+   Database db = new Database();
 
+    public BudgetsMonthly(int id, int userId, String catName, BigDecimal amount, Timestamp monthOfYear) {
+        this.id = id;
+        this.userId = userId;
+        this.catName = catName;
+        this.amount = amount;
+        this.monthOfYear = monthOfYear;
+    }
+  
   public BudgetsMonthly(int id, int userId, int budgetMonthlyByCatId, BigDecimal amount, Timestamp monthOfYear) {
     this.id = id;
     this.userId = userId;
@@ -133,6 +165,11 @@ public class BudgetsMonthly {
   }
   public BigDecimal getAllGeneralBudget(int userId) throws SQLException {
     BigDecimal amount=null;
-    return amount=db.getAllGeneralBudget(userId,1);
+    return amount=db.getAllGeneralBudget(userId,5,6);
+  }
+  public String getCategoryName(int catId) throws SQLException {
+    String catName;
+      return catName=db.getCatNameBudget(catId);
+    
   }
 }

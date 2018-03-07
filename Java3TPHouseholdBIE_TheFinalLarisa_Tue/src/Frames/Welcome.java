@@ -9,6 +9,7 @@ import HelperClasses.*;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -60,9 +61,10 @@ public class Welcome extends javax.swing.JFrame {
   }
 
   public void getFamilyInfo(int familyId) {
-    ArrayList<User> list = new ArrayList<>();
+    ArrayList<String> lists = new ArrayList<>();
+    String stText="";
     try {
-      list = gl.db.getDatabaseFamilyMembersName(familyId);
+      lists = gl.db.getDatabaseFamilyMembersName(familyId);
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(null,
@@ -70,30 +72,35 @@ public class Welcome extends javax.swing.JFrame {
               "Error connecting",
               JOptionPane.ERROR_MESSAGE);
     }
-    Iterator it = list.iterator();
-    String setText = "";
-    while (it.hasNext()) {
-      setText = setText + " " + it.next();
-    }
-    lblFamilyMemeber1.setText(setText);
+    stText=String.join("    ", lists);
+    
+    lblFamilyMemeber1.setText(stText);
   }
 
   public void getTransactionsAndBudget(int id) {
     try {
       trans = new Transaction(gl.currentUser.getId());
+      budg = new BudgetsMonthly(gl.currentUser.getId());
+      
       BigDecimal result;
+      //setting expences
       BigDecimal expense = trans.getAllGeneralExpenses(id);
       lblExpenses.setText(expense.toString());
+      
+      //setting income
       BigDecimal income = trans.getAllGeneralIncome(id);
       lblIncome.setText(income.toString());
-
-      budg = new BudgetsMonthly(gl.currentUser.getId());
+      //setting budget
       BigDecimal budget = budg.getAllGeneralBudget(id);
-      lblBudgetVsExpens.setText(budget.toString());
-      result = budget.subtract(income);
-      lblBudgetVsIncome.setText(result.toString());
+      lblBudget.setText(budget.toString());
+      //setting budget vs Exp
       result = budget.subtract(expense);
       lblBudgetVsExpens.setText(result.toString());
+      //setting budget vs income
+      result = budget.subtract(income);
+      lblBudgetVsIncome.setText(result.toString());
+      
+      
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(null,

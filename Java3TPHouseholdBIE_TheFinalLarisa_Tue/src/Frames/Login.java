@@ -7,6 +7,8 @@ package Frames;
 
 import HelperClasses.User;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -201,25 +203,26 @@ public class Login extends javax.swing.JDialog {
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
-        String password = pfPassword.getText();
-        String username = tfName.getText();
-
-        String result = gl.db.loginVerif(password, username);
-
-        if (result.equals("success")) {
-            try {
-                gl.currentUser = gl.db.createUserObject(password, username);
-                System.out.println(gl.currentUser);
-                welcome = new Welcome(gl);
-                welcome.pack();
-                welcome.setVisible(true);
-                gl.closeWindow(this);
-            } catch (SQLException | NullPointerException ex) {
-                JOptionPane.showMessageDialog(null,
-                        "Error connecting to database: " + ex.getMessage(),
-                        "Database error",
-                        JOptionPane.ERROR_MESSAGE);
+        try {
+            String password = pfPassword.getText();
+            String username = tfName.getText();
+            
+            String result = gl.db.loginVerif(password, username);
+            
+            if (result.equals("success")) {
+                    gl.currentUser = gl.db.createUserObject(password, username);
+                    System.out.println(gl.currentUser);
+                    welcome = new Welcome(gl);
+                    welcome.pack();
+                    welcome.setVisible(true);
+                    gl.closeWindow(this);
+               
             }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                            "Error connecting to database: " + ex.getMessage(),
+                            "Database error",
+                            JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 

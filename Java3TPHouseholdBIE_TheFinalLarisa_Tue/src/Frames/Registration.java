@@ -39,9 +39,8 @@ public class Registration extends javax.swing.JDialog {
     try {
       Date dob = gl.db.strToDate(reg_tfDob.getText());
       int familyId = gl.db.getFamilyId(familyName);
-      if(gl.userExistVerif(name, familyId, dob, password, rePassword)){
-          result=true;
-      };
+      System.out.println("Frames.Registration.getUser()");
+      gl.db.userExists(name, password, rePassword, dob, familyId);
     } catch (InputMismatchException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(this,
@@ -58,6 +57,8 @@ public class Registration extends javax.swing.JDialog {
     return result;
 
   }
+  
+        
 
   @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -313,7 +314,7 @@ reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
     java.awt.EventQueue.invokeLater(new Runnable() {
       public void run() {
 
-        Registration dialog = new Registration(welcome, true, gl, welcome);
+        Registration dialog = new Registration(null, true, gl, welcome);
         dialog.setVisible(true);
         /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
