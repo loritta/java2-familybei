@@ -290,6 +290,11 @@ public class Welcome extends javax.swing.JFrame {
         getContentPane().add(jPanel11, java.awt.BorderLayout.PAGE_END);
 
         frmWelcome_mnuOperations9.setText("Operations");
+        frmWelcome_mnuOperations9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                frmWelcome_mnuOperations9ActionPerformed(evt);
+            }
+        });
 
         frmWelcome_miAddIncome9.setText("Add Income");
         frmWelcome_miAddIncome9.addActionListener(new java.awt.event.ActionListener() {
@@ -386,6 +391,10 @@ public class Welcome extends javax.swing.JFrame {
     private void frmWelcome_mnuExit9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmWelcome_mnuExit9MouseClicked
       gl.closeApp();
     }//GEN-LAST:event_frmWelcome_mnuExit9MouseClicked
+
+    private void frmWelcome_mnuOperations9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_mnuOperations9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_frmWelcome_mnuOperations9ActionPerformed
 
   /**
    * @param args the command line arguments

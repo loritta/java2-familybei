@@ -42,11 +42,10 @@ public class Details extends javax.swing.JDialog {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Error connecting to database(Details): " + ex.getMessage()
-                            +"\nSorry no data to display for now",
+                    + "\nSorry no data to display for now",
                     "Database error",
                     JOptionPane.ERROR_MESSAGE);
-        }
-        catch (NullPointerException ex) {
+        } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null,
                     ":) A null pointer.. not sure where :)" + ex.getMessage(),
                     "Something went wrong",
@@ -64,39 +63,40 @@ public class Details extends javax.swing.JDialog {
     }
 
     public void addRowToTable() throws SQLException {
-       
+
         DefaultTableModel model = (DefaultTableModel) dlgDetail_tblData.getModel();
-        if (Details_cmbChoice.getSelectedItem()=="Expenses"){
-        ArrayList<Transaction> listExpenses
-                = gl.db.updateTableExpenses(gl.currentUser.getId());
-        Object rowDataExpenses[] = new Object[3];
-        for (int i = 0; i < listExpenses.size(); i++) {
-            rowDataExpenses[0] = listExpenses.get(i).getTransDate();
-            rowDataExpenses[1] = listExpenses.get(i).getAmount();
-            rowDataExpenses[2] = listExpenses.get(i).getCategory();
-            model.addRow(rowDataExpenses);
-        }}
-        else if (Details_cmbChoice.getSelectedItem()=="Income"){
-        ArrayList<Transaction> listIncome
-                = gl.db.updateTableIncome(gl.currentUser.getId());
-        Object rowDataIncome[] = new Object[3];
-        for (int i = 0; i < listIncome.size(); i++) {
-            rowDataIncome[0] = listIncome.get(i).getTransDate();
-            rowDataIncome[1] = listIncome.get(i).getAmount();
-            rowDataIncome[2] = listIncome.get(i).getCategory();
-            model.addRow(rowDataIncome);
-        }}
-        else if (Details_cmbChoice.getSelectedItem()=="Budget"){
-        ArrayList<BudgetsMonthly> listBudget
-                = gl.db.updateTableBudget(gl.currentUser.getId());
-        Object rowDataBudget[] = new Object[3];
-        for (int i = 0; i < listBudget.size(); i++) {
-            rowDataBudget[0] = listBudget.get(i).getMonthOfYear();
-            rowDataBudget[1] = listBudget.get(i).getAmount();
-            rowDataBudget[2] = listBudget.get(i).getCatName();
-            model.addRow(rowDataBudget);
-        }}
-        
+        if (Details_cmbChoice.getSelectedItem() == "Expenses") {
+            ArrayList<Transaction> listExpenses
+                    = gl.db.updateTableExpenses(gl.currentUser.getId());
+            Object rowDataExpenses[] = new Object[3];
+            for (int i = 0; i < listExpenses.size(); i++) {
+                rowDataExpenses[0] = listExpenses.get(i).getTransDate();
+                rowDataExpenses[1] = listExpenses.get(i).getAmount();
+                rowDataExpenses[2] = listExpenses.get(i).getCategory();
+                model.addRow(rowDataExpenses);
+            }
+        } else if (Details_cmbChoice.getSelectedItem() == "Income") {
+            ArrayList<Transaction> listIncome
+                    = gl.db.updateTableIncome(gl.currentUser.getId());
+            Object rowDataIncome[] = new Object[3];
+            for (int i = 0; i < listIncome.size(); i++) {
+                rowDataIncome[0] = listIncome.get(i).getTransDate();
+                rowDataIncome[1] = listIncome.get(i).getAmount();
+                rowDataIncome[2] = listIncome.get(i).getCategory();
+                model.addRow(rowDataIncome);
+            }
+        } else if (Details_cmbChoice.getSelectedItem() == "Budget") {
+            ArrayList<BudgetsMonthly> listBudget
+                    = gl.db.updateTableBudget(gl.currentUser.getId());
+            Object rowDataBudget[] = new Object[3];
+            for (int i = 0; i < listBudget.size(); i++) {
+                rowDataBudget[0] = listBudget.get(i).getMonthOfYear();
+                rowDataBudget[1] = listBudget.get(i).getAmount();
+                rowDataBudget[2] = listBudget.get(i).getCatName();
+                model.addRow(rowDataBudget);
+            }
+        }
+
     }
 
     /**
@@ -226,6 +226,11 @@ public class Details extends javax.swing.JDialog {
         jMenuBar7.add(mnuOperations6);
 
         mnuExport6.setText("Export");
+        mnuExport6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuExport6ActionPerformed(evt);
+            }
+        });
 
         frmSeeBudget_miCSV6.setText("to CSV");
         frmSeeBudget_miCSV6.addActionListener(new java.awt.event.ActionListener() {
@@ -271,7 +276,7 @@ public class Details extends javax.swing.JDialog {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Error connecting to database: " + ex.getMessage()
-                            +"\nSorry no data to display for now",
+                    + "\nSorry no data to display for now",
                     "Database error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -299,10 +304,7 @@ public class Details extends javax.swing.JDialog {
         details.setVisible(true);     }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
 
     private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
-        gl.chooseFileCSV(fileChooser);
-         int ret = fileChooser.showDialog(null, "Save to the file");
-
-        if (ret == JFileChooser.APPROVE_OPTION) {
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
                 File file = fileChooser.getSelectedFile();
                 String filename = file.getAbsolutePath();
@@ -314,19 +316,20 @@ public class Details extends javax.swing.JDialog {
                 try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
                     ArrayList<Transaction> list = gl.db.getAllTransactions();
                     for (Transaction t : list) {
-                        out.printf("%.2f;%.2f;%s\n", t.getCategory(), t.getAmount(), t.getTransDate());
+                        out.printf("%d,%d,%.2f,%s,%s\n", 
+                            t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(), t.getCategory());
                     }
-                     ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
-                    for (BudgetsMonthly t : listBuget) {
-                        out.printf("%.2f;%.2f;%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear());
-                    }
+//                    ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
+//                    for (BudgetsMonthly t : listBuget) {
+//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear() + "");
+//                    }
                 }
             } catch (IOException | SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,
-                        "Error saving data to file:\n" + ex.getMessage(),
-                        "File saving error",
-                        JOptionPane.ERROR_MESSAGE);
+                    "Error saving data to file:\n" + ex.getMessage(),
+                    "File saving error",
+                    JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -337,6 +340,9 @@ public class Details extends javax.swing.JDialog {
     private void frmSeeBudget_mnuExit6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmSeeBudget_mnuExit6MouseClicked
         gl.closeApp();
     }//GEN-LAST:event_frmSeeBudget_mnuExit6MouseClicked
+
+    private void mnuExport6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExport6ActionPerformed
+    }//GEN-LAST:event_mnuExport6ActionPerformed
 
     /**
      * @param args the command line arguments

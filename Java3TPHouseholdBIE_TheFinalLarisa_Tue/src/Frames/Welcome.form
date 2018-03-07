@@ -10,6 +10,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Operations"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmWelcome_mnuOperations9ActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="frmWelcome_miAddIncome9">
               <Properties>
