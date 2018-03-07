@@ -306,7 +306,7 @@ return choice;
         return list;
     }
     public ArrayList<BudgetsMonthly> getAllBudgets() throws SQLException{
-        String sql = "SELECT * FROM transactions";
+        String sql = "SELECT * FROM budget";
         ArrayList<BudgetsMonthly> list = new ArrayList<>();
         int id;
         int userId;
@@ -320,9 +320,9 @@ return choice;
             while (result.next()) {
                 id = result.getInt("id");
                 userId = result.getInt("userId");
-                categoryId = result.getInt("categoryId");
+                categoryId = result.getInt("budgetcatId");
                 amount = result.getBigDecimal("amount");
-                transDate = result.getTimestamp("transDate");
+                transDate = result.getTimestamp("monthofyear");
                 category = getCatNameBudget(categoryId);
 
                 BudgetsMonthly trans = new BudgetsMonthly(id, userId, categoryId, amount, transDate);

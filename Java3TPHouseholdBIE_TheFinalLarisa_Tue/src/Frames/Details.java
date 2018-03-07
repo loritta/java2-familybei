@@ -321,7 +321,7 @@ public class Details extends javax.swing.JDialog {
                     }
 //                    ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
 //                    for (BudgetsMonthly t : listBuget) {
-//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear() + "");
+//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear());
 //                    }
                 }
             } catch (IOException | SQLException ex) {
