@@ -5,6 +5,17 @@
  */
 package Frames;
 
+import HelperClasses.BudgetsMonthly;
+import HelperClasses.Transaction;
+import java.math.BigDecimal;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author larisasabalin
@@ -13,21 +24,65 @@ public class Details extends javax.swing.JDialog {
 
     private static Frames.Global gl;
     private static Welcome welcome;
+
     /**
      * Creates new form SeeBudget
      */
     public Details(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        this.welcome=welcome;
-        this.gl=gl;
+        try {
+            addRowToTable();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Error connecting to database: " + ex.getMessage()
+                            +"\nSorry no data to display for now",
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        this.welcome = welcome;
+        this.gl = gl;
+
+        BudgetsMonthly budget;
         initComponents();
     }
 
     public void setDetailsComboBox(String choice) {
         Details_cmbChoice.setSelectedItem(choice);
     }
-    private void updateTable(){
+
+    public void addRowToTable() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel) dlgDetail_tblData.getModel();
+        if (Details_cmbChoice.getSelectedItem().equals("Expenses")){
+        ArrayList<Transaction> listExpenses
+                = gl.db.updateTableExpenses(gl.currentUser.getId());
+        Object rowDataExpenses[] = new Object[3];
+        for (int i = 0; i < listExpenses.size(); i++) {
+            rowDataExpenses[0] = listExpenses.get(i).getTransDate();
+            rowDataExpenses[1] = listExpenses.get(i).getAmount();
+            rowDataExpenses[2] = listExpenses.get(i).getCategory();
+            model.addRow(rowDataExpenses);
+        }}
+        if (Details_cmbChoice.getSelectedItem().equals("Income")){
+        ArrayList<Transaction> listIncome
+                = gl.db.updateTableIncome(gl.currentUser.getId());
+        Object rowDataIncome[] = new Object[3];
+        for (int i = 0; i < listIncome.size(); i++) {
+            rowDataIncome[0] = listIncome.get(i).getTransDate();
+            rowDataIncome[1] = listIncome.get(i).getAmount();
+            rowDataIncome[2] = listIncome.get(i).getCategory();
+            model.addRow(rowDataIncome);
+        }}
+        if (Details_cmbChoice.getSelectedItem().equals("Budget")){
+        ArrayList<BudgetsMonthly> listBudget
+                = gl.db.updateTableBudget(gl.currentUser.getId());
+        Object rowDataBudget[] = new Object[3];
+        for (int i = 0; i < listBudget.size(); i++) {
+            rowDataBudget[0] = listBudget.get(i).getMonthOfYear();
+            rowDataBudget[1] = listBudget.get(i).getAmount();
+            rowDataBudget[2] = listBudget.get(i).getCatName();
+            model.addRow(rowDataBudget);
+        }}
         
     }
 
@@ -43,12 +98,8 @@ public class Details extends javax.swing.JDialog {
         fileChooser = new javax.swing.JFileChooser();
         lblStatus6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
+        dlgDetail_tblData = new javax.swing.JTable();
         jLabel34 = new javax.swing.JLabel();
         Details_cmbChoice = new javax.swing.JComboBox<>();
         jMenuBar7 = new javax.swing.JMenuBar();
@@ -71,11 +122,7 @@ public class Details extends javax.swing.JDialog {
 
         jPanel7.setBackground(new java.awt.Color(204, 204, 255));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        dlgDetail_tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -98,14 +145,10 @@ public class Details extends javax.swing.JDialog {
                 {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3"
+                "When?", "How much?", "On what?"
             }
         ));
-        jScrollPane5.setViewportView(jTable1);
-
-        jLabel31.setText("Month");
-
-        jLabel32.setText("Year");
+        jScrollPane5.setViewportView(dlgDetail_tblData);
 
         jLabel34.setText("You choice ");
 
@@ -125,32 +168,19 @@ public class Details extends javax.swing.JDialog {
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Details_cmbChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(jLabel32)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Details_cmbChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel34))
-                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel31)
-                        .addComponent(jLabel32)))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Details_cmbChoice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel34))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -246,7 +276,7 @@ public class Details extends javax.swing.JDialog {
         details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
 
     private void frmSeeBudget_miAddIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddIncome6ActionPerformed
-        AddIncome income = new AddIncome(null, true, gl,welcome);
+        AddIncome income = new AddIncome(null, true, gl, welcome);
         income.pack();
         income.setVisible(true);
         gl.closeWindow(this);
@@ -254,7 +284,15 @@ public class Details extends javax.swing.JDialog {
     }//GEN-LAST:event_frmSeeBudget_miAddIncome6ActionPerformed
 
     private void Details_cmbChoiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Details_cmbChoiceActionPerformed
-        // TODO add your handling code here:
+        try {
+            addRowToTable();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Error connecting to database: " + ex.getMessage()
+                            +"\nSorry no data to display for now",
+                    "Database error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_Details_cmbChoiceActionPerformed
 
     private void frmSeeBudget_miAddExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddExpenses6ActionPerformed
@@ -291,7 +329,7 @@ public class Details extends javax.swing.JDialog {
     }//GEN-LAST:event_frmSeeBudget_miCSV6ActionPerformed
 
     private void frmSeeBudget_mnuExit6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_frmSeeBudget_mnuExit6MouseClicked
-gl.closeApp();
+        gl.closeApp();
     }//GEN-LAST:event_frmSeeBudget_mnuExit6MouseClicked
 
     /**
@@ -325,10 +363,10 @@ gl.closeApp();
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
-               Details dialog= new Details(null, true, gl, welcome);
-               dialog.setVisible(true);
-               /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+
+                Details dialog = new Details(null, true, gl, welcome);
+                dialog.setVisible(true);
+                /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);
@@ -340,6 +378,7 @@ gl.closeApp();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> Details_cmbChoice;
+    private javax.swing.JTable dlgDetail_tblData;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmSeeBudget_miAddExpenses6;
     private javax.swing.JMenuItem frmSeeBudget_miAddIncome6;
@@ -350,15 +389,10 @@ gl.closeApp();
     private javax.swing.JMenuItem frmSeeBudget_miSeeExpenses6;
     private javax.swing.JMenuItem frmSeeBudget_miSeeIncome6;
     private javax.swing.JMenu frmSeeBudget_mnuExit6;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JMenuBar jMenuBar7;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblStatus6;
     private javax.swing.JMenu mnuExport6;
     private javax.swing.JMenu mnuOperations6;

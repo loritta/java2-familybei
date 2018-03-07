@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 public class Database {
@@ -69,11 +70,10 @@ public class Database {
         return conn;
     }
 
-    public String loginVerif(String password, String username) {
+    public String loginVerif(String password, String username) throws SQLException {
         String sql = "select * from users where name = ? and password = ?";
         String msg = "";
-        try {
-            pst = conn.prepareStatement(sql);
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, username);
             pst.setString(2, password);
             rs = pst.executeQuery();
@@ -82,18 +82,14 @@ public class Database {
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username and password");
             }
-        } catch (SQLException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Error connecting to database: " + e.getMessage(),
-                    "Database error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+       
         return msg;
-    }
+    }}
 
     //to work on the SQL phrasing here
     public User createUserObject(String password, String username) throws SQLException {
-        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username + "' and password ='" + password + "'";
+        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username 
+                + "' and password ='" + password + "'";
         int id = 0;
         Date dob = null;
         int familyId = 0;
@@ -135,7 +131,8 @@ public class Database {
     }
 
     public String transactionHistoryAvailable(int id) throws SQLException {
-        String sql = "SELECT * FROM transactions WHERE userid='" + id + "' and Month(transdate)=MONTH(NOW())";
+        String sql = "SELECT * FROM transactions WHERE userid='" + id 
+                + "' and Month(transdate)=MONTH(NOW())";
         String msg = "empty";
         Timestamp transDate = null;
 
@@ -166,40 +163,35 @@ public class Database {
             pstmt.setInt(4, familyId);
 
             pstmt.executeUpdate();
+            System.out.println("HelperClasses.Database.insertUser()");
             JOptionPane.showMessageDialog(null, "Registered successfully.");
         }
     }
-
-    public boolean userExists(String username, int familyid, Date dob, String password) {
+//called in
+    public int userExists(String username, String password, String rePassword, Date dob, int familyid) throws SQLException, NullPointerException {
         String sql = "select * from users where name = ?";
-        boolean result=false;
-        try {
-            pst = conn.prepareStatement(sql);
+        int result=0;
+        System.out.println("HelperClasses.Database.userExists()-first");
+        try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, username);
-
+            System.out.println("HelperClasses.Database.userExists()-second");
+            
             rs = pst.executeQuery();
-            if (rs.next()) {
+                    
+            try{
+                while (rs.next()) {
                 JOptionPane.showMessageDialog(null,
                         "This user is already taken",
                         "Registration error",
                         JOptionPane.ERROR_MESSAGE);
+                }
                 
-            } else {
+            }catch(NullPointerException ex){
+                comparePassword(password, rePassword);
+                System.out.println("Frames.Registration.userExistVerif()");
                 insertUser(username, password, dob, familyid);
-                JOptionPane.showMessageDialog(null,
-            "Your information was registred",
-            "Success!!!",
-            JOptionPane.INFORMATION_MESSAGE);
-                result=true;
-                
             }
-
-        } catch (SQLException | NullPointerException e) {
-            JOptionPane.showMessageDialog(null,
-                    "Error connecting to database: " + e.getMessage(),
-                    "Database error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
+        } 
         return result;
     }
 
@@ -256,20 +248,18 @@ public class Database {
         return categoryId;
     }
 
-    public ArrayList<User> getDatabaseFamilyMembersName(int familyId)
+    public ArrayList<String> getDatabaseFamilyMembersName(int familyId)
             throws SQLException {
         String sql = "SELECT * FROM users WHERE familyid='" + familyId + "'";
-        User userOfFamily;
-        ArrayList<User> usersOfFamily = new ArrayList<>();
+        ArrayList<String> usersOfFamily = new ArrayList<>();
 
         try (Statement stmt = conn.createStatement();
                 ResultSet result = stmt.executeQuery(sql)) {
 
             while (result.next()) {
                 String name = result.getString("name");
-                int id = result.getInt("userid");
-                userOfFamily = new User(id, name);
-                usersOfFamily.add(userOfFamily);
+                int id = result.getInt("id");
+                usersOfFamily.add(name);
             }
         }
         return usersOfFamily;
@@ -342,10 +332,11 @@ public class Database {
         return amount;
     }
 
-    public BigDecimal getAllGeneralBudget(int userId, int categoryId)
+    public BigDecimal getAllGeneralBudget(int userId, int categoryId, int categoryId2)
             throws SQLException {
-        String sql = "SELECT amount FROM budgetsmonthly where userid='" + userId
-                + "' and Month(monthofyear)=MONTH(NOW()) and budgetsmonthlybycatid<>'" + categoryId + "'";
+        String sql = "SELECT amount FROM budget where userid='" + userId
+                + "' and Month(monthofyear)=MONTH(NOW()) and budgetcatID<>'" + categoryId 
+                + "'and budgetcatID<>'" + categoryId2+"'";
 
         BigDecimal amount = null;
 
@@ -367,6 +358,19 @@ public class Database {
     public void insertTransaction(int userId, int categoryId, BigDecimal amount)
             throws SQLException {
         String sql = "INSERT INTO transactions(userId, categoryId, amount) "
+                + "VALUES(?,?,?)";
+
+        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, userId);
+            pstmt.setInt(2, categoryId);
+            pstmt.setBigDecimal(3, amount);
+
+            pstmt.executeUpdate();
+        }
+    }
+    public void insertBudget(int userId, int categoryId, BigDecimal amount)
+            throws SQLException {
+        String sql = "INSERT INTO budget(userId, budgetcatID, amount) "
                 + "VALUES(?,?,?)";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -405,13 +409,115 @@ public class Database {
         }
     }
     
-    private void updateTableExpenses(int userid){
-        String sql="select*from transactions where userid='"+userid+"'";
+    public ArrayList<Transaction> updateTableExpenses(int userid) throws SQLException{
+        String sql="select*from transactions where userid='"+userid+"'and categoryid<>5 and categoryid<>8";
+        
+                ArrayList<Transaction> list = new ArrayList<>();
+        int id;
+        int userId;
+        int categoryId;
+        BigDecimal amount;
+        Timestamp transDate;
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+
+            while (result.next()) {
+                id = result.getInt("id");
+                userId = result.getInt("userId");
+                categoryId = result.getInt("categoryId");
+                amount = result.getBigDecimal("amount");
+                transDate = result.getTimestamp("transDate");
+
+                Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
+                list.add(trans);
+            }
+        }
+        return list;
     }
-    private void updateTableIncome(){
+    public ArrayList<Transaction> updateTableIncome(int userid) throws SQLException{
+        String sql="select*from transactions where userid='"+userid+"'and categoryid=5";
+        
+                ArrayList<Transaction> list = new ArrayList<>();
+        int id;
+        int userId;
+        int categoryId;
+        String category;
+        BigDecimal amount;
+        Timestamp transDate;
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+
+            while (result.next()) {
+                id = result.getInt("id");
+                userId = result.getInt("userId");
+                categoryId = result.getInt("categoryId");
+                amount = result.getBigDecimal("amount");
+                transDate = result.getTimestamp("transDate");
+                category=getCatName(categoryId);
+                Transaction trans = new Transaction(id, userId, amount, transDate, category);
+                list.add(trans);
+            }
+        }
+        return list;
         
     }
-    private void updateTableBudget(){
+    public ArrayList<BudgetsMonthly> updateTableBudget(int userid) throws SQLException{
+        String sql="select*from budget where userid='"+userid+"' and budgetcatID<>15";
         
+                ArrayList<BudgetsMonthly> list = new ArrayList<>();
+        int id;
+        int userId;
+        int categoryId;
+        String category;
+        BigDecimal amount;
+        Timestamp transDate;
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+
+            while (result.next()) {
+                id = result.getInt("id");
+                userId = result.getInt("userId");
+                categoryId = result.getInt("budgetcatId");
+                amount = result.getBigDecimal("amount");
+                transDate = result.getTimestamp("monthofyear");
+                category=getCatNameBudget(categoryId);
+
+                BudgetsMonthly budget = new BudgetsMonthly(id, userId, category, amount, transDate);
+                list.add(budget);
+            }
+        }
+        return list;
+    }
+    public String getCatName(int catId) throws SQLException{
+        String sql = "select name from category where id = '" + catId + "' limit 1";
+        String catName="";
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+            if (result.next()) {
+                catName = result.getString("name");
+            }
+        }
+        return catName;
+        
+    }
+     public String getCatNameBudget(int catId) throws SQLException{
+        String sql = "select name from budgetcat where id = '" + catId + "' limit 1";
+        String catName="";
+        try (Statement stmt = conn.createStatement();
+                ResultSet result = stmt.executeQuery(sql)) {
+            if (result.next()) {
+                catName = result.getString("name");
+            }
+        }
+        return catName;
+        
+    }
+     public void comparePassword(String password, String rePassword) {
+        
+        if (password.equals(rePassword)) {
+            JOptionPane.showMessageDialog(null, "Passwords matched!");
+        } else {
+            throw new InputMismatchException();
+        }
     }
 }

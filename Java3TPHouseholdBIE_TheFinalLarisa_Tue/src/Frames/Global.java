@@ -70,42 +70,28 @@ public class Global {
         frame.setVisible(false);
     }
 
-    public boolean comparePassword(String password, String rePassword) {
-        boolean result=false;
-        if (password.equals(rePassword)) {
-            JOptionPane.showMessageDialog(null, "Passwords matched!");
-            result=true;
-            return result;
-        } else {
-            throw new InputMismatchException();
-        }
-    }
-    
-    public boolean userExistVerif(String username, int familyid, Date dob, String password, String rePassword){
-        boolean result=false;
-        if(db.userExists(username, familyid, dob, password)){
-            try {
-                if(comparePassword(password, rePassword)){
-                    db.insertUser(username, password, dob, familyid);
-                    result=true;
-                }
-                
-            } catch (SQLException ex) {
-                 JOptionPane.showMessageDialog(null,
-                    "Error connecting to database: " + ex.getMessage(),
-                    "Database error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return result;
-    }
-
     public void insertTransaction(String amountStr, String type) {
         DecimalFormat formatter = new DecimalFormat("###.##");
         formatter.setParseBigDecimal(true);
         try {
             BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
             db.insertTransaction(currentUser.getId(), db.getCategoryId(type), amount);
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
+        } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
+        JOptionPane.showMessageDialog(null,
+                "Fatal error connecting database\n" + ex.getMessage(),
+                "Error connecting",
+                JOptionPane.ERROR_MESSAGE);
+      }
+    }
+      public void insertBudget(String amountStr, String type) {
+        DecimalFormat formatter = new DecimalFormat("###.##");
+        formatter.setParseBigDecimal(true);
+        try {
+            BigDecimal amount = (BigDecimal) formatter.parse(amountStr);
+            db.insertBudget(currentUser.getId(), db.getCategoryId(type), amount);
         } catch (ParseException ex) {
             JOptionPane.showMessageDialog(null, "The amount must be formatted as \"123.45\" ");
         } catch (SQLException ex) {
