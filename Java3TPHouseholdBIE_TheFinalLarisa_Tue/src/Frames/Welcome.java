@@ -68,7 +68,7 @@ public class Welcome extends javax.swing.JFrame {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(null,
-              "Fatal error connecting database\n" + ex.getMessage(),
+              "Fatal error connecting database(family)\n" + ex.getMessage(),
               "Error connecting",
               JOptionPane.ERROR_MESSAGE);
     }
@@ -104,7 +104,7 @@ public class Welcome extends javax.swing.JFrame {
     } catch (SQLException ex) {
       System.out.println(ex.getMessage());
       JOptionPane.showMessageDialog(null,
-              "Fatal error connecting database\n" + ex.getMessage(),
+              "Fatal error connecting database(trans)\n" + ex.getMessage(),
               "Error connecting",
               JOptionPane.ERROR_MESSAGE);
     }
@@ -408,7 +408,9 @@ public class Welcome extends javax.swing.JFrame {
 
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
       Details details = new Details(null, true, gl, this);
+      
       details.setDetailsComboBox("Expenses");
+      
       details.pack();
       details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeExpenses9ActionPerformed

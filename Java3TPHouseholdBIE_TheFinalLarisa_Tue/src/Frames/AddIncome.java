@@ -13,7 +13,7 @@ public class AddIncome extends javax.swing.JDialog {
     public AddIncome(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
         super(parent, modal);
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
-        addIncome_lblName.setText(gl.currentUser.getName());
+        //addIncome_lblName.setText(gl.currentUser.getName().toString());
         this.welcome = welcome;
         this.gl = gl;
         initComponents();
@@ -30,8 +30,6 @@ public class AddIncome extends javax.swing.JDialog {
 
         fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
-        jLabel28 = new javax.swing.JLabel();
-        addIncome_lblName = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         addIncome_tfAmount = new javax.swing.JTextField();
         addIncome_btnSave = new javax.swing.JButton();
@@ -40,10 +38,6 @@ public class AddIncome extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registering income", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 12))); // NOI18N
-
-        jLabel28.setText("Name");
-
-        addIncome_lblName.setText("...");
 
         jLabel30.setText("Amount");
 
@@ -69,26 +63,15 @@ public class AddIncome extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(addIncome_btnSave)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel28))
+                        .addComponent(jLabel30)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addIncome_tfAmount)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addComponent(addIncome_lblName)
-                                .addGap(0, 157, Short.MAX_VALUE)))))
+                        .addComponent(addIncome_tfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel28)
-                    .addComponent(addIncome_lblName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30)
                     .addComponent(addIncome_tfAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -160,10 +143,8 @@ public class AddIncome extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addIncome_btnSave;
-    private javax.swing.JLabel addIncome_lblName;
     private javax.swing.JTextField addIncome_tfAmount;
     private javax.swing.JFileChooser fileChooser;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

@@ -20,10 +20,10 @@ import javax.swing.JOptionPane;
 public class Database {
 
     //for Larisa
-  private final static String HOSTNAME = "den1.mysql6.gear.host";
-  private final static String DBNAME = "myjac";
-  private final static String USERNAME = "myjac";
-  private final static String PASSWORD = "Yt6wOA_!6byy";
+    private final static String HOSTNAME = "den1.mysql6.gear.host";
+    private final static String DBNAME = "myjac";
+    private final static String USERNAME = "myjac";
+    private final static String PASSWORD = "Yt6wOA_!6byy";
     public static final String DATE_FORMAT_SQL = "yyyy/MM/dd";
     //for Tung
 //    private final static String HOSTNAME = "den1.mysql6.gear.host";
@@ -82,13 +82,14 @@ public class Database {
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username and password");
             }
-       
-        return msg;
-    }}
+
+            return msg;
+        }
+    }
 
     //to work on the SQL phrasing here
     public User createUserObject(String password, String username) throws SQLException {
-        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username 
+        String sql = "SELECT id, dob, familyid FROM users WHERE name = '" + username
                 + "' and password ='" + password + "'";
         int id = 0;
         Date dob = null;
@@ -131,7 +132,7 @@ public class Database {
     }
 
     public String transactionHistoryAvailable(int id) throws SQLException {
-        String sql = "SELECT * FROM transactions WHERE userid='" + id 
+        String sql = "SELECT * FROM transactions WHERE userid='" + id
                 + "' and Month(transdate)=MONTH(NOW())";
         String msg = "empty";
         Timestamp transDate = null;
@@ -168,34 +169,35 @@ public class Database {
         }
     }
 //called in
-    public int userExists(String username, String password, String rePassword, Date dob, int familyid) throws SQLException, NullPointerException {
+
+    public void userExists(String username, String password, 
+            String rePassword, Date dob, int familyid) throws SQLException, NullPointerException {
         String sql = "select * from users where name = ?";
-        int result=0;
+        String result="";
         System.out.println("HelperClasses.Database.userExists()-first");
         try (PreparedStatement pst = conn.prepareStatement(sql)) {
             pst.setString(1, username);
-            System.out.println("HelperClasses.Database.userExists()-second");
-            
             rs = pst.executeQuery();
-                    
-            try{
-                while (rs.next()) {
-                JOptionPane.showMessageDialog(null,
-                        "This user is already taken",
-                        "Registration error",
-                        JOptionPane.ERROR_MESSAGE);
+
+            while (rs.next()) {
+                result = rs.getString("name"); 
+            
+        if (result == null) {
+                    comparePassword(password, rePassword);
+                    System.out.println("Frames.Registration.userExistVerif()");
+                    insertUser(username, password, dob, familyid);
+
+                } else {
+                    JOptionPane.showMessageDialog(null,
+                            "This user is already taken",
+                            "Registration error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-                
-            }catch(NullPointerException ex){
-                comparePassword(password, rePassword);
-                System.out.println("Frames.Registration.userExistVerif()");
-                insertUser(username, password, dob, familyid);
-            }
-        } 
-        return result;
+   }
+}
     }
 
-    public void deleteUser(int id) {
+public void deleteUser(int id) {
         String sql = "DELETE from users where id = ?";
 
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -418,6 +420,7 @@ public class Database {
         int categoryId;
         BigDecimal amount;
         Timestamp transDate;
+        String category;
         try (Statement stmt = conn.createStatement();
                 ResultSet result = stmt.executeQuery(sql)) {
 
@@ -427,8 +430,8 @@ public class Database {
                 categoryId = result.getInt("categoryId");
                 amount = result.getBigDecimal("amount");
                 transDate = result.getTimestamp("transDate");
-
-                Transaction trans = new Transaction(id, userId, categoryId, amount, transDate);
+                category=getCatName(categoryId);
+                Transaction trans = new Transaction(id, userId, amount, transDate, category);
                 list.add(trans);
             }
         }
@@ -473,7 +476,7 @@ public class Database {
         Timestamp transDate;
         try (Statement stmt = conn.createStatement();
                 ResultSet result = stmt.executeQuery(sql)) {
-
+            System.out.println("Budget");
             while (result.next()) {
                 id = result.getInt("id");
                 userId = result.getInt("userId");

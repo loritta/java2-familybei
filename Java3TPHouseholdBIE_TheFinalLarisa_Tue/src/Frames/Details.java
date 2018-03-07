@@ -7,6 +7,7 @@ package Frames;
 
 import HelperClasses.BudgetsMonthly;
 import HelperClasses.Transaction;
+import static java.lang.String.valueOf;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -33,9 +34,9 @@ public class Details extends javax.swing.JDialog {
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         try {
             addRowToTable();
-        } catch (SQLException ex) {
+        } catch (SQLException|NullPointerException ex) {
             JOptionPane.showMessageDialog(null,
-                    "Error connecting to database: " + ex.getMessage()
+                    "Error connecting to database(Details): " + ex.getMessage()
                             +"\nSorry no data to display for now",
                     "Database error",
                     JOptionPane.ERROR_MESSAGE);
@@ -52,8 +53,9 @@ public class Details extends javax.swing.JDialog {
     }
 
     public void addRowToTable() throws SQLException {
+       
         DefaultTableModel model = (DefaultTableModel) dlgDetail_tblData.getModel();
-        if (Details_cmbChoice.getSelectedItem().equals("Expenses")){
+        if (Details_cmbChoice.getSelectedItem()=="Expenses"){
         ArrayList<Transaction> listExpenses
                 = gl.db.updateTableExpenses(gl.currentUser.getId());
         Object rowDataExpenses[] = new Object[3];
@@ -63,7 +65,7 @@ public class Details extends javax.swing.JDialog {
             rowDataExpenses[2] = listExpenses.get(i).getCategory();
             model.addRow(rowDataExpenses);
         }}
-        if (Details_cmbChoice.getSelectedItem().equals("Income")){
+        else if (Details_cmbChoice.getSelectedItem()=="Income"){
         ArrayList<Transaction> listIncome
                 = gl.db.updateTableIncome(gl.currentUser.getId());
         Object rowDataIncome[] = new Object[3];
@@ -73,7 +75,7 @@ public class Details extends javax.swing.JDialog {
             rowDataIncome[2] = listIncome.get(i).getCategory();
             model.addRow(rowDataIncome);
         }}
-        if (Details_cmbChoice.getSelectedItem().equals("Budget")){
+        else if (Details_cmbChoice.getSelectedItem()=="Budget"){
         ArrayList<BudgetsMonthly> listBudget
                 = gl.db.updateTableBudget(gl.currentUser.getId());
         Object rowDataBudget[] = new Object[3];
@@ -124,25 +126,7 @@ public class Details extends javax.swing.JDialog {
 
         dlgDetail_tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "When?", "How much?", "On what?"
