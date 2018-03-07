@@ -27,14 +27,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmWelcome_miAddExpenses9ActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="frmWelcome_miGoToReports9">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Go To Reports"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="frmWelcome_miGoToReports9ActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="frmWelcome_miSeeBudgets9">
               <Properties>
                 <Property name="text" type="java.lang.String" value="See Budget"/>

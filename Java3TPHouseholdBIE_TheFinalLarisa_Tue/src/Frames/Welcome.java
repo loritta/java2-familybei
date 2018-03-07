@@ -140,7 +140,6 @@ public class Welcome extends javax.swing.JFrame {
         frmWelcome_mnuOperations9 = new javax.swing.JMenu();
         frmWelcome_miAddIncome9 = new javax.swing.JMenuItem();
         frmWelcome_miAddExpenses9 = new javax.swing.JMenuItem();
-        frmWelcome_miGoToReports9 = new javax.swing.JMenuItem();
         frmWelcome_miSeeBudgets9 = new javax.swing.JMenuItem();
         frmWelcome_miSeeExpenses9 = new javax.swing.JMenuItem();
         frmWelcome_miSeeIncome9 = new javax.swing.JMenuItem();
@@ -308,14 +307,6 @@ public class Welcome extends javax.swing.JFrame {
         });
         frmWelcome_mnuOperations9.add(frmWelcome_miAddExpenses9);
 
-        frmWelcome_miGoToReports9.setText("Go To Reports");
-        frmWelcome_miGoToReports9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                frmWelcome_miGoToReports9ActionPerformed(evt);
-            }
-        });
-        frmWelcome_mnuOperations9.add(frmWelcome_miGoToReports9);
-
         frmWelcome_miSeeBudgets9.setText("See Budget");
         frmWelcome_miSeeBudgets9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,11 +359,6 @@ public class Welcome extends javax.swing.JFrame {
       expense.setVisible(true);
 
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
-
-    private void frmWelcome_miGoToReports9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miGoToReports9ActionPerformed
-      
-
-    }//GEN-LAST:event_frmWelcome_miGoToReports9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
       Details details = new Details(null, true, gl, this);
@@ -447,7 +433,6 @@ public class Welcome extends javax.swing.JFrame {
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmWelcome_miAddExpenses9;
     private javax.swing.JMenuItem frmWelcome_miAddIncome9;
-    private javax.swing.JMenuItem frmWelcome_miGoToReports9;
     private javax.swing.JMenuItem frmWelcome_miSeeBudgets9;
     private javax.swing.JMenuItem frmWelcome_miSeeExpenses9;
     private javax.swing.JMenuItem frmWelcome_miSeeIncome9;
