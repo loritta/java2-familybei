@@ -1,4 +1,4 @@
-﻿Daily scrum - Every day at 9am
+Daily scrum - Every day at 9am
 =============================
 
 Each member writes down answers to 3 questions:
@@ -88,8 +88,7 @@ Larisa:
 Tung:
 1. 'max-user-connections' is addressed: too many unnessessary connections to the database at once.
 2. Clean classes by removing overkill CRUD methods to database using 1 connection. Reorganize some helper methods. Implement AddIncome, AddExpense windows
-3. Which event triggered similar to on-open to setText() on textfield name of AddIncome, AddExpense.
-◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
+3. Which event triggered similar to on-open to setText() on textfield name of AddIncome, AddExpense.◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 05/03/2018
 Larisa:
 1.login, registration(left to check the existence of the same user in the same family), welcome, initial info(to make sure that the information actually gets to the welcome)
@@ -104,9 +103,9 @@ Tung:
 ◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎◎
 06/03/2018
 Larisa:
-1.
-2.
-3.
+1.Most of the things are done, but a lot of bugs to be fixed
+2.Working on details, initial info not writing to budget, registration not checking the unique user there is a null pointer in the loading of details. Login stays as parent of initial info. Remove buttons on details.
+3.Will remove the Reports file.
 ▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎▶︎ 1 days left/ 8 days gone -submission
 07/03/2018
 Tung:
