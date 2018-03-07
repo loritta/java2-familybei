@@ -299,7 +299,7 @@ public class Details extends javax.swing.JDialog {
         details.setVisible(true);     }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
 
     private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
-        gl.chooseFileCSV(fileChooser);
+        
          int ret = fileChooser.showDialog(null, "Save to the file");
 
         if (ret == JFileChooser.APPROVE_OPTION) {

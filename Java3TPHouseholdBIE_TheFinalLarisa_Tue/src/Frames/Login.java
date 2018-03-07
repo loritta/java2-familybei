@@ -204,14 +204,13 @@ public class Login extends javax.swing.JDialog {
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
 
         try {
-            String password = pfPassword.getText();
+            String password = pfPassword.getPassword()+"";
             String username = tfName.getText();
             
             String result = gl.db.loginVerif(password, username);
             
             if (result.equals("success")) {
                     gl.currentUser = gl.db.createUserObject(password, username);
-                    System.out.println(gl.currentUser);
                     welcome = new Welcome(gl);
                     welcome.pack();
                     welcome.setVisible(true);
