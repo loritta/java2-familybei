@@ -28,7 +28,6 @@ public class AddIncome extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileChooser = new javax.swing.JFileChooser();
         jPanel2 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         addIncome_tfAmount = new javax.swing.JTextField();
@@ -144,7 +143,6 @@ public class AddIncome extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addIncome_btnSave;
     private javax.swing.JTextField addIncome_tfAmount;
-    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

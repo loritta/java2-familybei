@@ -58,7 +58,8 @@ public class Login extends javax.swing.JDialog {
         pfPassword = new javax.swing.JPasswordField();
         btnCancel = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Login");
 
         jPanel5.setBackground(new java.awt.Color(204, 204, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Create new account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 18))); // NOI18N
@@ -207,15 +208,11 @@ public class Login extends javax.swing.JDialog {
            
             String password = pfPassword.getText();
             String username = tfName.getText();
-            
             String result = gl.db.loginVerif(password, username);
-            
             if (result.equals("success")) {
                     gl.currentUser = gl.db.createUserObject(password, username);
-                    welcome = new Welcome(gl);
-                    welcome.pack();
                     welcome.setVisible(true);
-                    setVisible(false);
+                    this.setVisible(false);
                     //gl.closeWindow(this);
                
             }
@@ -283,7 +280,8 @@ public class Login extends javax.swing.JDialog {
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        gl.closeApp();
+                        System.exit(0);
+                       
                     }
                 });
 

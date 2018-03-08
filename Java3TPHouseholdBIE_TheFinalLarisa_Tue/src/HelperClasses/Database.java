@@ -82,7 +82,6 @@ public class Database {
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid username and password");
             }
-
             return msg;
         }
     }

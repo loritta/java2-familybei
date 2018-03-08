@@ -66,7 +66,6 @@ public class Registration extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileChooser = new javax.swing.JFileChooser();
         Registration = new javax.swing.JPanel();
         reg_btnRegister = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -83,7 +82,8 @@ public class Registration extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         reg_tfFamilyCode = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Registration");
         setModal(true);
 
         Registration.setBackground(new java.awt.Color(204, 204, 255));
@@ -249,7 +249,6 @@ public class Registration extends javax.swing.JDialog {
     private void reg_btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reg_btnRegisterActionPerformed
       if(getUser()){
       Login loginDialog = new Login(welcome, true, gl, welcome);
-      setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
       loginDialog.pack();
       loginDialog.setVisible(true);
       gl.closeWindow(this);}
@@ -330,7 +329,6 @@ reg_pfRePassword.setText("");      }//GEN-LAST:event_reg_pfRePasswordFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Registration;
-    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel13;

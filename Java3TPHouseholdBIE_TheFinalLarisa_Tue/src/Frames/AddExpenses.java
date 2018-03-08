@@ -26,7 +26,6 @@ public class AddExpenses extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileChooser = new javax.swing.JFileChooser();
         jPanel1 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
         addExpense_tfAmount = new javax.swing.JTextField();
@@ -163,7 +162,6 @@ public class AddExpenses extends javax.swing.JDialog {
     private javax.swing.JButton addExpense_btnSave;
     private javax.swing.JComboBox<String> addExpense_cbbxCategory;
     private javax.swing.JTextField addExpense_tfAmount;
-    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;

@@ -25,22 +25,13 @@ public class Welcome extends javax.swing.JFrame {
     private Transaction trans;
     private BudgetsMonthly budg;
     private Login login;
-
     /**
      * Creates new form Welcome
      */
-    public Welcome(Global gl) {
-        this.gl = gl;
+    public Welcome() {
+        gl = new Global();
         initComponents();
         logedIn(gl.currentUser);
-        
-
-    }
-
-    public Welcome() {
-        initComponents();
-
-        //this.setVisible(false);
     }
     
     public void logedIn(User currentUser){
@@ -145,7 +136,6 @@ public class Welcome extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        fileChooser = new javax.swing.JFileChooser();
         jPanel12 = new javax.swing.JPanel();
         lblUserName = new javax.swing.JLabel();
         pnlFamily = new javax.swing.JPanel();
@@ -171,6 +161,7 @@ public class Welcome extends javax.swing.JFrame {
         frmWelcome_mnuExit9 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Welcome");
 
         jPanel12.setBackground(new java.awt.Color(204, 204, 255));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Welcome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 12))); // NOI18N
@@ -450,12 +441,12 @@ public class Welcome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Welcome welcome = new Welcome(gl);
+                Welcome welcome = new Welcome();
                 welcome.setVisible(true);
                 welcome.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
-                        gl.closeApp();
+                       System.exit(0);
                     }
                 });
             }
@@ -463,7 +454,6 @@ public class Welcome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JMenuItem frmWelcome_miAddExpenses9;
     private javax.swing.JMenuItem frmWelcome_miAddIncome9;
     private javax.swing.JMenuItem frmWelcome_miSeeBudgets9;
