@@ -9,20 +9,22 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Transaction {
 
   int id;
   int userId;
+  int categoryId;
+  private String category;
+  BigDecimal amount;
+  Timestamp transDate;
 
   public int getCategoryId(String categoryName) throws SQLException {
     this.categoryId = db.getCategoryId(categoryName);
     return categoryId;
   }
-  int categoryId;
-  private String category;
-  BigDecimal amount;
-  Timestamp transDate;
+  
 
     public int getId() {
         return id;
@@ -96,16 +98,16 @@ public class Transaction {
   }
   
 
-  @Override
-  public String toString() {
-    // user's name instead of userId?, category name for categoryId?
-    return "Transaction{" + "id=" + id + ", userId=" + userId + ", categoryId="
-            + categoryId + ", amount=" + amount + ", transDate=" + transDate + '}';
-  }
+//  @Override
+//  public String toString() {
+//    // user's name instead of userId?, category name for categoryId?
+//    return "Transaction{" + "id=" + id + ", userId=" + userId + ", categoryId="
+//            + categoryId + ", amount=" + amount + ", transDate=" + transDate + '}';
+//  }
 
-  public ArrayList<Transaction> getAll() throws SQLException {
-    ArrayList<Transaction> list;
-    return list = db.getAllTransactions();
+  public List<Transaction> getAll(int userId) throws SQLException {
+    List<Transaction> list;
+    return list = db.getAllTransactions(userId);
   }
 
   public BigDecimal getAllGeneralExpenses(int userId) throws SQLException {
@@ -123,4 +125,14 @@ public class Transaction {
       return catName=db.getCatName(catId);
     
   }
+  @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", userId=" + userId + 
+                ", amount=" + amount + 
+                ", transDate=" + transDate +
+                ", category='" + category +'\'' +
+                '}';
+    }
 }

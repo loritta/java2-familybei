@@ -6,6 +6,7 @@
 package Frames;
 
 import HelperClasses.BudgetsMonthly;
+import HelperClasses.CsvFileWriter;
 import HelperClasses.Transaction;
 import java.io.File;
 import java.io.FileWriter;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
@@ -39,6 +41,11 @@ public class Details extends javax.swing.JDialog {
         setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
         try {
             addRowToTable();
+            List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
+            for (Transaction t:list){
+              System.out.println(t);  
+            }
+            System.out.println();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Error connecting to database(Details): " + ex.getMessage()
@@ -312,29 +319,46 @@ public class Details extends javax.swing.JDialog {
                 File file = fileChooser.getSelectedFile();
                 String filename = file.getAbsolutePath();
 
-                if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}") /*file.getName().toLowerCase().endsWith(".csv")*/) {
+                if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}")) {
 
-                    file = new File(filename + ".csv");
-                }
-                try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
-                    ArrayList<Transaction> list = gl.db.getAllTransactions();
+                    file = new File(filename + ".csv");}
+
+                     try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
+                    List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
+                    out.printf("Transactions\n");
+                    out.printf("id,userid,amount,transDate,category\n");
                     for (Transaction t : list) {
                         out.printf("%d,%d,%.2f,%s,%s\n", 
-                            t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(),
-                            t.getCategory());
+                             t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(), t.getCategory());
                     }
-//                    ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
-//                    for (BudgetsMonthly t : listBuget) {
-//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), 
-//                      t.getMonthOfYear());
-//                    }
-                }
-            } catch (IOException | SQLException ex) {
+                    out.printf("Budget\n");
+                    out.printf("catName,amount,transDate\n");
+                    List<BudgetsMonthly> listBuget = gl.db.getAllBudgets(gl.currentUser.getId());
+                    for (BudgetsMonthly t : listBuget) {
+                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear() + "");
+                    }
+                    
+                    //The code to use the CSV writer.. 
+                    //tried to figure out why it's not working properly, but had no chance until now.
+//                    List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
+//                    String title = "Expenses and Income";
+//                    // write csv
+//                    CsvFileWriter.writeCsvTransactions(file.toString(), list, title);
+//
+//                    List<BudgetsMonthly> listBudget = gl.db.getAllBudgets(gl.currentUser.getId());
+//                    title = "Budget";
+//
+//                    // write csv
+//                    CsvFileWriter.writeCsvBudget(file.toString(), listBudget, title);
+
+                }}
+
+             catch (IOException | SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,
-                    "Error saving data to file:\n" + ex.getMessage(),
-                    "File saving error",
-                    JOptionPane.ERROR_MESSAGE);
+                        "Error saving data to file:\n" + ex.getMessage(),
+                        "File saving error",
+                        JOptionPane.ERROR_MESSAGE);
             }
 
         }
