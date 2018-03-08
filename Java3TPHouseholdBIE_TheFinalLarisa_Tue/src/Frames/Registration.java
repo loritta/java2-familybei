@@ -84,9 +84,11 @@ public class Registration extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Registration");
+        setBackground(new java.awt.Color(154, 226, 208));
+        setLocation(new java.awt.Point(400, 300));
         setModal(true);
 
-        Registration.setBackground(new java.awt.Color(204, 204, 255));
+        Registration.setBackground(new java.awt.Color(154, 226, 208));
         Registration.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registration:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 18))); // NOI18N
 
         reg_btnRegister.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N

@@ -67,8 +67,11 @@ public class InitialInfo extends javax.swing.JDialog {
         init_btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Initial information");
+        setBackground(new java.awt.Color(154, 226, 208));
+        setLocation(new java.awt.Point(300, 23));
 
-        jPanel9.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel9.setBackground(new java.awt.Color(154, 226, 208));
         jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Entering initial financial information", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 18))); // NOI18N
 
         jLabel46.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 13)); // NOI18N
@@ -108,7 +111,7 @@ public class InitialInfo extends javax.swing.JDialog {
 
         getContentPane().add(jPanel9, java.awt.BorderLayout.PAGE_START);
 
-        JPanel10.setBackground(new java.awt.Color(204, 204, 255));
+        JPanel10.setBackground(new java.awt.Color(154, 226, 208));
         JPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Initial budgeting", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 18))); // NOI18N
         JPanel10.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {

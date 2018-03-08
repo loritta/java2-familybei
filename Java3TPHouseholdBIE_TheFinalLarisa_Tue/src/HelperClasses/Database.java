@@ -170,7 +170,8 @@ public class Database {
 //called in
 
     public boolean userExists(String username, String password,
-            String rePassword, Date dob, int familyid) throws SQLException, NullPointerException {
+            String rePassword, Date dob, int familyid) 
+            throws SQLException, NullPointerException {
         String sql = "select * from users where name = ?";
         String result=null;
         boolean choice=false;

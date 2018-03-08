@@ -34,8 +34,11 @@ public class AddIncome extends javax.swing.JDialog {
         addIncome_btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Income");
+        setBackground(new java.awt.Color(154, 226, 208));
+        setLocation(new java.awt.Point(400, 300));
 
-        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setBackground(new java.awt.Color(154, 226, 208));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registering income", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 12))); // NOI18N
 
         jLabel30.setText("Amount");

@@ -127,11 +127,14 @@ public class Details extends javax.swing.JDialog {
         frmSeeBudget_mnuExit6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Details");
+        setBackground(new java.awt.Color(154, 226, 208));
+        setLocation(new java.awt.Point(400, 300));
 
         lblStatus6.setText("Status");
         getContentPane().add(lblStatus6, java.awt.BorderLayout.PAGE_END);
 
-        jPanel7.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel7.setBackground(new java.awt.Color(154, 226, 208));
 
         dlgDetail_tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -317,11 +320,13 @@ public class Details extends javax.swing.JDialog {
                     ArrayList<Transaction> list = gl.db.getAllTransactions();
                     for (Transaction t : list) {
                         out.printf("%d,%d,%.2f,%s,%s\n", 
-                            t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(), t.getCategory());
+                            t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(),
+                            t.getCategory());
                     }
 //                    ArrayList<BudgetsMonthly> listBuget = gl.db.getAllBudgets();
 //                    for (BudgetsMonthly t : listBuget) {
-//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear());
+//                        out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), 
+//                      t.getMonthOfYear());
 //                    }
                 }
             } catch (IOException | SQLException ex) {

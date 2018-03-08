@@ -60,8 +60,10 @@ public class Login extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Login");
+        setBackground(new java.awt.Color(154, 226, 208));
+        setLocation(new java.awt.Point(400, 300));
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel5.setBackground(new java.awt.Color(154, 226, 208));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Create new account", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 18))); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 2, 10)); // NOI18N
@@ -107,7 +109,7 @@ public class Login extends javax.swing.JDialog {
 
         getContentPane().add(jPanel5, java.awt.BorderLayout.CENTER);
 
-        jPanel4.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel4.setBackground(new java.awt.Color(154, 226, 208));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Login", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 18))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Lucida Sans Typewriter", 1, 14)); // NOI18N

@@ -34,8 +34,10 @@ public class AddExpenses extends javax.swing.JDialog {
         addExpense_btnSave = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("AddExpenses");
+        setLocation(new java.awt.Point(400, 300));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(154, 226, 208));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Registering Expenses:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 1, 12))); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("American Typewriter", 1, 12)); // NOI18N

@@ -163,7 +163,7 @@ public class Welcome extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Welcome");
 
-        jPanel12.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel12.setBackground(new java.awt.Color(154, 226, 208));
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Welcome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 12))); // NOI18N
 
         lblUserName.setFont(new java.awt.Font("Zapfino", 0, 13)); // NOI18N
@@ -212,7 +212,7 @@ public class Welcome extends javax.swing.JFrame {
 
         getContentPane().add(pnlFamily, java.awt.BorderLayout.CENTER);
 
-        jPanel11.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel11.setBackground(new java.awt.Color(154, 226, 208));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "This month's statistics", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Lucida Sans Typewriter", 0, 13))); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Lucida Sans Typewriter", 0, 13)); // NOI18N
