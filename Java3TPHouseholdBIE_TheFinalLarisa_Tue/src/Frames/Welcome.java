@@ -383,12 +383,13 @@ public class Welcome extends javax.swing.JFrame {
     }//GEN-LAST:event_frmWelcome_miAddExpenses9ActionPerformed
 
     private void frmWelcome_miSeeBudgets9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeBudgets9ActionPerformed
-        Details details = new Details(null, true, gl, this);
-        details.setDetailsComboBox("Budget");
+       String comboChoice="Budget";
+        Details details = new Details(null, true, gl, this, comboChoice);
+        
         details.pack();
         details.setVisible(true);
     }//GEN-LAST:event_frmWelcome_miSeeBudgets9ActionPerformed
-
+//do the same as on top
     private void frmWelcome_miSeeExpenses9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmWelcome_miSeeExpenses9ActionPerformed
         Details details = new Details(null, true, gl, this);
 

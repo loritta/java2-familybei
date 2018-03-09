@@ -36,16 +36,20 @@ public class Details extends javax.swing.JDialog {
     /**
      * Creates new form SeeBudget
      */
-    public Details(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome) {
+    public Details(java.awt.Frame parent, boolean modal, Global gl, Welcome welcome, String comboChoice) {
         super(parent, modal);
-        setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        //setDefaultCloseOperation(this.DISPOSE_ON_CLOSE);
+        initComponents();
+        this.welcome = welcome;
+        this.gl = gl;
+        System.out.println("Frames.Details.<init>()");
         try {
             addRowToTable();
+            System.out.println(Details_cmbChoice.getSelectedItem());
             List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
             for (Transaction t:list){
               System.out.println(t);  
             }
-            System.out.println();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,
                     "Error connecting to database(Details): " + ex.getMessage()
@@ -58,11 +62,10 @@ public class Details extends javax.swing.JDialog {
                     "Something went wrong",
                     JOptionPane.ERROR_MESSAGE);
         }
-        this.welcome = welcome;
-        this.gl = gl;
+        
 
         BudgetsMonthly budget;
-        initComponents();
+        
     }
 
     public void setDetailsComboBox(String choice) {
@@ -72,6 +75,7 @@ public class Details extends javax.swing.JDialog {
     public void addRowToTable() throws SQLException {
 
         DefaultTableModel model = (DefaultTableModel) dlgDetail_tblData.getModel();
+        System.out.println(Details_cmbChoice.getSelectedItem());
         if (Details_cmbChoice.getSelectedItem() == "Expenses") {
             ArrayList<Transaction> listExpenses
                     = gl.db.updateTableExpenses(gl.currentUser.getId());
