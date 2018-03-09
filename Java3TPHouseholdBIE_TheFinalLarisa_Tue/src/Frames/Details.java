@@ -32,6 +32,7 @@ public class Details extends javax.swing.JDialog {
 
     private static Frames.Global gl;
     private static Welcome welcome;
+    private String comboChoice;
 
     /**
      * Creates new form SeeBudget
@@ -42,30 +43,10 @@ public class Details extends javax.swing.JDialog {
         initComponents();
         this.welcome = welcome;
         this.gl = gl;
-        System.out.println("Frames.Details.<init>()");
-        try {
-            addRowToTable();
-            System.out.println(Details_cmbChoice.getSelectedItem());
-            List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
-            for (Transaction t:list){
-              System.out.println(t);  
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,
-                    "Error connecting to database(Details): " + ex.getMessage()
-                    + "\nSorry no data to display for now",
-                    "Database error",
-                    JOptionPane.ERROR_MESSAGE);
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null,
-                    ":) A null pointer.. not sure where :)" + ex.getMessage(),
-                    "Something went wrong",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-        
-
+        Details_cmbChoice.setSelectedItem(comboChoice);
+       
         BudgetsMonthly budget;
-        
+
     }
 
     public void setDetailsComboBox(String choice) {
@@ -269,13 +250,6 @@ public class Details extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void frmSeeBudget_miSeeBudgets6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
-        Details details = new Details(null, true, gl, welcome);
-        details.setDetailsComboBox("Budget");
-        gl.closeWindow(this);
-        details.pack();
-        details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
-
     private void frmSeeBudget_miAddIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miAddIncome6ActionPerformed
         AddIncome income = new AddIncome(null, true, gl, welcome);
         income.pack();
@@ -303,20 +277,6 @@ public class Details extends javax.swing.JDialog {
         gl.closeWindow(this);
     }//GEN-LAST:event_frmSeeBudget_miAddExpenses6ActionPerformed
 
-    private void frmSeeBudget_miSeeExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
-        Details details = new Details(null, true, gl, welcome);
-        details.setDetailsComboBox("Expenses");
-        gl.closeWindow(this);
-        details.pack();
-        details.setVisible(true);    }//GEN-LAST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
-
-    private void frmSeeBudget_miSeeIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeIncome6ActionPerformed
-        Details details = new Details(null, true, gl, welcome);
-        details.setDetailsComboBox("Income");
-        gl.closeWindow(this);
-        details.pack();
-        details.setVisible(true);     }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
-
     private void frmSeeBudget_miCSV6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miCSV6ActionPerformed
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
             try {
@@ -325,15 +285,16 @@ public class Details extends javax.swing.JDialog {
 
                 if (!filename.matches(".+\\.[A-Za-z0-9]{1,20}")) {
 
-                    file = new File(filename + ".csv");}
+                    file = new File(filename + ".csv");
+                }
 
-                     try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
+                try (PrintWriter out = new PrintWriter(new FileWriter(file))) {
                     List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
                     out.printf("Transactions\n");
                     out.printf("id,userid,amount,transDate,category\n");
                     for (Transaction t : list) {
-                        out.printf("%d,%d,%.2f,%s,%s\n", 
-                             t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(), t.getCategory());
+                        out.printf("%d,%d,%.2f,%s,%s\n",
+                                t.getId(), t.getUserId(), t.getAmount(), t.getTransDate(), t.getCategory());
                     }
                     out.printf("Budget\n");
                     out.printf("catName,amount,transDate\n");
@@ -341,7 +302,7 @@ public class Details extends javax.swing.JDialog {
                     for (BudgetsMonthly t : listBuget) {
                         out.printf("%s,%.2f,%s\n", t.getCatName(), t.getAmount(), t.getMonthOfYear() + "");
                     }
-                    
+
                     //The code to use the CSV writer.. 
                     //tried to figure out why it's not working properly, but had no chance until now.
 //                    List<Transaction> list = gl.db.getAllTransactions(gl.currentUser.getId());
@@ -354,10 +315,8 @@ public class Details extends javax.swing.JDialog {
 //
 //                    // write csv
 //                    CsvFileWriter.writeCsvBudget(file.toString(), listBudget, title);
-
-                }}
-
-             catch (IOException | SQLException ex) {
+                }
+            } catch (IOException | SQLException ex) {
                 ex.printStackTrace();
                 JOptionPane.showMessageDialog(this,
                         "Error saving data to file:\n" + ex.getMessage(),
@@ -376,6 +335,24 @@ public class Details extends javax.swing.JDialog {
 
     private void mnuExport6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuExport6ActionPerformed
     }//GEN-LAST:event_mnuExport6ActionPerformed
+
+    private void frmSeeBudget_miSeeBudgets6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
+        setDetailsComboBox("Budget");
+       
+        gl.closeWindow(this);        // TODO add your handling code here:
+    }//GEN-LAST:event_frmSeeBudget_miSeeBudgets6ActionPerformed
+
+    private void frmSeeBudget_miSeeExpenses6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
+        setDetailsComboBox("Expenses");
+        
+        gl.closeWindow(this);
+    }//GEN-LAST:event_frmSeeBudget_miSeeExpenses6ActionPerformed
+
+    private void frmSeeBudget_miSeeIncome6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_frmSeeBudget_miSeeIncome6ActionPerformed
+        setDetailsComboBox("Income");
+        
+        gl.closeWindow(this);
+    }//GEN-LAST:event_frmSeeBudget_miSeeIncome6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -409,7 +386,7 @@ public class Details extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                Details dialog = new Details(null, true, gl, welcome);
+                Details dialog = new Details(null, true, gl, welcome, null);
                 dialog.setVisible(true);
                 /*dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override

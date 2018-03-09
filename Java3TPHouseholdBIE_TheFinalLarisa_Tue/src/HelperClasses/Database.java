@@ -548,13 +548,11 @@ if (result == null) {
     }
 
     public ArrayList<BudgetsMonthly> updateTableBudget(int userId) throws SQLException {
-        String sql = "select b1.id , "
-                + "userid, budgetcatID, amount, monthofyear, name"
-                + "from budget b1 "
-                + "JOIN budgetcat c1 "
-                + "ON b1.budgetcatID = c1.id "
-                + "where userid='"
-                + userId + "' and budgetcatID<>15";
+        String sql = "select b1.id , userid, budgetcatID, amount, monthofyear, name\n" +
+"from budget b1 \n" +
+"left JOIN budgetcat c1 \n" +
+"ON b1.budgetcatID = c1.id \n" +
+"where userid='"+userId+"' and budgetcatID<>15;";
 
         ArrayList<BudgetsMonthly> list = new ArrayList<>();
         int id;
